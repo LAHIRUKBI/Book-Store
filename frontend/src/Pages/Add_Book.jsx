@@ -7,7 +7,6 @@ export default function Add_product() {
     mainCategory: '',
     type: '',
     price: '',
-    weight: '',
     introduction: '',
   });
 
@@ -34,25 +33,22 @@ export default function Add_product() {
     ],
   };
 
-  const weights = ["50g", "100g", "250g", "500g", "1kg"];
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:3000/api/products', formData);
 
-      alert('Tea packet added successfully!');
+      alert('Product added successfully!');
       setFormData({
         mainCategory: '',
         type: '',
         price: '',
-        weight: '',
         introduction: '',
       });
 
       navigate('/productview');
     } catch (error) {
-      console.error('Error adding tea packet:', error);
+      console.error('Error adding product:', error);
     }
   };
 
@@ -66,27 +62,26 @@ export default function Add_product() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-black p-6">
-      <h1 className="text-4xl font-extrabold text-yellow-400 mb-6 drop-shadow-lg">
-        Add Your Unique Tea Packet
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-6">
+      <h1 className="text-4xl font-extrabold text-gray-700 mb-6 drop-shadow-lg">
+        Add Your Book to the Catalog
       </h1>
-      <p className="text-lg text-gray-200 text-center mb-6 max-w-3xl">
-        Welcome to the tea inventory management page. Use this form to add exquisite tea packets to our catalog. 
-        Provide all the necessary details to ensure your product stands out.
+      <p className="text-lg text-gray-600 text-center mb-6 max-w-3xl">
+        Use this form to add your book to our exclusive catalog. Share your literary creation with readers everywhere.
       </p>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-gradient-to-br from-gray-800 to-gray-700 p-8 rounded-xl shadow-2xl space-y-6 border border-gray-600"
+        className="w-full max-w-lg bg-gradient-to-br from-white to-gray-100 p-8 rounded-xl shadow-lg space-y-6 border border-gray-300"
       >
         <label className="block">
-          <span className="text-yellow-300 font-semibold">Main Category</span>
+          <span className="text-blue-600 font-semibold">Main Book Category</span>
           <select
-            className="form-select mt-2 block w-full rounded-lg border-gray-600 bg-gray-600 text-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+            className="form-select mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={formData.mainCategory}
             onChange={handleMainCategoryChange}
             required
           >
-            <option value="" disabled>Select main category</option>
+            <option value="" disabled>Select main book category</option>
             {Object.keys(bookCategories).map((category, index) => (
               <option key={index} value={category}>{category}</option>
             ))}
@@ -95,14 +90,14 @@ export default function Add_product() {
 
         {formData.mainCategory && (
           <label className="block">
-            <span className="text-yellow-300 font-semibold">Type of Tea</span>
+            <span className="text-blue-600 font-semibold">Type of Book</span>
             <select
-              className="form-select mt-2 block w-full rounded-lg border-gray-600 bg-gray-600 text-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+              className="form-select mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={formData.type}
               onChange={(e) => setFormData({ ...formData, type: e.target.value })}
               required
             >
-              <option value="" disabled>Select tea type</option>
+              <option value="" disabled>Select book type</option>
               {bookCategories[formData.mainCategory].map((type, index) => (
                 <option key={index} value={type}>{type}</option>
               ))}
@@ -111,10 +106,10 @@ export default function Add_product() {
         )}
 
         <label className="block">
-          <span className="text-yellow-300 font-semibold">Price (in $)</span>
+          <span className="text-blue-600 font-semibold">Price (in $)</span>
           <input
             type="number"
-            className="form-input mt-2 block w-full rounded-lg border-gray-600 bg-gray-600 text-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+            className="form-input mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={formData.price}
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             required
@@ -122,26 +117,11 @@ export default function Add_product() {
         </label>
 
         <label className="block">
-          <span className="text-yellow-300 font-semibold">Weight</span>
-          <select
-            className="form-select mt-2 block w-full rounded-lg border-gray-600 bg-gray-600 text-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-            value={formData.weight}
-            onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-            required
-          >
-            <option value="" disabled>Select weight</option>
-            {weights.map((weight, index) => (
-              <option key={index} value={weight}>{weight}</option>
-            ))}
-          </select>
-        </label>
-
-        <label className="block">
-          <span className="text-yellow-300 font-semibold">Introduction</span>
+          <span className="text-blue-600 font-semibold">Introduction</span>
           <textarea
-            className="form-textarea mt-2 block w-full rounded-lg border-gray-600 bg-gray-600 text-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+            className="form-textarea mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             rows="3"
-            placeholder="Write an appealing introduction for your tea packet."
+            placeholder="Write a brief introduction for your book."
             value={formData.introduction}
             onChange={(e) => setFormData({ ...formData, introduction: e.target.value })}
             required
@@ -150,9 +130,9 @@ export default function Add_product() {
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 text-black py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
+          className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
         >
-          Add to Catalog
+          Add Book to Catalog
         </button>
       </form>
     </div>

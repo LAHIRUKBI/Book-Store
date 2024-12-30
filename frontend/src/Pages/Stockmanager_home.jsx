@@ -24,22 +24,8 @@ export default function Stockmanager_home() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 opacity-80"></div>
             <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
-              
               <h2 className="text-2xl font-semibold">Add Book</h2>
               <p className="text-sm text-gray-200">Add new products to the inventory.</p>
-            </div>
-          </div>
-
-          {/* Add Stock */}
-          <div
-            className="group relative bg-green-600 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300"
-            onClick={() => navigate('/addstock')}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700 opacity-80"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
-              
-              <h2 className="text-2xl font-semibold">Add Stock</h2>
-              <p className="text-sm text-gray-200">Add and manage stock levels.</p>
             </div>
           </div>
 
@@ -50,22 +36,8 @@ export default function Stockmanager_home() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-yellow-700 opacity-80"></div>
             <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
-              
               <h2 className="text-2xl font-semibold">View Products</h2>
               <p className="text-sm text-gray-200">See all the products in your inventory.</p>
-            </div>
-          </div>
-
-          {/* View Stocks */}
-          <div
-            className="group relative bg-purple-600 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300"
-            onClick={() => navigate('/stocksview')}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-purple-700 opacity-80"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
-              
-              <h2 className="text-2xl font-semibold">View Stocks</h2>
-              <p className="text-sm text-gray-200">Review and manage stock details.</p>
             </div>
           </div>
         </div>
