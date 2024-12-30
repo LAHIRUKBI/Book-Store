@@ -36,6 +36,11 @@ export default function Signin() {
       }
 
       setError(null);
+
+      // Extract the username (part before "@") from email
+      const username = formData.email.split('@')[0];
+      localStorage.setItem('username', username);  // Save the username to localStorage
+
       navigate("/");  // Navigate to the home page or dashboard
     } catch (error) {
       console.error("Error:", error.message);
@@ -110,7 +115,7 @@ export default function Signin() {
           {/* Right Side: Image Section */}
           <div className="hidden sm:block sm:w-2/5 md:w-2/3 p-4 flex justify-center items-center">
             <img
-              src="src/images/recycling.jpg"
+              src="src/images/signin.jpeg"
               alt="Sign In"
               className="w-full h-full rounded-lg shadow-lg object-cover"
             />

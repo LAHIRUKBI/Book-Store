@@ -20,6 +20,7 @@ import View_product from './Pages/View_product'
 import Product_update from './Pages/Product_update'
 import Books from './Pages/Books'
 import Footer from './Components/Footer'
+import EmployeeProfile from './Pages/Employee_profile';
 
 export default function App() {
   return (
@@ -46,6 +47,7 @@ export default function App() {
       <Route path="/productview" element={<View_product />} />
       <Route path="/updateproduct/:id" element={<Product_update />} />
       <Route path="/books" element={<Books />} />
+      <Route path="/employee_profile/:username" element={<EmployeeProfile />} />
 
       
     </Routes>
