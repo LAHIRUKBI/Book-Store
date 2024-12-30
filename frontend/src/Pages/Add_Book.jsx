@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaBook, FaDollarSign, FaPen, FaListUl } from 'react-icons/fa';
 
 export default function Add_product() {
   const [formData, setFormData] = useState({
@@ -67,8 +68,9 @@ export default function Add_product() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-6 drop-shadow-md">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6 space-y-10">
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-6 drop-shadow-md flex items-center">
+        <FaBook className="text-blue-600 mr-2" />
         Add Your Book to the Catalog
       </h1>
       <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl">
@@ -78,12 +80,15 @@ export default function Add_product() {
       
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl space-y-6 border border-gray-300"
+        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl space-y-6 border-2 border-black"
       >
         <label className="block">
-          <span className="text-blue-600 font-semibold">Main Book Category</span>
+          <span className="text-blue-600 font-semibold flex items-center">
+            <FaListUl className="mr-2" />
+            Main Book Category
+          </span>
           <select
-            className="form-select mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-select mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={formData.mainCategory}
             onChange={handleMainCategoryChange}
             required
@@ -97,9 +102,12 @@ export default function Add_product() {
 
         {formData.mainCategory && (
           <label className="block">
-            <span className="text-blue-600 font-semibold">Type of Book</span>
+            <span className="text-blue-600 font-semibold flex items-center">
+              <FaListUl className="mr-2" />
+              Type of Book
+            </span>
             <select
-              className="form-select mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="form-select mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={formData.type}
               onChange={(e) => setFormData({ ...formData, type: e.target.value })}
               required
@@ -113,10 +121,13 @@ export default function Add_product() {
         )}
 
         <label className="block">
-          <span className="text-blue-600 font-semibold">Price (in $)</span>
+          <span className="text-blue-600 font-semibold flex items-center">
+            <FaDollarSign className="mr-2" />
+            Price (in $)
+          </span>
           <input
             type="number"
-            className="form-input mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-input mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={formData.price}
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             required
@@ -124,9 +135,12 @@ export default function Add_product() {
         </label>
 
         <label className="block">
-          <span className="text-blue-600 font-semibold">Introduction</span>
+          <span className="text-blue-600 font-semibold flex items-center">
+            <FaPen className="mr-2" />
+            Introduction
+          </span>
           <textarea
-            className="form-textarea mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-textarea mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             rows="3"
             placeholder="Write a brief introduction for your book."
             value={formData.introduction}
@@ -142,6 +156,11 @@ export default function Add_product() {
           Add Book to Catalog
         </button>
       </form>
+
+      <div className="text-center text-gray-700 mt-10">
+        <p className="text-lg">Join our collection of amazing books!</p>
+        <p>Contact us for any inquiries or support.</p>
+      </div>
     </div>
   );
 }
