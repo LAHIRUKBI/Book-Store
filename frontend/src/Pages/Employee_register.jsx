@@ -29,7 +29,7 @@ export default function Employee_register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-8">
       <form className="bg-white shadow-md rounded-lg p-8 max-w-4xl w-full">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Register Employee</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Registration of employees</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left Section */}
           <div>
