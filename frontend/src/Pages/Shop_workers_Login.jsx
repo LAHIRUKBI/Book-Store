@@ -46,7 +46,7 @@ export default function Admin_Login() {
             navigate('/staffmanagerhome');
             break;
           case 'Stock Manager':
-            navigate('/stockmanagerhome');
+            navigate('/Book_manager_home');
             break;
           case 'Vehicle Manager':
             navigate('/vehiclemanagerhome');

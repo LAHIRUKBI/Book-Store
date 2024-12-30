@@ -40,7 +40,7 @@ export default function View_product() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen">
+    <section className="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12 text-teal-400 drop-shadow-lg">
           Our Products
@@ -50,26 +50,23 @@ export default function View_product() {
             products.map((product) => (
               <div
                 key={product._id}
-                className="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl border border-gray-700"
+                className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl border border-gray-200"
               >
                 <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-teal-400">{product.mainCategory}</h3>
+                  <h3 className="text-2xl font-bold text-teal-600">{product.mainCategory}</h3>
                 </div>
 
                 <div className="mb-4">
-                  <h4 className="text-xl text-gray-300 font-semibold">{product.type}</h4>
+                  <h4 className="text-xl text-gray-700 font-semibold">{product.type}</h4>
                 </div>
 
-                <p className="text-sm text-gray-400 mb-4">
-                  <strong className="text-gray-300">Introduction:</strong> {product.introduction}
+                <p className="text-sm text-gray-600 mb-4">
+                  <strong className="text-gray-800">Introduction:</strong> {product.introduction}
                 </p>
 
-                <div className="flex justify-between items-center text-sm text-gray-400">
+                <div className="flex justify-between items-center text-sm text-gray-600">
                   <p>
-                    <strong className="text-gray-300">Weight:</strong> {product.weight}
-                  </p>
-                  <p>
-                    <strong className="text-gray-300">Price:</strong> ${product.price}
+                    <strong className="text-gray-800">Price:</strong> ${product.price}
                   </p>
                 </div>
 
@@ -90,7 +87,7 @@ export default function View_product() {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-400">No products found</p>
+            <p className="text-center text-gray-500">No products found</p>
           )}
         </div>
       </div>
