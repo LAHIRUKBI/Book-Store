@@ -39,7 +39,7 @@ export default function Home() {
         {/* Video Background */}
         <video
           className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
-          src="src/videos/Tea2.mp4"
+          src="src/videos/Home Video.mp4"
           autoPlay
           muted
           loop
