@@ -76,75 +76,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 1 & 2 arranged horizontally */}
-      <section className="py-16 bg-white text-gray-800">
+      {/* Section 1 */}
+      <section className="py-16 bg-white text-gray-900">
         <div className="container mx-auto px-4 flex flex-col md:flex-row space-y-12 md:space-y-0 md:space-x-12">
           {/* Card Layout for Section 1 */}
-          <div className="w-full md:w-1/2 flex flex-col items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-            <div className="w-full mb-8 md:mb-0">
-              <div className="w-full mb-4">
-                <h2 className="text-4xl font-bold text-teal-600 mb-4">
-                  Welcome to Our Book Store
-                </h2>
-              </div>
-              <img
-                src="src/images/book1.jpg" // Replace with your image path
-                alt="Books"
-                className="w-full h-64 object-cover rounded-xl shadow-2xl"
-              />
-            </div>
-            <div className="w-full md:w-2/3 md:pl-12 animate__animated animate__fadeIn animate__delay-2s">
-              <p className="text-lg text-gray-700 mb-6">
-                At Book Haven, we offer a curated selection of books that not only entertain but also educate and inspire. 
-                Our collection is designed to foster a love of reading while promoting sustainable living practices.
-              </p>
-              <p className="text-lg text-gray-700 mb-8">
-                Whether you are looking to dive into environmental topics, explore new fiction, or find an educational resource,
-                you'll find something special in our catalog. Join us on this exciting journey of discovery, knowledge, and sustainability!
-              </p>
-              <div className="flex justify-center mt-8">
-                <Link
-                  to="/books"
-                  className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-                >
-                  Explore Our Books
-                </Link>
-              </div>
-            </div>
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-center md:text-left">
+              Gateway to Imagination
+            </h2>
+            <img
+              src="src/images/book1.jpg" // Replace with your image path
+              alt="Books"
+              className="w-full h-48 object-cover rounded-xl shadow-2xl"
+            />
+            <p className="text-lg text-gray-700 mb-4 text-justify mt-4">
+              At Book Haven, we celebrate the value of books as gateways to
+              knowledge, imagination, and growth. By embracing the joy of
+              reading, you are also supporting sustainable living and a brighter
+              future for our planet.
+            </p>
+            <Link
+              to="/books"
+              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+            >
+              Explore Our Books
+            </Link>
           </div>
 
           {/* Card Layout for Section 2 */}
-          <div className="w-full md:w-1/2 flex flex-col items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-            <div className="w-full mb-8 md:mb-0">
-              <div className="w-full mb-4">
-                <h2 className="text-4xl font-bold text-teal-600 mb-4">
-                  Welcome to Our Book Store
-                </h2>
-              </div>
-              <img
-                src="src/images/book1.jpg" // Replace with your image path
-                alt="Books"
-                className="w-full h-64 object-cover rounded-xl shadow-2xl"
-              />
-            </div>
-            <div className="w-full md:w-2/3 md:pl-12 animate__animated animate__fadeIn animate__delay-2s">
-              <p className="text-lg text-gray-700 mb-6">
-                At Book Haven, we offer a curated selection of books that not only entertain but also educate and inspire. 
-                Our collection is designed to foster a love of reading while promoting sustainable living practices.
-              </p>
-              <p className="text-lg text-gray-700 mb-8">
-                Whether you are looking to dive into environmental topics, explore new fiction, or find an educational resource,
-                you'll find something special in our catalog. Join us on this exciting journey of discovery, knowledge, and sustainability!
-              </p>
-              <div className="flex justify-center mt-8">
-                <Link
-                  to="/books"
-                  className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-                >
-                  Explore Our Books
-                </Link>
-              </div>
-            </div>
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-center md:text-left">
+              Journeys Through Knowledge
+            </h2>
+            <img
+              src="src/images/book2.jpg" // Replace with your image path
+              alt="Books"
+              className="w-full h-48 object-cover rounded-xl shadow-2xl"
+            />
+            <p className="text-lg text-gray-700 mb-4 text-justify mt-4">
+              Dive into a curated collection of books that educate, inspire, and
+              connect readers with ideas that have the power to transform lives.
+            </p>
+            <Link
+              to="/books"
+              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+            >
+              Explore Our Books
+            </Link>
+          </div>
+
+          {/* Card Layout for Section 3 */}
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-center md:text-left">
+              Treasures of Inspiration
+            </h2>
+            <img
+              src="src/images/book3.jpg" // Replace with your image path
+              alt="Books"
+              className="w-full h-48 object-cover rounded-xl shadow-2xl"
+            />
+            <p className="text-lg text-gray-700 mb-4 text-justify mt-4">
+              Discover books that inspire personal growth and emotional
+              connections, uplifting your spirit and expanding your horizons.
+            </p>
+            <Link
+              to="/books"
+              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+            >
+              Explore Our Books
+            </Link>
           </div>
         </div>
       </section>
