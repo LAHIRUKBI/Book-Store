@@ -90,22 +90,23 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
                   {/* Learning 1 */}
                   <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-                    <img
-                      src="src/images/book1.jpg" // Replace with your image path
-                      alt="Book 1"
-                      className="w-full h-60 object-cover rounded-xl shadow-2xl"
-                    />
-                    <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">Imagination Unbound</h3>
-                    <p className="text-lg text-gray-700 mb-4 text-center">
-                      Dive into a world of creativity with books that break the boundaries of your imagination.
-                    </p>
-                    <Link
-                      to="/bookDetails/1"
-                      className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-                    >
-                      Learn More
-                    </Link>
-                  </div>
+  <img
+    src="src/images/The Importance of Learning.jpeg" // Replace with your image path
+    alt="The Importance of Learning"
+    className="w-full h-60 object-cover rounded-xl shadow-2xl"
+  />
+  <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">The Importance of Learning</h3>
+  <p className="text-lg text-gray-700 mb-4 text-center">
+    Discover the profound impact of continuous learning on personal growth, career advancement, and overall well-being.
+  </p>
+  <Link
+    to="/bookDetails/learning"
+    className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+  >
+    Learn More
+  </Link>
+</div>
+
       
                   {/* Learning 2 */}
                   <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
