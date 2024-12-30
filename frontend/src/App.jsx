@@ -21,6 +21,7 @@ import Product_update from './Pages/Product_update'
 import Books from './Pages/Books'
 import Footer from './Components/Footer'
 import EmployeeProfile from './Pages/Employee_profile';
+import BookDetails from './Pages/Book_details'
 
 export default function App() {
   return (
@@ -48,6 +49,8 @@ export default function App() {
       <Route path="/updateproduct/:id" element={<Product_update />} />
       <Route path="/books" element={<Books />} />
       <Route path="/employee_profile/:username" element={<EmployeeProfile />} />
+      <Route path="/book_details/:id" element={<BookDetails />} />
+
 
       
     </Routes>
