@@ -33,52 +33,62 @@ export default function BookDetails() {
   }, [book, quantity]);
 
   if (!book) {
-    return <div>Loading book details...</div>;
+    return <div className="text-center text-2xl text-gray-600">Loading book details...</div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800 py-16">
+    <div className="min-h-screen bg-gradient-to-r from-teal-50 to-white py-16">
       <div className="container mx-auto px-4">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold text-center mb-4 text-teal-600">{book.type}</h2>
+        <div className="bg-white p-7 rounded-lg shadow-lg max-w-4xl mx-auto flex flex-col md:flex-row">
+          {/* Left side: Book Details */}
+          <div className="flex-1 mb-8 md:mb-0 md:pr-8">
+            <h2 className="text-4xl font-extrabold text-teal-600 mb-4">{book.type}</h2>
 
-          <div className="mb-4 text-center">
-            <div className="inline-block bg-teal-100 text-teal-600 py-2 px-4 rounded-full text-lg font-semibold shadow-md">
-              <FaBook className="mr-2 inline-block" />
+            <div className="inline-block bg-teal-200 text-teal-700 py-2 px-6 rounded-full text-lg font-semibold shadow-lg mb-6">
+              <FaBook className="mr-3 inline-block text-2xl" />
               {book.mainCategory}
             </div>
+
+            <p className="text-xl font-semibold mb-4">Introduction:</p>
+            <p className="text-gray-700 leading-relaxed">{book.introduction}</p>
           </div>
 
-          <p className="text-xl font-semibold mb-4">Introduction:</p>
-          <p className="text-gray-700 mb-8">{book.introduction}</p>
+          {/* Right side: Price, Quantity, Total Price, and Add to Cart Button */}
+          <div className="flex-1 flex flex-col justify-between h-full">
+            {/* Price Section */}
+            <div className="text-center text-gray-800 text-xl font-bold mb-6">
+              <FaTag className="inline-block mr-2 text-teal-600" />
+              <span className="text-2xl">RS {book.price}</span>
+            </div>
 
-          <div className="flex items-center justify-center mb-4">
-            <label htmlFor="quantity" className="text-lg font-semibold mr-4">Quantity:</label>
-            <input
-              id="quantity"
-              type="number"
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              min="1"
-              className="w-16 text-center py-2 px-4 border rounded-md"
-            />
-          </div>
+            {/* Quantity Section */}
+            <div className="text-center mb-6">
+              <label htmlFor="quantity" className="text-lg font-medium text-gray-800 mr-4">
+                Quantity:
+              </label>
+              <input
+                id="quantity"
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                min="1"
+                className="w-20 text-center py-3 px-6 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200"
+              />
+            </div>
 
-          <div className="text-center text-gray-800 text-lg font-bold mb-4">
-            <FaTag className="inline-block mr-2 text-teal-600" />
-            <span className="text-2xl">${book.price}</span>
-          </div>
+            {/* Total Price Section */}
+            <div className="text-center text-lg font-semibold mb-6">
+              <p>Total Price: <span className="text-teal-500">RS {totalPrice.toFixed(2)}</span></p>
+            </div>
 
-          <div className="text-center text-lg font-bold mb-4">
-            <p>Total Price: ${totalPrice.toFixed(2)}</p>
-          </div>
-
-          <div className="mt-8 text-center">
-            <button
-              className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300"
-            >
-              Add to Cart
-            </button>
+            {/* Add to Cart Button */}
+            <div className="mt-8 text-center">
+              <button
+                className="bg-teal-500 hover:bg-teal-600 text-white py-3 px-8 rounded-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
+              >
+                Buy
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaRecycle } from "react-icons/fa";
+import { FaBookOpen } from 'react-icons/fa';
 import axios from "axios";
 
 export default function Home() {
@@ -71,83 +71,86 @@ export default function Home() {
             to="/register"
             className="bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
           >
-            <FaRecycle className="inline mr-2" /> Get Started
+            <FaBookOpen className="inline mr-2" /> Get Started
           </Link>
         </div>
       </section>
 
-      {/* Section 1 */}
-      <section className="py-16 bg-white text-gray-900">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row space-y-12 md:space-y-0 md:space-x-12">
-          {/* Card Layout for Section 1 */}
-          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-center md:text-left">
-              Gateway to Imagination
-            </h2>
-            <img
-              src="src/images/book1.jpg" // Replace with your image path
-              alt="Books"
-              className="w-full h-48 object-cover rounded-xl shadow-2xl"
-            />
-            <p className="text-lg text-gray-700 mb-4 text-justify mt-4">
-              At Book Haven, we celebrate the value of books as gateways to
-              knowledge, imagination, and growth. By embracing the joy of
-              reading, you are also supporting sustainable living and a brighter
-              future for our planet.
-            </p>
-            <Link
-              to="/books"
-              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-            >
-              Explore Our Books
-            </Link>
-          </div>
+      
 
-          {/* Card Layout for Section 2 */}
-          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-center md:text-left">
-              Journeys Through Knowledge
-            </h2>
-            <img
-              src="src/images/book2.jpg" // Replace with your image path
-              alt="Books"
-              className="w-full h-48 object-cover rounded-xl shadow-2xl"
-            />
-            <p className="text-lg text-gray-700 mb-4 text-justify mt-4">
-              Dive into a curated collection of books that educate, inspire, and
-              connect readers with ideas that have the power to transform lives.
-            </p>
-            <Link
-              to="/books"
-              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-            >
-              Explore Our Books
-            </Link>
-          </div>
 
-          {/* Card Layout for Section 3 */}
-          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-            <h2 className="text-3xl font-bold text-teal-600 mb-4 text-center md:text-left">
-              Treasures of Inspiration
-            </h2>
-            <img
-              src="src/images/book3.jpg" // Replace with your image path
-              alt="Books"
-              className="w-full h-48 object-cover rounded-xl shadow-2xl"
-            />
-            <p className="text-lg text-gray-700 mb-4 text-justify mt-4">
-              Discover books that inspire personal growth and emotional
-              connections, uplifting your spirit and expanding your horizons.
-            </p>
-            <Link
-              to="/books"
-              className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-            >
-              Explore Our Books
-            </Link>
-          </div>
-        </div>
-      </section>
+
+
+      {/* Section with Curated Book Collection */}
+            <section className="py-16 bg-white text-gray-800">
+              <div className="container mx-auto px-4">
+                <h2 className="text-4xl font-bold text-teal-600 mb-12 text-center">
+                  Learning Pool
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+                  {/* Learning 1 */}
+                  <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+                    <img
+                      src="src/images/book1.jpg" // Replace with your image path
+                      alt="Book 1"
+                      className="w-full h-60 object-cover rounded-xl shadow-2xl"
+                    />
+                    <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">Imagination Unbound</h3>
+                    <p className="text-lg text-gray-700 mb-4 text-center">
+                      Dive into a world of creativity with books that break the boundaries of your imagination.
+                    </p>
+                    <Link
+                      to="/bookDetails/1"
+                      className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+      
+                  {/* Learning 2 */}
+                  <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+                    <img
+                      src="src/images/book2.jpg" // Replace with your image path
+                      alt="Book 2"
+                      className="w-full h-60 object-cover rounded-xl shadow-2xl"
+                    />
+                    <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">Endless Possibilities</h3>
+                    <p className="text-lg text-gray-700 mb-4 text-center">
+                      Experience the power of ideas that can transform lives and reshape your world.
+                    </p>
+                    <Link
+                      to="/bookDetails/2"
+                      className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+      
+                  {/* Learning 3 */}
+                  <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+                    <img
+                      src="src/images/book3.jpg" // Replace with your image path
+                      alt="Book 3"
+                      className="w-full h-60 object-cover rounded-xl shadow-2xl"
+                    />
+                    <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">The Art of Storytelling</h3>
+                    <p className="text-lg text-gray-700 mb-4 text-center">
+                      Discover the craft of storytelling and its impact on personal growth and creativity.
+                    </p>
+                    <Link
+                      to="/bookDetails/3"
+                      className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+
+
     </div>
   );
 }
