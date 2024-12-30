@@ -53,7 +53,7 @@ export default function Signup() {
     <div className="flex flex-col min-h-screen bg-lightgray">
       {/* Background color changed to light gray */}
       <div className="flex justify-center items-center flex-grow p-6">
-        <div className="relative z-10 flex w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:p-9 backdrop-filter backdrop-blur-lg transition-all duration-800 hover:shadow-2xl">
+        <div className="relative z-10 flex w-full max-w-4xl bg-white bg-opacity-90 shadow-lg rounded-lg p-6 md:p-9 backdrop-filter backdrop-blur-lg transition-all duration-800 hover:shadow-2xl hover:bg-white hover:bg-opacity-100">
           {/* Left Side: Form Section */}
           <div className="w-full sm:w-3/5 md:w-2/3 p-4">
             <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-4">Signup</h2>
@@ -107,11 +107,11 @@ export default function Signup() {
           </div>
 
           {/* Right Side: Image Section */}
-          <div className="hidden sm:block sm:w-2/5 md:w-1/3 p-4 flex justify-center items-center">
+          <div className="hidden sm:block sm:w-2/5 md:w-2/3 p-4 flex justify-center items-center">
             <img
               src="src/images/book1.jpg"
               alt="Signup"
-              className="w-full h-auto rounded-lg shadow-lg object-cover transform transition-all duration-500 hover:scale-105"
+              className="w-full h-full rounded-lg shadow-lg object-cover"
             />
           </div>
         </div>

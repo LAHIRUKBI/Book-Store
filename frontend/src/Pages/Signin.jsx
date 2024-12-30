@@ -45,66 +45,77 @@ export default function Signin() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center bg-gray-100 py-6">
-      <div className="w-full max-w-md bg-white border border-gray-300 shadow-lg rounded-lg p-8">
-        {/* Introduction Section */}
-        <div className="mb-6">
-          <h2 className="text-3xl font-extrabold text-center mb-2 text-green-600">Welcome to SmartBIN</h2>
-          <p className="text-gray-600 text-center text-sm mb-4">
-            We're thrilled to have you on board! Sign in to access your account and start managing your recycling with us.
-          </p>
-          <p className="text-gray-600 text-center text-sm mb-6">
-            Already have an account? Use the form below to sign in and get started with our eco-friendly solutions.
-          </p>
+    <div className="flex flex-col min-h-screen bg-lightgray">
+      {/* Background color changed to light gray */}
+      <div className="flex justify-center items-center flex-grow p-6">
+        <div className="relative z-10 flex w-full max-w-4xl bg-white bg-opacity-90 shadow-lg rounded-lg p-6 md:p-9 backdrop-filter backdrop-blur-lg transition-all duration-800 hover:shadow-2xl hover:bg-white hover:bg-opacity-100">
+          {/* Left Side: Form Section */}
+          <div className="w-full sm:w-3/5 md:w-2/3 p-4">
+            <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-4">Sign In</h2>
+            {/* Introduction Section */}
+            <p className="text-gray-600 text-base text-center mb-4">
+              Welcome back! Please sign in to access your account and continue recycling with us.
+            </p>
+
+            <form onSubmit={handleSubmit}>
+              {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
+
+              {/* Email Field */}
+              <div className="mb-5">
+                <label className="block text-sm font-medium text-gray-800" htmlFor="email">Email:</label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    className="mt-1 block w-full px-10 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm transition-all"
+                    onChange={handleChange}
+                    required
+                  />
+                  <FontAwesomeIcon icon={faEnvelope} className="absolute left-3 top-3 text-gray-500" />
+                </div>
+              </div>
+
+              {/* Password Field */}
+              <div className="mb-5">
+                <label className="block text-sm font-medium text-gray-800" htmlFor="password">Password:</label>
+                <div className="relative">
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    className="mt-1 block w-full px-10 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm transition-all"
+                    onChange={handleChange}
+                    required
+                  />
+                  <FontAwesomeIcon icon={faLock} className="absolute left-3 top-3 text-gray-500" />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className={`w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white py-3 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 shadow-md transition-all transform hover:scale-105 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <FontAwesomeIcon icon={faSpinner} spin className="mr-2" />
+                    Signing In...
+                  </>
+                ) : 'Sign In'}
+              </button>
+            </form>
+          </div>
+
+          {/* Right Side: Image Section */}
+          <div className="hidden sm:block sm:w-2/5 md:w-2/3 p-4 flex justify-center items-center">
+            <img
+              src="src/images/recycling.jpg"
+              alt="Sign In"
+              className="w-full h-full rounded-lg shadow-lg object-cover"
+            />
+          </div>
         </div>
-
-        {/* Sign In Form */}
-        <form onSubmit={handleSubmit}>
-          {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
-
-          <div className="mb-5">
-            <label className="block text-sm font-medium text-green-600" htmlFor="email">Email:</label>
-            <div className="relative">
-              <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                className="mt-1 block w-full px-10 py-3 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 sm:text-sm"
-                onChange={handleChange}
-                required
-              />
-              <FontAwesomeIcon icon={faEnvelope} className="absolute left-3 top-3 text-gray-500" />
-            </div>
-          </div>
-
-          <div className="mb-5">
-            <label className="block text-sm font-medium text-green-600" htmlFor="password">Password:</label>
-            <div className="relative">
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                className="mt-1 block w-full px-10 py-3 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 sm:text-sm"
-                onChange={handleChange}
-                required
-              />
-              <FontAwesomeIcon icon={faLock} className="absolute left-3 top-3 text-gray-500" />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className={`w-full bg-gradient-to-r from-green-600 to-green-500 text-white py-3 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 shadow-md ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <FontAwesomeIcon icon={faSpinner} spin className="mr-2" />
-                Signing In...
-              </>
-            ) : 'Sign In'}
-          </button>
-        </form>
       </div>
     </div>
   );

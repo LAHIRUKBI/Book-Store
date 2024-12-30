@@ -43,6 +43,16 @@ export default function View_product() {
   return (
     <section className="py-16 bg-gray-100 text-gray-800 min-h-screen">
       <div className="container mx-auto px-4">
+        {/* Book Manager Home Button */}
+        <div className="text-center mb-8">
+          <Link
+            to="/Book_manager_home"
+            className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
+          >
+            Go to Book Manager Home
+          </Link>
+        </div>
+
         <h2 className="text-4xl font-bold text-center mb-12 text-teal-600 drop-shadow-lg">
           Our Products
         </h2>
