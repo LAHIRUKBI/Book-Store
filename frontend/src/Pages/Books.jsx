@@ -73,12 +73,14 @@ export default function Books() {
 
                   {/* Buy Button */}
                   <div className="mt-4 text-center">
-                    <Link
-                      to={`/buy/${product._id}`} // Assuming you have a buy page
-                      className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
-                    >
-                      Buy Now
-                    </Link>
+                  <Link
+  to={`/book_details/${product._id}`} // Ensure this matches the route in your `App.js`
+  className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
+>
+  Buy Now
+</Link>
+
+
                   </div>
                 </div>
               ))
