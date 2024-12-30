@@ -36,21 +36,26 @@ export default function Add_product() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send the form data to the backend to add the new product
       await axios.post('http://localhost:3000/api/products', formData);
-
+      
       alert('Product added successfully!');
+      
+      // Clear the form data after successful submission
       setFormData({
         mainCategory: '',
         type: '',
         price: '',
         introduction: '',
       });
-
+  
+      // Navigate back to the products view
       navigate('/productview');
     } catch (error) {
       console.error('Error adding product:', error);
     }
   };
+  
 
   const handleMainCategoryChange = (e) => {
     const mainCategory = e.target.value;
