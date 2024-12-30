@@ -20,12 +20,12 @@ export default function Stockmanager_home() {
           {/* Add Product */}
           <div
             className="group relative bg-blue-600 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300"
-            onClick={() => navigate('/addproduct')}
+            onClick={() => navigate('/addbook')}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 opacity-80"></div>
             <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
               
-              <h2 className="text-2xl font-semibold">Add Product</h2>
+              <h2 className="text-2xl font-semibold">Add Book</h2>
               <p className="text-sm text-gray-200">Add new products to the inventory.</p>
             </div>
           </div>

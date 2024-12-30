@@ -14,7 +14,7 @@ import Employee_home from './Pages/Employee_home'
 import Staffmanager_home from './Pages/Staffmanager_home'
 import Vehiclemanager_home from './Pages/Vehiclemanager_home'
 import Deliverymanager_home from './Pages/Deliverymanager_home'
-import Add_product from './Pages/Add_product'
+import Add_Book from './Pages/Add_Book'
 import Add_stocks from './Pages/Add_stocks'
 import View_product from './Pages/View_product'
 import Product_update from './Pages/Product_update'
@@ -39,7 +39,7 @@ export default function App() {
       <Route path="/staffmanagerhome" element={<Staffmanager_home />} />
       <Route path="/vehiclemanagerhome" element={<Vehiclemanager_home />} />
       <Route path="/deliverymanagerhome" element={<Deliverymanager_home />} />
-      <Route path="/addproduct" element={<Add_product />} />
+      <Route path="/addbook" element={<Add_Book />} />
       <Route path="/addstock" element={<Add_stocks />} />
       <Route path="/productview" element={<View_product />} />
       <Route path="/updateproduct/:id" element={<Product_update />} />
