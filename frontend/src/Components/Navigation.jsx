@@ -36,7 +36,7 @@ export default function Navigation() {
             Sign Up
           </Link>
           <Link
-            to="/admin"
+            to="/Shop_workers_Login"
             className="border border-teal-600 text-teal-100 px-4 py-2 rounded-lg font-semibold hover:bg-teal-600 hover:text-white transition duration-300"
           >
             Admin
