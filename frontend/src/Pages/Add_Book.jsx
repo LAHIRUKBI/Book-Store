@@ -62,21 +62,23 @@ export default function Add_product() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-6">
-      <h1 className="text-4xl font-extrabold text-gray-700 mb-6 drop-shadow-lg">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6">
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-6 drop-shadow-md">
         Add Your Book to the Catalog
       </h1>
-      <p className="text-lg text-gray-600 text-center mb-6 max-w-3xl">
-        Use this form to add your book to our exclusive catalog. Share your literary creation with readers everywhere.
+      <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl">
+        Welcome to the book catalog! Use this form to add your book to our collection. 
+        Simply select a category, fill in the details about your book, and showcase your literary creation to a broader audience.
       </p>
+      
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-gradient-to-br from-white to-gray-100 p-8 rounded-xl shadow-lg space-y-6 border border-gray-300"
+        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl space-y-6 border border-gray-300"
       >
         <label className="block">
           <span className="text-blue-600 font-semibold">Main Book Category</span>
           <select
-            className="form-select mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-select mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={formData.mainCategory}
             onChange={handleMainCategoryChange}
             required
@@ -92,7 +94,7 @@ export default function Add_product() {
           <label className="block">
             <span className="text-blue-600 font-semibold">Type of Book</span>
             <select
-              className="form-select mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="form-select mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={formData.type}
               onChange={(e) => setFormData({ ...formData, type: e.target.value })}
               required
@@ -109,7 +111,7 @@ export default function Add_product() {
           <span className="text-blue-600 font-semibold">Price (in $)</span>
           <input
             type="number"
-            className="form-input mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-input mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={formData.price}
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             required
@@ -119,7 +121,7 @@ export default function Add_product() {
         <label className="block">
           <span className="text-blue-600 font-semibold">Introduction</span>
           <textarea
-            className="form-textarea mt-2 block w-full rounded-lg border-gray-400 bg-gray-200 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-textarea mt-2 block w-full rounded-lg border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             rows="3"
             placeholder="Write a brief introduction for your book."
             value={formData.introduction}

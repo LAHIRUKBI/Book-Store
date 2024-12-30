@@ -45,9 +45,20 @@ export default function Signin() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen justify-center items-center bg-gray-100">
+    <div className="flex flex-col min-h-screen justify-center items-center bg-gray-100 py-6">
       <div className="w-full max-w-md bg-white border border-gray-300 shadow-lg rounded-lg p-8">
-        <h2 className="text-3xl font-extrabold text-center mb-6 text-green-600">Sign In</h2>
+        {/* Introduction Section */}
+        <div className="mb-6">
+          <h2 className="text-3xl font-extrabold text-center mb-2 text-green-600">Welcome to SmartBIN</h2>
+          <p className="text-gray-600 text-center text-sm mb-4">
+            We're thrilled to have you on board! Sign in to access your account and start managing your recycling with us.
+          </p>
+          <p className="text-gray-600 text-center text-sm mb-6">
+            Already have an account? Use the form below to sign in and get started with our eco-friendly solutions.
+          </p>
+        </div>
+
+        {/* Sign In Form */}
         <form onSubmit={handleSubmit}>
           {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
 

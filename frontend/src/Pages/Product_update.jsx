@@ -9,7 +9,6 @@ export default function Product_update() {
     mainCategory: "",
     type: "",
     price: "",
-    weight: "",
     introduction: "",
   });
   const [error, setError] = useState("");
@@ -62,13 +61,13 @@ export default function Product_update() {
       <h2 className="text-4xl font-bold text-center text-teal-600 mb-12">Update Product</h2>
       {error && <p className="text-red-500 text-center">{error}</p>}
       <form onSubmit={handleSubmit}>
-        {["mainCategory", "type", "price", "weight", "introduction"].map((field) => (
+        {["mainCategory", "type", "price", "introduction"].map((field) => (
           <div key={field} className="mb-4">
             <label htmlFor={field} className="block text-sm font-semibold text-gray-700">
               {field.charAt(0).toUpperCase() + field.slice(1)}
             </label>
             <input
-              type={field === "price" || field === "weight" ? "number" : "text"}
+              type={field === "price" ? "number" : "text"}
               id={field}
               name={field}
               value={formData[field]}

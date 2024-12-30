@@ -22,6 +22,14 @@ export default function Home() {
     };
 
     fetchProducts();
+    
+    // Auto-scroll to Introduction section after 3 seconds
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.getElementById("introduction").offsetTop,
+        behavior: "smooth",
+      });
+    }, 3000); // Adjust time as needed
   }, []);
 
   if (loading) {
@@ -51,81 +59,61 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative container mx-auto text-center z-10">
-          <h1 className="text-6xl font-extrabold mb-4 text-white drop-shadow-lg">
+          <h1 className="text-6xl font-extrabold mb-4 text-white drop-shadow-lg animate__animated animate__fadeIn animate__delay-1s">
             Welcome to Our Service Page
           </h1>
-          <p className="text-xl mb-8 text-gray-200 drop-shadow-md">
+          <p className="text-xl mb-8 text-gray-200 drop-shadow-md animate__animated animate__fadeIn animate__delay-1.5s">
             Discover how we can help you manage waste effectively.
           </p>
           <Link
             to="/register"
-            className="bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-lg transition duration-300"
+            className="bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
           >
             <FaRecycle className="inline mr-2" /> Get Started
           </Link>
         </div>
       </section>
 
-      {/* Product List Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-teal-600">
-            Browse Our Books
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.length > 0 ? (
-              products.map((product) => (
-                <div
-                  key={product._id}
-                  className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl"
-                >
-                  <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-teal-600">{product.mainCategory}</h3>
-                  </div>
+      {/* Introduction About Us Section */}
+      <section
+  id="introduction"
+  className="py-16 bg-white text-gray-800"
+>
+  <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+    {/* Image on the left */}
+    <div className="w-full md:w-1/3 mb-8 md:mb-0"> {/* Resize width to 1/3 for smaller image */}
+      <img
+        src="src/images/book1.jpg" // Replace with your image path
+        alt="Books"
+        className="w-full h-auto rounded-xl shadow-2xl object-cover transform hover:scale-105 transition duration-300"
+      />
+    </div>
 
-                  <div className="mb-4">
-                    <h4 className="text-xl text-gray-700 font-semibold">{product.type}</h4>
-                  </div>
+    {/* Introduction on the right */}
+    <div className="w-full md:w-2/3 md:pl-12 animate__animated animate__fadeIn animate__delay-2s">
+      <h2 className="text-4xl font-bold text-teal-600 mb-4">
+        Welcome to Our Book Store
+      </h2>
+      <p className="text-lg text-gray-700 mb-6">
+        At Book Haven, we offer a curated selection of books that not only entertain but also educate and inspire. 
+        Our collection is designed to foster a love of reading while promoting sustainable living practices.
+      </p>
+      <p className="text-lg text-gray-700 mb-8">
+        Whether you are looking to dive into environmental topics, explore new fiction, or find an educational resource,
+        you'll find something special in our catalog. Join us on this exciting journey of discovery, knowledge, and sustainability!
+      </p>
+      <Link
+        to="/books"
+        className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+      >
+        Explore Our Books
+      </Link>
+    </div>
+  </div>
+</section>
 
-                  <p className="text-sm text-gray-600 mb-4">
-                    <strong>Introduction:</strong> {product.introduction}
-                  </p>
 
-                  <div className="flex justify-between items-center text-sm text-gray-600">
-                    <p><strong>Weight:</strong> {product.weight}</p>
-                    <p><strong>Price:</strong> ${product.price}</p>
-                  </div>
 
-                  {/* Replace Update and Delete buttons with Buy button */}
-                  <div className="mt-4 text-center">
-                    <Link
-                      to={`/buy/${product._id}`}  // Assuming you have a buy page
-                      className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
-                    >
-                      Buy Now
-                    </Link>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-600">No products available</p>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Content Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-teal-600">
-            Learn More About Our Offerings
-          </h2>
-          <p className="text-center text-gray-700">
-            Here, we provide detailed insights into how we work towards
-            sustainable and eco-friendly waste management solutions.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

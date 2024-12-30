@@ -9,7 +9,7 @@ import Employee_register from './Pages/Employee_register'
 import Stockmanager_register from './Pages/Stockmanager_register'
 import Vehicles_register from './Pages/Vehicles_register'
 import Employee_view from './Pages/Employee_view'
-import Stockmanager_home from './Pages/Stockmanager_home'
+import Book_manager_home from './Pages/Book_manager_home'
 import Employee_home from './Pages/Employee_home'
 import Staffmanager_home from './Pages/Staffmanager_home'
 import Vehiclemanager_home from './Pages/Vehiclemanager_home'
@@ -18,6 +18,8 @@ import Add_Book from './Pages/Add_Book'
 import Add_stocks from './Pages/Add_stocks'
 import View_product from './Pages/View_product'
 import Product_update from './Pages/Product_update'
+import Books from './Pages/Books'
+import Footer from './Components/Footer'
 
 export default function App() {
   return (
@@ -34,7 +36,7 @@ export default function App() {
       <Route path="/stockmanagerregister" element={<Stockmanager_register />} />
       <Route path="/vehiclesregister" element={<Vehicles_register />} />
       <Route path="/employeeview" element={<Employee_view />} />
-      <Route path="/stockmanagerhome" element={<Stockmanager_home />} />
+      <Route path="/Book_manager_home" element={<Book_manager_home />} />
       <Route path="/employeehome" element={<Employee_home />} />
       <Route path="/staffmanagerhome" element={<Staffmanager_home />} />
       <Route path="/vehiclemanagerhome" element={<Vehiclemanager_home />} />
@@ -43,9 +45,11 @@ export default function App() {
       <Route path="/addstock" element={<Add_stocks />} />
       <Route path="/productview" element={<View_product />} />
       <Route path="/updateproduct/:id" element={<Product_update />} />
+      <Route path="/books" element={<Books />} />
 
       
     </Routes>
+    <Footer />
     </BrowserRouter>
     
   )
