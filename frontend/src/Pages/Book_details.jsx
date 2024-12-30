@@ -86,7 +86,7 @@ export default function BookDetails() {
               <button
                 className="bg-teal-500 hover:bg-teal-600 text-white py-3 px-8 rounded-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
               >
-                Add to Cart
+                Buy
               </button>
             </div>
           </div>

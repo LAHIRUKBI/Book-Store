@@ -22,6 +22,7 @@ import Books from './Pages/Books'
 import Footer from './Components/Footer'
 import EmployeeProfile from './Pages/Employee_profile';
 import BookDetails from './Pages/Book_details'
+import ImaginationFurther from './Pages/ImaginationFurther'
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
       <Route path="/books" element={<Books />} />
       <Route path="/employee_profile/:username" element={<EmployeeProfile />} />
       <Route path="/book_details/:id" element={<BookDetails />} />
+      <Route path="/imaginationFurther" element={<ImaginationFurther />} />
 
 
       
