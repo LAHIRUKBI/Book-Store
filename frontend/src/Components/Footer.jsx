@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="w-full md:w-2/3 mb-8 md:mb-0">
             <ul className="flex flex-col md:flex-row md:space-x-8">
               <li>
-                <Link to="/about-us" className="hover:text-teal-400">About Us</Link>
+                <Link to="/about_Us" className="hover:text-teal-400">About Us</Link>
               </li>
               <li>
                 <Link to="/careers" className="hover:text-teal-400">Careers</Link>
