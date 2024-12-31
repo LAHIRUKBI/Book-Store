@@ -1,56 +1,77 @@
-import React, { useEffect, useState } from 'react';
-import { FaCreditCard, FaRegCalendarAlt, FaUserAlt, FaMoneyBillWave, FaPhoneAlt, FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { FaCreditCard, FaRegCalendarAlt, FaUserAlt, FaMoneyBillWave, FaPhoneAlt, FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
+import jsPDF from "jspdf";
 
 export default function My_payments() {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [sortField, setSortField] = useState('paymentDate'); // default sort by paymentDate
-  const [sortOrder, setSortOrder] = useState('desc'); // descending order
+  const [error, setError] = useState("");
+  const [sortField, setSortField] = useState("paymentDate"); // default sort by paymentDate
+  const [sortOrder, setSortOrder] = useState("desc"); // descending order
 
   useEffect(() => {
-    const email = localStorage.getItem('email');
+    const email = localStorage.getItem("email");
     if (email) {
       // Fetch payments for the logged-in user
       fetch(`http://localhost:3000/api/payment/payments/${email}`) // Updated endpoint
         .then((res) => {
           if (!res.ok) {
-            throw new Error('Failed to fetch payments');
+            throw new Error("Failed to fetch payments");
           }
           return res.json();
         })
         .then((data) => {
           if (data.message) {
             console.error("Error fetching payments:", data.message);
-            setError(data.message);  // Show error message from backend
+            setError(data.message); // Show error message from backend
           } else {
             setPayments(data);
           }
           setLoading(false);
         })
         .catch((err) => {
-          console.error('Error fetching payments:', err);
-          setError('An unexpected error occurred. Please try again.');
+          console.error("Error fetching payments:", err);
+          setError("An unexpected error occurred. Please try again.");
           setLoading(false);
         });
     } else {
       setLoading(false);
-      setError('No email found. Please sign in again.');
+      setError("No email found. Please sign in again.");
     }
   }, []);
 
   const handleSort = (field) => {
-    const order = sortField === field && sortOrder === 'asc' ? 'desc' : 'asc';
+    const order = sortField === field && sortOrder === "asc" ? "desc" : "asc";
     setSortField(field);
     setSortOrder(order);
+  };
+
+  const generatePDF = (payment) => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("Payment Receipt", 105, 10, { align: "center" });
+
+    doc.setFontSize(12);
+    const content = `
+    Book ID: ${payment.bookId}
+    Payment Date: ${new Date(payment.paymentDate).toLocaleDateString()}
+    Amount: $${payment.totalPrice}
+    Customer Name: ${payment.customerName}
+    Customer Address: ${payment.customerAddress}
+    Customer Phone: ${payment.customerPhone}
+    Customer Email: ${payment.customerEmail}
+    Bank Name: ${payment.bankName}
+    `;
+    doc.text(content, 10, 30);
+    doc.save(`Receipt_${payment.bookId}.pdf`);
   };
 
   // Sort payments by the selected field and order
   const sortedPayments = [...payments].sort((a, b) => {
     const fieldA = a[sortField];
     const fieldB = b[sortField];
-    if (fieldA < fieldB) return sortOrder === 'asc' ? -1 : 1;
-    if (fieldA > fieldB) return sortOrder === 'asc' ? 1 : -1;
+    if (fieldA < fieldB) return sortOrder === "asc" ? -1 : 1;
+    if (fieldA > fieldB) return sortOrder === "asc" ? 1 : -1;
     return 0;
   });
 
@@ -71,13 +92,13 @@ export default function My_payments() {
         <div>
           <div className="flex justify-between mb-6">
             <button
-              onClick={() => handleSort('paymentDate')}
+              onClick={() => handleSort("paymentDate")}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
             >
               Sort by Date
             </button>
             <button
-              onClick={() => handleSort('totalPrice')}
+              onClick={() => handleSort("totalPrice")}
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none"
             >
               Sort by Amount
@@ -87,7 +108,6 @@ export default function My_payments() {
             {sortedPayments.map((payment, index) => (
               <li key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {/* Book ID - Centered in its own box */}
                   <div className="col-span-3 text-center py-4 border-2 border-gray-300 rounded-lg bg-gray-100">
                     <strong className="text-xl text-gray-700">Book ID:</strong> <span className="text-lg">{payment.bookId}</span>
                   </div>
@@ -120,6 +140,12 @@ export default function My_payments() {
                     <strong>Bank Name:</strong> {payment.bankName}
                   </div>
                 </div>
+                <button
+                  onClick={() => generatePDF(payment)}
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none w-full"
+                >
+                  Download Receipt
+                </button>
               </li>
             ))}
           </ul>
