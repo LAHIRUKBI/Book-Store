@@ -22,7 +22,9 @@ import Books from './Pages/Books'
 import Footer from './Components/Footer'
 import EmployeeProfile from './Pages/Employee_profile';
 import BookDetails from './Pages/Book_details'
-import ImaginationFurther from './Pages/ImaginationFurther'
+import Importance_of_Learning from './Pages/Importance_of_Learning'
+import Learning_Makes_a_Person_Rich from './Pages/Learning_Makes_a_Person_Rich'
+import Benefits_of_learning_to_read from './Pages/Benefits_of_learning_to_read'
 
 export default function App() {
   return (
@@ -51,7 +53,9 @@ export default function App() {
       <Route path="/books" element={<Books />} />
       <Route path="/employee_profile/:username" element={<EmployeeProfile />} />
       <Route path="/book_details/:id" element={<BookDetails />} />
-      <Route path="/imaginationFurther" element={<ImaginationFurther />} />
+      <Route path="/importance_of_Learning" element={<Importance_of_Learning />} />
+      <Route path="/learning_Makes_a_Person_Rich" element={<Learning_Makes_a_Person_Rich />} />
+      <Route path="/benefits_of_learning_to_read" element={<Benefits_of_learning_to_read />} />
 
 
       
