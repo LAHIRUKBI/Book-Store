@@ -7,7 +7,7 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="bg-teal-500 text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+          <h1 className="text-4xl font-extrabold mb-4">Contact Us</h1>
           <p className="text-lg mb-6">
             We’d love to hear from you! Whether you have a question, feedback, or want to learn more about our services, get in touch with us.
           </p>
@@ -72,7 +72,7 @@ export default function Contact() {
           <h2 className="text-3xl font-bold text-teal-600 mb-8">Our Contact Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Address */}
-            <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center space-x-4">
+            <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center space-x-4 cursor-pointer hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105" onClick={() => window.open("https://maps.app.goo.gl/7YvQQZnLh9HNcbw87", "_blank")}>
               <FaMapMarkerAlt className="text-teal-500 text-3xl" />
               <div>
                 <h3 className="text-xl text-teal-600 font-semibold mb-4">Our Address</h3>
@@ -84,7 +84,7 @@ export default function Contact() {
             </div>
 
             {/* Phone */}
-            <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center space-x-4">
+            <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center space-x-4 cursor-pointer hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
               <FaPhoneAlt className="text-teal-500 text-3xl" />
               <div>
                 <h3 className="text-xl text-teal-600 font-semibold mb-4">Phone</h3>
@@ -93,7 +93,7 @@ export default function Contact() {
             </div>
 
             {/* Email */}
-            <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center space-x-4">
+            <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center space-x-4 cursor-pointer hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105" onClick={() => window.location.href = "mailto:lahiruilangasinha@gmail.com"}>
               <FaEnvelope className="text-teal-500 text-3xl" />
               <div>
                 <h3 className="text-xl text-teal-600 font-semibold mb-4">Email</h3>
