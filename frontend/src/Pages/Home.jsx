@@ -8,6 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
 
   // Fetch products when the Home page is loaded
   useEffect(() => {
@@ -39,6 +40,17 @@ export default function Home() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setCurrentStep(1); // Reset the step when closing the modal
+  };
+
+  const nextStep = () => {
+    if (currentStep < 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const finishGuide = () => {
+    closeModal();
   };
 
   if (loading) {
@@ -98,39 +110,65 @@ export default function Home() {
                 &times;
               </button>
             </div>
-            <p className="mt-4 text-lg text-gray-700">
-              Follow these steps to begin your journey with us:
-            </p>
-            <div className="mt-6 space-y-4">
-              {/* Step 1 */}
-              <div className="flex items-center space-x-3">
-                <span className="text-teal-600">1.</span>
-                <p className="text-gray-700">
-                  Register for an account to get started with our services.
+            
+            {/* Step Content */}
+            {currentStep === 1 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  Welcome to our service guide! In this guide, you will learn
+                  how to get started with our platform and take full advantage
+                  of our waste management services.
                 </p>
               </div>
-              {/* Step 2 */}
-              <div className="flex items-center space-x-3">
-                <span className="text-teal-600">2.</span>
-                <p className="text-gray-700">
-                  Select the services that best fit your needs.
+            )}
+
+            {currentStep === 2 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  To begin buying books from our collection, you need to
+                  register and sign in. Once registered, a "Books" tab will
+                  appear in the navigation bar where you can purchase books.
                 </p>
               </div>
-              {/* Step 3 */}
-              <div className="flex items-center space-x-3">
-                <span className="text-teal-600">3.</span>
-                <p className="text-gray-700">
-                  Enjoy seamless waste management and recycling services.
+            )}
+
+            {currentStep === 3 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  On the homepage, you'll find the curated book collection in
+                  the "Learning Pool" section. Additionally, there are various
+                  categories and resources to explore and enjoy.
                 </p>
               </div>
-            </div>
-            <div className="mt-6 text-center">
-              <button
-                onClick={closeModal}
-                className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg"
-              >
-                Close
-              </button>
+            )}
+
+            {currentStep === 4 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  That's it! You've completed the guide. Now, you're ready to
+                  explore our services. If you need help at any time, feel free
+                  to revisit this guide.
+                </p>
+              </div>
+            )}
+
+            {/* Navigation buttons */}
+            <div className="mt-6 text-center space-x-4">
+              {currentStep < 4 ? (
+                <button
+                  onClick={nextStep}
+                  className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg"
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  onClick={finishGuide}
+                  className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg"
+                >
+                  Finish
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -212,12 +250,63 @@ export default function Home() {
 
       {/* Banner Section */}
       <section className="w-full mt-12">
-  <img
-    src="src/images/Banner.png" // Replace with your banner image path
-    alt="Banner"
-    className="w-full h-48 object-cover" // Adjust h-48 for a more suitable height
-  />
+        <img
+          src="src/images/Banner.png" // Replace with your banner image path
+          alt="Banner"
+          className="w-full h-48 object-cover" // Adjust h-48 for a more suitable height
+        />
+      </section>
+
+{/* Testimonials Section */}
+<section className="py-16 bg-gray-50 text-gray-800">
+  <div className="container mx-auto px-4 text-center">
+    <h2 className="text-4xl font-bold text-teal-600 mb-12">
+      What Our Customers Say
+    </h2>
+    <div className="flex flex-wrap justify-center gap-8">
+      <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <p className="text-lg text-gray-700 mb-4">
+          "The service is amazing! I can easily manage waste and make new products. I highly recommend it!"
+        </p>
+        <p className="font-semibold text-teal-600">John Doe</p>
+        <p className="text-sm text-gray-500">Customer</p>
+      </div>
+      <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <p className="text-lg text-gray-700 mb-4">
+          "Fantastic experience! The platform is user-friendly, and I love how simple it is to get started."
+        </p>
+        <p className="font-semibold text-teal-600">Jane Smith</p>
+        <p className="text-sm text-gray-500">Customer</p>
+      </div>
+      <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <p className="text-lg text-gray-700 mb-4">
+          "A game-changer for managing waste. I feel great knowing I'm helping the environment!"
+        </p>
+        <p className="font-semibold text-teal-600">Michael Lee</p>
+        <p className="text-sm text-gray-500">Customer</p>
+      </div>
+    </div>
+  </div>
 </section>
+
+
+{/* Call to Action Section */}
+<section className="py-16 bg-teal-600 text-white text-center">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold mb-6">Join Us in Our Mission</h2>
+    <p className="text-lg mb-6">
+      Together, we can make the world a cleaner place by recycling and reusing
+      waste. Sign up today and be part of the change!
+    </p>
+    <Link
+      to="/signup"
+      className="bg-white text-teal-600 py-3 px-8 rounded-full text-xl font-semibold shadow-lg transform hover:scale-105 transition duration-300"
+    >
+      Sign Up Now
+    </Link>
+  </div>
+</section>
+
 
 
 
