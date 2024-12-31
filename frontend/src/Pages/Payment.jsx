@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { FaRegCreditCard, FaMoneyBillWave, FaShippingFast, FaAddressCard, FaPhoneAlt, FaCalendarAlt } from 'react-icons/fa';
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaShippingFast } from "react-icons/fa";
 
 export default function Payment() {
   const location = useLocation();
   const navigate = useNavigate();
   const { bookTitle, totalPrice, quantity, bookId } = location.state || {};
 
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [formData, setFormData] = useState({
-    name: '',
-    address: '',
-    phone: '',
-    email: '', // Added email field
+    name: "",
+    address: "",
+    phone: "",
+    email: "",
   });
   const [bankData, setBankData] = useState({
-    bankName: '',
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
+    bankName: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
   });
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
+  const [isSuccessPopupVisible, setIsSuccessPopupVisible] = useState(false); // New state for success popup
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "phone" && isNaN(value)) return;
+    if (name === "phone" && value.length > 10) return;
+
     setFormData({
       ...formData,
       [name]: value,
@@ -32,18 +40,68 @@ export default function Payment() {
 
   const handleBankChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "cardNumber" || name === "cvv") {
+      if (isNaN(value)) return;
+    }
+
+    if (name === "cardNumber" && value.length > 16) return;
+    if (name === "cvv" && value.length > 3) return;
+
     setBankData({
       ...bankData,
       [name]: value,
     });
   };
 
+  const handleExpiryChange = (e) => {
+    setBankData({
+      ...bankData,
+      expiryDate: e.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const regexPhone = /^[0-9]{10}$/;
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexCard = /^[0-9]{16}$/;
+    const regexCVV = /^[0-9]{3}$/;
+
+    if (!formData.name) newErrors.name = "Name is required.";
+    if (!formData.address) newErrors.address = "Address is required.";
+    if (!formData.phone || !regexPhone.test(formData.phone)) {
+      newErrors.phone = "Valid phone number is required.";
+    }
+    if (!formData.email || !regexEmail.test(formData.email)) {
+      newErrors.email = "Valid email is required.";
+    }
+    if (paymentMethod === "delivery") {
+      if (!bankData.bankName) newErrors.bankName = "Bank is required.";
+      if (!bankData.cardNumber || !regexCard.test(bankData.cardNumber))
+        newErrors.cardNumber = "Valid card number is required.";
+      if (!bankData.expiryDate) newErrors.expiryDate = "Expiry date is required.";
+      if (!bankData.cvv || !regexCVV.test(bankData.cvv)) {
+        newErrors.cvv = "Valid CVV is required.";
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handlePaymentSubmit = async () => {
-    // Send the payment data to the backend for processing
+    if (!validateForm()) {
+      return;
+    }
+    setIsPopupVisible(true); // Show the confirmation popup
+  };
+
+  const handleConfirmPayment = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:3000/api/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           bookId,
           totalPrice,
@@ -58,16 +116,23 @@ export default function Payment() {
 
       if (data.success) {
         setPaymentSuccess(true);
+        setIsPaymentConfirmed(true);
+        setIsPopupVisible(false); // Hide the confirmation popup
+        setIsSuccessPopupVisible(true); // Show the success popup
+
         setTimeout(() => {
-          navigate('/success');
-        }, 2000);
+          navigate("/mypayments"); // Navigate to /mypayments after success
+        }, 2000); // Wait 2 seconds before navigating
       } else {
-        alert('Payment failed');
+        alert("Payment failed");
       }
     } catch (error) {
-      console.error('Payment error:', error);
+      console.error("Payment error:", error);
     }
   };
+
+  const isFormValid = Object.values(formData).every((value) => value) && paymentMethod;
+  const isButtonDisabled = !isFormValid;
 
   if (!bookTitle) return <div>Loading...</div>;
 
@@ -82,15 +147,15 @@ export default function Payment() {
           <p className="text-lg font-semibold mb-4">Select the method of receiving the item:</p>
           <div className="flex justify-between mb-6 border-b pb-4">
             <div
-              onClick={() => setPaymentMethod('pick-up')}
-              className={`cursor-pointer ${paymentMethod === 'pick-up' ? 'text-teal-600' : 'text-gray-600'} flex flex-col items-center`}
+              onClick={() => setPaymentMethod("pick-up")}
+              className={`cursor-pointer ${paymentMethod === "pick-up" ? "text-teal-600" : "text-gray-600"} flex flex-col items-center`}
             >
               <FaShippingFast className="text-3xl mb-2" />
               <span>Pick-up</span>
             </div>
             <div
-              onClick={() => setPaymentMethod('delivery')}
-              className={`cursor-pointer ${paymentMethod === 'delivery' ? 'text-teal-600' : 'text-gray-600'} flex flex-col items-center`}
+              onClick={() => setPaymentMethod("delivery")}
+              className={`cursor-pointer ${paymentMethod === "delivery" ? "text-teal-600" : "text-gray-600"} flex flex-col items-center`}
             >
               <FaShippingFast className="text-3xl mb-2" />
               <span>Delivery</span>
@@ -111,6 +176,7 @@ export default function Payment() {
                     placeholder="Name"
                     className="w-full p-3 border rounded-md"
                   />
+                  {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                 </div>
                 <div className="w-1/2 ml-2">
                   <label className="font-semibold">Address</label>
@@ -122,6 +188,7 @@ export default function Payment() {
                     placeholder="Address"
                     className="w-full p-3 border rounded-md"
                   />
+                  {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
                 </div>
               </div>
               <div>
@@ -134,8 +201,8 @@ export default function Payment() {
                   placeholder="Phone"
                   className="w-full p-3 border rounded-md"
                 />
+                {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
               </div>
-              {/* Added Email Input */}
               <div className="mt-4">
                 <label className="font-semibold">Email</label>
                 <input
@@ -146,6 +213,7 @@ export default function Payment() {
                   placeholder="Email"
                   className="w-full p-3 border rounded-md"
                 />
+                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
               </div>
             </div>
           )}
@@ -162,68 +230,110 @@ export default function Payment() {
                   className="w-full p-3 border rounded-md"
                 >
                   <option value="">Select Bank</option>
-                  <option value="Bank A">Bank A</option>
-                  <option value="Bank B">Bank B</option>
+                  <option value="BOC">Bank of Ceylon (BOC)</option>
+                  <option value="HNB">Hatton National Bank (HNB)</option>
+                  <option value="Sampath">Sampath Bank</option>
+                  <option value="NSB">National Savings Bank (NSB)</option>
+                  <option value="Commercial">Commercial Bank</option>
+                  <option value="People">People's Bank</option>
+                  <option value="Seylan">Seylan Bank</option>
+                  <option value="Hatton">Hatton National Bank (HNB)</option>
                 </select>
+                {errors.bankName && <p className="text-red-500 text-sm">{errors.bankName}</p>}
               </div>
-              <div className="mb-4">
-                <label className="font-semibold">Card Number</label>
-                <input
-                  type="text"
-                  name="cardNumber"
-                  value={bankData.cardNumber}
-                  onChange={handleBankChange}
-                  placeholder="Card Number"
-                  className="w-full p-3 border rounded-md"
-                />
-              </div>
-              <div className="flex justify-between mb-4">
+              <div className="flex mb-4">
                 <div className="w-1/2 mr-2">
+                  <label className="font-semibold">Card Number</label>
+                  <input
+                    type="text"
+                    name="cardNumber"
+                    value={bankData.cardNumber}
+                    onChange={handleBankChange}
+                    placeholder="Card Number"
+                    className="w-full p-3 border rounded-md"
+                  />
+                  {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
+                </div>
+                <div className="w-1/2 ml-2">
                   <label className="font-semibold">Expiry Date</label>
                   <input
                     type="month"
                     name="expiryDate"
                     value={bankData.expiryDate}
-                    onChange={handleBankChange}
+                    onChange={handleExpiryChange}
                     className="w-full p-3 border rounded-md"
                   />
+                  {errors.expiryDate && <p className="text-red-500 text-sm">{errors.expiryDate}</p>}
                 </div>
-                <div className="w-1/2 ml-2">
-                  <label className="font-semibold">CVV</label>
-                  <input
-                    type="text"
-                    name="cvv"
-                    value={bankData.cvv}
-                    onChange={handleBankChange}
-                    placeholder="CVV"
-                    className="w-full p-3 border rounded-md"
-                  />
-                </div>
+              </div>
+              <div className="mb-4">
+                <label className="font-semibold">CVV</label>
+                <input
+                  type="text"
+                  name="cvv"
+                  value={bankData.cvv}
+                  onChange={handleBankChange}
+                  placeholder="CVV"
+                  className="w-full p-3 border rounded-md"
+                />
+                {errors.cvv && <p className="text-red-500 text-sm">{errors.cvv}</p>}
               </div>
             </div>
           )}
 
-          {/* Pay Now Button */}
-          <div className="mt-8">
+          {/* Payment confirmation */}
+          <div className="mb-6">
             <button
+              disabled={isButtonDisabled}
               onClick={handlePaymentSubmit}
-              className="bg-teal-500 hover:bg-teal-600 text-white py-4 px-12 w-full rounded-lg font-semibold shadow-lg"
+              className="bg-teal-600 text-white p-4 w-full rounded-lg font-bold disabled:opacity-50"
             >
               Pay Now
             </button>
           </div>
-
-          {/* Success Popup */}
-          {paymentSuccess && (
-            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="bg-white p-8 rounded-lg text-center">
-                <h2 className="text-2xl text-teal-600">Payment Successful</h2>
-                <p>Thank you for your purchase! Your order will be processed shortly.</p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Confirmation Popup */}
+      {isPopupVisible && !isSuccessPopupVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg max-w-lg text-center">
+            <h3 className="text-xl font-semibold mb-4">Are you sure you want to proceed with the payment?</h3>
+            <div className="flex justify-center space-x-4">
+              <button
+                onClick={handleConfirmPayment}
+                className="bg-teal-600 text-white py-2 px-4 rounded-md"
+              >
+                Yes
+              </button>
+              <button
+                onClick={() => setIsPopupVisible(false)}
+                className="bg-gray-600 text-white py-2 px-4 rounded-md"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Success Popup */}
+      {isSuccessPopupVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg max-w-lg text-center">
+            <h3 className="text-xl font-semibold mb-4">Payment Success!</h3>
+            <p className="text-lg mb-4">Thank you for your payment. You will be redirected shortly.</p>
+            <div className="flex justify-center space-x-4">
+              <button
+                onClick={() => navigate("/mypayments")}
+                className="bg-teal-600 text-white py-2 px-4 rounded-md"
+              >
+                Go to My Payments
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
