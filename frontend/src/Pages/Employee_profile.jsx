@@ -1,73 +1,84 @@
-import React, { useEffect, useState } from 'react';
-import { FaUserCircle } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function EmployeeProfile() {
   const [employee, setEmployee] = useState(null);
-  const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve the user data from localStorage
-    const userData = localStorage.getItem('userData');
+    const userData = localStorage.getItem("userData");
     if (userData) {
       const employeeData = JSON.parse(userData);
       setEmployee(employeeData);
-
-      // Fetch payments related to this employee's email
-      const fetchPayments = async () => {
-        try {
-          const response = await fetch(`/api/payment?email=${employeeData.email}`);
-          const data = await response.json();
-          if (data.success) {
-            setPayments(data.data);
-          }
-        } catch (err) {
-          console.error("Error fetching payments:", err);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchPayments();
+      setLoading(false);
     } else {
       console.error("No user data found in localStorage.");
       setLoading(false);
     }
   }, []);
 
+  const handleLogout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
+  };
+
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center text-xl font-semibold">Loading...</div>;
   }
 
   return (
-    <div className="flex items-start justify-center min-h-screen bg-gray-100 pt-12">
-      <div className="bg-white shadow-md rounded-lg p-8 w-80 text-center">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-200 via-white to-gray-100 py-12 px-6">
+      <div className="bg-white shadow-xl rounded-lg p-8 w-96 text-center">
         <FaUserCircle className="text-6xl text-gray-500 mb-6 mx-auto" />
-        <h1 className="text-2xl font-bold text-gray-700 mb-4">Employee Profile</h1>
+        <h1 className="text-2xl font-semibold text-gray-800 mb-4">Employee Profile</h1>
         <p className="text-gray-700 mb-4">
           <strong>Email:</strong> {employee.email}
         </p>
         <p className="text-gray-700 mb-4">
           <strong>Phone:</strong> {employee.phone}
         </p>
-        
-        {/* Display Payments */}
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">Payment History</h2>
-          {payments.length > 0 ? (
-            payments.map((payment) => (
-              <div key={payment._id} className="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm">
-                <p><strong>Product:</strong> {payment.bookId}</p>
-                <p><strong>Amount:</strong> ${payment.totalPrice}</p>
-                <p><strong>Payment Method:</strong> {payment.paymentMethod}</p>
-                <p><strong>Date:</strong> {new Date(payment.paymentDate).toLocaleDateString()}</p>
-              </div>
-            ))
-          ) : (
-            <p>No payments found.</p>
-          )}
-        </div>
+
+        <button
+          onClick={handleLogout}
+          className="mt-6 px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition duration-200"
+        >
+          LOGOUT
+        </button>
       </div>
+
+      {/* Logout Modal */}
+      {showLogoutModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
+            <h2 className="text-xl font-semibold mb-4">Are you sure you want to log out?</h2>
+            <div className="flex justify-between gap-4">
+              <button
+                onClick={confirmLogout}
+                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200"
+              >
+                Yes
+              </button>
+              <button
+                onClick={cancelLogout}
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-200"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
