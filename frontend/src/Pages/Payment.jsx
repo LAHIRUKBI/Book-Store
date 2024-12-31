@@ -12,6 +12,7 @@ export default function Payment() {
     name: '',
     address: '',
     phone: '',
+    email: '', // Added email field
   });
   const [bankData, setBankData] = useState({
     bankName: '',
@@ -131,6 +132,18 @@ export default function Payment() {
                   value={formData.phone}
                   onChange={handleFormChange}
                   placeholder="Phone"
+                  className="w-full p-3 border rounded-md"
+                />
+              </div>
+              {/* Added Email Input */}
+              <div className="mt-4">
+                <label className="font-semibold">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  placeholder="Email"
                   className="w-full p-3 border rounded-md"
                 />
               </div>

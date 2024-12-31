@@ -12,6 +12,7 @@ export const createPayment = async (req, res, next) => {
       customerName: formData.name,
       customerAddress: formData.address,
       customerPhone: formData.phone,
+      customerEmail: formData.email,  // Add email field
       bankName: bankData.bankName,
     });
 
@@ -25,6 +26,7 @@ export const createPayment = async (req, res, next) => {
 
 
 
+
 export const getAllPayments = async (req, res, next) => {
     try {
       const payments = await Payment.find();
@@ -33,4 +35,8 @@ export const getAllPayments = async (req, res, next) => {
       next(err);
     }
   };
+
+
+
+  
   
