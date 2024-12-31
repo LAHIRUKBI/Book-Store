@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBookOpen } from 'react-icons/fa';
+import { FaBookOpen } from "react-icons/fa";
 import axios from "axios";
 
 export default function Home() {
@@ -76,82 +76,83 @@ export default function Home() {
         </div>
       </section>
 
-      
-
-
-
-
       {/* Section with Curated Book Collection */}
-            <section className="py-16 bg-white text-gray-800">
-              <div className="container mx-auto px-4">
-                <h2 className="text-4xl font-bold text-teal-600 mb-12 text-center">
-                  Learning Pool
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-                  {/* Learning 1 */}
-                  <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+      <section className="py-16 bg-white text-gray-800">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-teal-600 mb-12 text-center">
+            Learning Pool
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            {/* Learning 1 */}
+            <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+              <img
+                src="src/images/The Importance of Learning.jpeg" // Replace with your image path
+                alt="The Importance of Learning"
+                className="w-full h-60 object-cover rounded-xl shadow-2xl"
+              />
+              <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
+                The Importance of Learning
+              </h3>
+              <p className="text-lg text-gray-700 mb-4 text-center">
+                Discover the profound impact of continuous learning on personal
+                growth, career advancement, and overall well-being.
+              </p>
+              <Link
+                to="/importance_of_Learning"
+                className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+              >
+                Learn More
+              </Link>
+            </div>
+
+            {/* Learning 2 */}
+            <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
   <img
-    src="src/images/The Importance of Learning.jpeg" // Replace with your image path
-    alt="The Importance of Learning"
+    src="src/images/book5.jpg" // Replace with an image that fits the theme of knowledge and growth
+    alt="Learning makes a person rich"
     className="w-full h-60 object-cover rounded-xl shadow-2xl"
   />
-  <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">The Importance of Learning</h3>
+  <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
+    Learning Makes a Person Rich
+  </h3>
   <p className="text-lg text-gray-700 mb-4 text-center">
-    Discover the profound impact of continuous learning on personal growth, career advancement, and overall well-being.
+    Knowledge is wealth that never depreciates. Every lesson learned and every skill gained adds value to your life and opens doors to endless opportunities.
   </p>
   <Link
-    to="/bookDetails/learning"
+    to="/learning_Makes_a_Person_Rich"
     className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
   >
     Learn More
   </Link>
 </div>
 
-      
-                  {/* Learning 2 */}
-                  <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-                    <img
-                      src="src/images/book2.jpg" // Replace with your image path
-                      alt="Book 2"
-                      className="w-full h-60 object-cover rounded-xl shadow-2xl"
-                    />
-                    <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">Endless Possibilities</h3>
-                    <p className="text-lg text-gray-700 mb-4 text-center">
-                      Experience the power of ideas that can transform lives and reshape your world.
-                    </p>
-                    <Link
-                      to="/bookDetails/2"
-                      className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-                    >
-                      Learn More
-                    </Link>
-                  </div>
-      
-                  {/* Learning 3 */}
-                  <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-                    <img
-                      src="src/images/book3.jpg" // Replace with your image path
-                      alt="Book 3"
-                      className="w-full h-60 object-cover rounded-xl shadow-2xl"
-                    />
-                    <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">The Art of Storytelling</h3>
-                    <p className="text-lg text-gray-700 mb-4 text-center">
-                      Discover the craft of storytelling and its impact on personal growth and creativity.
-                    </p>
-                    <Link
-                      to="/bookDetails/3"
-                      className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-                    >
-                      Learn More
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
 
+            {/* Learning 3 */}
+            {/* Learning 3 */}
+<div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
+  <img
+    src="src/images/book3.jpg" // Replace with your image path
+    alt="Book 3"
+    className="w-full h-60 object-cover rounded-xl shadow-2xl"
+  />
+  <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
+    Benefits of Learning to Read
+  </h3>
+  <p className="text-lg text-gray-700 mb-4 text-center">
+    Reading opens doors to a world of knowledge, imagination, and endless possibilities. Here are some of the key benefits of learning to read:
+  </p>
+  
+  <Link
+    to="/benefits_of_learning_to_read"
+    className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
+  >
+    Learn More
+  </Link>
+</div>
 
-
-
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
