@@ -24,7 +24,7 @@ export default function Admin_Login() {
   const handleAdminLogin = (e) => {
     e.preventDefault();
     const { name, institutionID, nic } = adminCredentials;
-    if (name === 'lahiru' && institutionID === '2305423054' && nic === '200008104348') {
+    if (name === 'Admin' && institutionID === 'Admin123' && nic === '200008104348') {
       navigate('/adminhome');
     } else {
       setError('Invalid admin credentials. Please try again.');
