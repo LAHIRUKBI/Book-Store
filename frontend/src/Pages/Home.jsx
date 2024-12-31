@@ -256,6 +256,60 @@ export default function Home() {
           className="w-full h-48 object-cover" // Adjust h-48 for a more suitable height
         />
       </section>
+
+{/* Testimonials Section */}
+<section className="py-16 bg-gray-50 text-gray-800">
+  <div className="container mx-auto px-4 text-center">
+    <h2 className="text-4xl font-bold text-teal-600 mb-12">
+      What Our Customers Say
+    </h2>
+    <div className="flex flex-wrap justify-center gap-8">
+      <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <p className="text-lg text-gray-700 mb-4">
+          "The service is amazing! I can easily manage waste and make new products. I highly recommend it!"
+        </p>
+        <p className="font-semibold text-teal-600">John Doe</p>
+        <p className="text-sm text-gray-500">Customer</p>
+      </div>
+      <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <p className="text-lg text-gray-700 mb-4">
+          "Fantastic experience! The platform is user-friendly, and I love how simple it is to get started."
+        </p>
+        <p className="font-semibold text-teal-600">Jane Smith</p>
+        <p className="text-sm text-gray-500">Customer</p>
+      </div>
+      <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <p className="text-lg text-gray-700 mb-4">
+          "A game-changer for managing waste. I feel great knowing I'm helping the environment!"
+        </p>
+        <p className="font-semibold text-teal-600">Michael Lee</p>
+        <p className="text-sm text-gray-500">Customer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{/* Call to Action Section */}
+<section className="py-16 bg-teal-600 text-white text-center">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold mb-6">Join Us in Our Mission</h2>
+    <p className="text-lg mb-6">
+      Together, we can make the world a cleaner place by recycling and reusing
+      waste. Sign up today and be part of the change!
+    </p>
+    <Link
+      to="/signup"
+      className="bg-white text-teal-600 py-3 px-8 rounded-full text-xl font-semibold shadow-lg transform hover:scale-105 transition duration-300"
+    >
+      Sign Up Now
+    </Link>
+  </div>
+</section>
+
+
+
+
     </div>
   );
 }
