@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaBriefcase, FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function EmployeeProfile() {
   const [employee, setEmployee] = useState(null);
@@ -43,26 +43,39 @@ export default function EmployeeProfile() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-200 via-white to-gray-100 py-12 px-6">
-      <div className="bg-white shadow-xl rounded-lg p-8 w-96 text-center">
-        <FaUserCircle className="text-6xl text-gray-500 mb-6 mx-auto" />
-        <h1 className="text-2xl font-semibold text-gray-800 mb-4">Employee Profile</h1>
-        <p className="text-gray-700 mb-4">
-          <strong>Email:</strong> {employee.email}
-        </p>
-        <p className="text-gray-700 mb-4">
-          <strong>Phone:</strong> {employee.phone}
-        </p>
+      <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md text-center relative">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-16 h-16 bg-blue-500 rounded-full -translate-y-1/2 -translate-x-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-16 h-16 bg-red-500 rounded-full translate-y-1/2 translate-x-1/2"></div>
 
+        {/* Profile Section */}
+        <FaUserCircle className="text-6xl text-gray-500 mb-6 mx-auto" />
+        <h1 className="text-2xl font-semibold text-gray-800 mb-2">Welcome, {employee.name}!</h1>
+        <p className="text-sm text-gray-600 mb-6">We're glad to have you here.</p>
+
+        {/* Details Section */}
+        <div className="text-left mb-6">
+          <p className="flex items-center gap-2 text-gray-700 mb-4">
+            <FaEnvelope className="text-gray-500" />
+            <strong>Email:</strong> {employee.email}
+          </p>
+          <p className="flex items-center gap-2 text-gray-700 mb-4">
+            <FaPhone className="text-gray-500" />
+            <strong>Phone:</strong> {employee.phone}
+          </p>
+          
+        </div>
+
+        {/* Action Buttons */}
         <button
           onClick={handleMyPayments}
-          className="mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-200"
+          className="mt-4 px-8 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-200 w-full text-lg"
         >
           My Payments
         </button>
-
         <button
           onClick={handleLogout}
-          className="mt-6 px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition duration-200"
+          className="mt-6 px-8 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition duration-200 w-full text-lg"
         >
           LOGOUT
         </button>
