@@ -22,3 +22,15 @@ export const createPayment = async (req, res, next) => {
     next(err);
   }
 };
+
+
+
+export const getAllPayments = async (req, res, next) => {
+    try {
+      const payments = await Payment.find();
+      res.status(200).json({ success: true, data: payments });
+    } catch (err) {
+      next(err);
+    }
+  };
+  

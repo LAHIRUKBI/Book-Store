@@ -26,6 +26,7 @@ import Importance_of_Learning from './Pages/Importance_of_Learning'
 import Learning_Makes_a_Person_Rich from './Pages/Learning_Makes_a_Person_Rich'
 import Benefits_of_learning_to_read from './Pages/Benefits_of_learning_to_read'
 import Payment from './Pages/Payment'
+import Order from './Pages/Order'
 
 export default function App() {
   return (
@@ -58,6 +59,7 @@ export default function App() {
       <Route path="/learning_Makes_a_Person_Rich" element={<Learning_Makes_a_Person_Rich />} />
       <Route path="/benefits_of_learning_to_read" element={<Benefits_of_learning_to_read />} />
       <Route path="/payment" element={<Payment />} />
+      <Route path="/order" element={<Order />} />
 
 
       
