@@ -60,18 +60,13 @@ export const signin = async (req, res, next) => {
 
 export const getEmployeeDetails = async (req, res) => {
   const { username } = req.params;
-
   try {
-    // Fetch employee details by username
-    const employee = await Employee.findOne({ username });
-
-    if (!employee) {
-      return res.status(404).json({ message: 'Employee not found' });
+    const user = await User.findOne({ email: new RegExp(`^${username}@`, 'i') });
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
     }
-
-    res.status(200).json(employee);
+    res.status(200).json(user);
   } catch (error) {
-    console.error("Error fetching employee details:", error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: "Error fetching user details." });
   }
 };
