@@ -8,9 +8,11 @@ const paymentSchema = new mongoose.Schema({
   customerName: { type: String, required: true },
   customerAddress: { type: String, required: true },
   customerPhone: { type: String, required: true },
+  customerEmail: { type: String, required: true }, // Added email field
   bankName: { type: String, required: true },
   paymentDate: { type: Date, default: Date.now },
 });
+
 
 const Payment = mongoose.model('Payment', paymentSchema);
 
