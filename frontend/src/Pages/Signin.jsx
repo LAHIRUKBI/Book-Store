@@ -29,43 +29,39 @@ export default function Signin() {
       });
       const data = await res.json();
       setLoading(false);
-
+  
       if (!res.ok) {
         setError(data.message || 'Signin failed. Please try again.');
         return;
       }
-
+  
       setError(null);
-
-      // Extract the username (part before "@") from email
-      const username = formData.email.split('@')[0];
-      localStorage.setItem('username', username);  // Save the username to localStorage
-
-      navigate("/");  // Navigate to the home page or dashboard
+      
+      // Save the email and user data to localStorage
+      localStorage.setItem('email', formData.email);
+      localStorage.setItem('userData', JSON.stringify(data.user));  // Save user data
+  
+      navigate("/"); // Navigate to the home page or dashboard
     } catch (error) {
       console.error("Error:", error.message);
       setLoading(false);
       setError("An unexpected error occurred. Please try again.");
     }
   };
+  
 
   return (
     <div className="flex flex-col min-h-screen bg-lightgray">
-      {/* Background color changed to light gray */}
       <div className="flex justify-center items-center flex-grow p-6">
         <div className="relative z-10 flex w-full max-w-4xl bg-white bg-opacity-90 shadow-lg rounded-lg p-6 md:p-9 backdrop-filter backdrop-blur-lg transition-all duration-800 hover:shadow-2xl hover:bg-white hover:bg-opacity-100">
-          {/* Left Side: Form Section */}
           <div className="w-full sm:w-3/5 md:w-2/3 p-4">
             <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-4">Sign In</h2>
-            {/* Introduction Section */}
             <p className="text-gray-600 text-base text-center mb-4">
               Welcome back! Please sign in to access your account and continue recycling with us.
             </p>
 
             <form onSubmit={handleSubmit}>
               {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
-
-              {/* Email Field */}
               <div className="mb-5">
                 <label className="block text-sm font-medium text-gray-800" htmlFor="email">Email:</label>
                 <div className="relative">
@@ -81,7 +77,6 @@ export default function Signin() {
                 </div>
               </div>
 
-              {/* Password Field */}
               <div className="mb-5">
                 <label className="block text-sm font-medium text-gray-800" htmlFor="password">Password:</label>
                 <div className="relative">
@@ -112,7 +107,6 @@ export default function Signin() {
             </form>
           </div>
 
-          {/* Right Side: Image Section */}
           <div className="hidden sm:block sm:w-2/5 md:w-2/3 p-4 flex justify-center items-center">
             <img
               src="src/images/signin.jpeg"

@@ -46,7 +46,8 @@ export const signin = async (req, res, next) => {
     }
 
     console.log("User signed in successfully!");
-    res.status(200).json({ success: true, message: 'Signed in successfully!' });
+    // Send user data in response
+    res.status(200).json({ success: true, message: 'Signed in successfully!', user });
   } catch (error) {
     console.error("Signin error:", error);
     next(error);
@@ -58,10 +59,12 @@ export const signin = async (req, res, next) => {
 
 
 
-export const getEmployeeDetails = async (req, res) => {
-  const { username } = req.params;
+
+export const getEmployeeDetailsByEmail = async (req, res) => {
+  const { email } = req.params;
+
   try {
-    const user = await User.findOne({ email: new RegExp(`^${username}@`, 'i') });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -70,3 +73,8 @@ export const getEmployeeDetails = async (req, res) => {
     res.status(500).json({ message: "Error fetching user details." });
   }
 };
+
+
+
+
+

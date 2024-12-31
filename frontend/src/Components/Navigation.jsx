@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Navigation() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [logoutModal, setLogoutModal] = useState(false); // Modal state
-  const username = localStorage.getItem("username");
+  const [logoutModal, setLogoutModal] = useState(false);
+  const email = localStorage.getItem("email");
   const navigate = useNavigate();
 
   const confirmLogout = () => {
-    localStorage.removeItem("username");
+    localStorage.removeItem("email");
     setLogoutModal(false);
-    navigate("/"); // Navigate to the home page after logout
+    navigate("/"); 
   };
 
   return (
@@ -24,7 +24,7 @@ export default function Navigation() {
           <Link to="/" className="text-lg font-medium hover:text-teal-200">
             Home
           </Link>
-          {username && (
+          {email && (
             <Link to="/books" className="text-lg font-medium hover:text-teal-200">
               Books
             </Link>
@@ -38,12 +38,12 @@ export default function Navigation() {
         </div>
 
         <div className="relative">
-          {username ? (
+          {email ? (
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="text-lg font-semibold px-4 py-2 rounded-md bg-teal-600 shadow-md"
             >
-              Welcome, <span className="font-bold">{username}</span>
+              Welcome, <span className="font-bold">{email}</span>
             </button>
           ) : (
             <div className="flex space-x-4">
@@ -65,13 +65,13 @@ export default function Navigation() {
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg z-20">
               <Link
-                to={`/employee_profile/${username}`}
+                to={`/employee_profile/${email}`}
                 className="block px-4 py-2 hover:bg-teal-100"
               >
                 Profile
               </Link>
               <button
-                onClick={() => setLogoutModal(true)} // Trigger modal
+                onClick={() => setLogoutModal(true)}
                 className="block w-full text-left px-4 py-2 hover:bg-teal-100"
               >
                 Logout
