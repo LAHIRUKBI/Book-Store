@@ -64,21 +64,46 @@ export default function Admin_Login() {
     <div className="bg-gray-100 min-h-screen py-12 px-4">
       {/* Page Introduction */}
       <div className="w-full max-w-7xl mx-auto text-center mb-8">
-        <h1 className="text-4xl font-semibold text-gray-800 mb-4">Welcome to the Login Portal</h1>
-        <p className="text-lg text-gray-600">
-          Please login to access the appropriate section. Choose your role (Admin or Staff) to continue.
-        </p>
-      </div>
+  {/* Header with Icon */}
+  <div className="flex justify-center items-center mb-4">
+    <i className="fas fa-sign-in-alt text-6xl text-indigo-500 mr-4"></i>
+    <h1 className="text-4xl font-semibold text-gray-800">Welcome to the Login Portal</h1>
+  </div>
+  
+  {/* Subheading with Icon and Styled Background */}
+  <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-6 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center mb-4">
+      <i className="fas fa-user-lock text-3xl mr-2"></i>
+      <p className="text-lg text-center">
+        Please login to access the appropriate section. Choose your role (Admin or Staff) to continue.
+      </p>
+    </div>
+  </div>
+  
+  {/* Decorative Underline */}
+  <div className="w-24 h-1 mx-auto mt-4 bg-gradient-to-r from-pink-400 to-indigo-400 rounded-full"></div>
+  
+  {/* Call to Action with Icon */}
+  <div className="flex justify-center items-center mt-6">
+    <i className="fas fa-arrow-circle-right text-4xl text-indigo-500 mr-4"></i>
+    <p className="text-md text-gray-500 italic font-semibold">Let's get started!</p>
+  </div>
+</div>
+
 
       {/* Login Container (displayed in a row) */}
       <div className="flex justify-center space-x-12 w-full max-w-7xl mx-auto">
         
+
+
+
+
         {/* Admin Login Form */}
         <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <h2 className="text-3xl text-center font-semibold mb-6 text-gray-800 flex items-center justify-center">
-            <FaUserShield className="mr-2" /> Administrator Login
+            <FaUserShield className="mr-2" /> Administrator
           </h2>
-          <p className="text-center mb-6 text-gray-600">Administrator login form for managing the system.</p>
+          
           {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
           <form onSubmit={handleAdminLogin}>
             <div className="mb-6">
@@ -135,12 +160,15 @@ export default function Admin_Login() {
           </form>
         </div>
 
+
+
+
+
         {/* Company Login Form */}
         <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <h2 className="text-3xl text-center font-semibold mb-6 text-gray-800 flex items-center justify-center">
-            <FaBuilding className="mr-2" /> Staff Login
+            <FaBuilding className="mr-2" /> Staff 
           </h2>
-          <p className="text-center mb-6 text-gray-600">Login for company staff members to access their respective dashboards.</p>
           {companyError && <div className="text-red-500 mb-4 text-center">{companyError}</div>}
           <form onSubmit={handleCompanyLogin}>
             <div className="mb-6">

@@ -56,19 +56,50 @@ export default function Benefits_of_learning_to_read() {
       </div>
 
       {/* More Benefits Section */}
-      <div className="max-w-4xl mx-auto text-center mb-12">
-        <h2 className="text-3xl font-semibold text-teal-700 mb-6">
-          More Benefits of Learning to Read
-        </h2>
-        <ul className="list-disc text-lg text-gray-700 mb-6 mx-4">
-          <li>Improves focus and concentration by helping you stay engaged.</li>
-          <li>Increases empathy by exposing you to different characters, cultures, and viewpoints.</li>
-          <li>Enhances creativity by sparking new ideas and fueling imagination.</li>
-          <li>Expands knowledge and provides a deeper understanding of the world around you.</li>
-          <li>Helps reduce stress by providing an escape into different worlds and stories.</li>
-          <li>Promotes lifelong learning and curiosity, encouraging personal development throughout life.</li>
-        </ul>
-      </div>
+      <div className="max-w-4xl mx-auto text-center mb-12 px-4">
+  <h2 className="text-3xl font-semibold text-teal-700 mb-8">
+    More Benefits of Learning to Read
+  </h2>
+  <div className="space-y-6">
+    <div className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="text-teal-600 text-2xl mr-4 font-bold">1</div>
+      <p className="text-lg text-gray-700">
+        Improves focus and concentration by helping you stay engaged.
+      </p>
+    </div>
+    <div className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="text-teal-600 text-2xl mr-4 font-bold">2</div>
+      <p className="text-lg text-gray-700">
+        Increases empathy by exposing you to different characters, cultures, and viewpoints.
+      </p>
+    </div>
+    <div className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="text-teal-600 text-2xl mr-4 font-bold">3</div>
+      <p className="text-lg text-gray-700">
+        Enhances creativity by sparking new ideas and fueling imagination.
+      </p>
+    </div>
+    <div className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="text-teal-600 text-2xl mr-4 font-bold">4</div>
+      <p className="text-lg text-gray-700">
+        Expands knowledge and provides a deeper understanding of the world around you.
+      </p>
+    </div>
+    <div className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="text-teal-600 text-2xl mr-4 font-bold">5</div>
+      <p className="text-lg text-gray-700">
+        Helps reduce stress by providing an escape into different worlds and stories.
+      </p>
+    </div>
+    <div className="flex items-start bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="text-teal-600 text-2xl mr-4 font-bold">6</div>
+      <p className="text-lg text-gray-700">
+        Promotes lifelong learning and curiosity, encouraging personal development throughout life.
+      </p>
+    </div>
+  </div>
+</div>
+
 
       {/* How Reading Benefits Different Areas of Life */}
       <div className="max-w-4xl mx-auto text-center mb-12">

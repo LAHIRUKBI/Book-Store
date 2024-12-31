@@ -51,18 +51,39 @@ export default function Learning_Makes_a_Person_Rich() {
       </div>
 
       {/* Benefits of Learning */}
-      <div className="max-w-4xl mx-auto text-center mb-12">
-        <h2 className="text-3xl font-semibold text-teal-700 mb-6">
-          The Benefits of Learning
-        </h2>
-        <ul className="list-disc text-lg text-gray-700 mb-6 mx-4">
-          <li>Improves cognitive function and memory retention.</li>
-          <li>Enhances creativity and problem-solving skills.</li>
-          <li>Boosts confidence and self-esteem.</li>
-          <li>Promotes emotional well-being and happiness.</li>
-          <li>Increases social opportunities and connections.</li>
-        </ul>
-      </div>
+      <div className="max-w-4xl mx-auto text-center mb-12 px-4">
+  <h2 className="text-3xl font-semibold text-teal-700 mb-8">
+    The Benefits of Learning
+  </h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <p className="text-lg text-gray-700 font-medium">
+        Improves cognitive function and memory retention.
+      </p>
+    </div>
+    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <p className="text-lg text-gray-700 font-medium">
+        Enhances creativity and problem-solving skills.
+      </p>
+    </div>
+    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <p className="text-lg text-gray-700 font-medium">
+        Boosts confidence and self-esteem.
+      </p>
+    </div>
+    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <p className="text-lg text-gray-700 font-medium">
+        Promotes emotional well-being and happiness.
+      </p>
+    </div>
+    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+      <p className="text-lg text-gray-700 font-medium">
+        Increases social opportunities and connections.
+      </p>
+    </div>
+  </div>
+</div>
+
 
       {/* Learning Methods Section */}
       <div className="max-w-4xl mx-auto text-center mb-12">
