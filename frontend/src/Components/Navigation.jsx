@@ -80,28 +80,30 @@ export default function Navigation() {
       </div>
 
       {logoutModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30">
-          <div className="bg-white p-6 rounded-md shadow-lg text-center">
-            <p className="text-lg font-semibold mb-4">
-              Are you sure you want to logout?
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button
-                onClick={confirmLogout}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-              >
-                Yes
-              </button>
-              <button
-                onClick={() => setLogoutModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300 ease-in-out">
+    <div className="bg-gradient-to-r from-teal-500 to-cyan-600 p-10 rounded-2xl shadow-2xl text-center transform scale-110 transition-transform duration-300 ease-in-out">
+      <p className="text-3xl font-bold text-white mb-6">
+        Are you sure you want to logout?
+      </p>
+      <div className="flex justify-center space-x-6">
+        <button
+          onClick={confirmLogout}
+          className="w-32 px-6 py-3 bg-red-500 text-white rounded-lg shadow-xl hover:bg-red-600 transition-all duration-300 ease-in-out transform hover:scale-105"
+        >
+          Yes
+        </button>
+        <button
+          onClick={() => setLogoutModal(false)}
+          className="w-32 px-6 py-3 bg-gray-300 text-gray-700 rounded-lg shadow-xl hover:bg-gray-400 transition-all duration-300 ease-in-out transform hover:scale-105"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
     </nav>
   );
 }
