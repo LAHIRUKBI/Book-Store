@@ -32,6 +32,9 @@ export default function BookDetails() {
     }
   }, [book, quantity]);
 
+  const incrementQuantity = () => setQuantity(quantity + 1);
+  const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+
   if (!book) {
     return <div className="text-center text-2xl text-gray-600">Loading book details...</div>;
   }
@@ -53,43 +56,59 @@ export default function BookDetails() {
             <p className="text-gray-700 leading-relaxed">{book.introduction}</p>
           </div>
 
-          {/* Right side: Price, Quantity, Total Price, and Add to Cart Button */}
-          <div className="flex-1 flex flex-col justify-between h-full">
-            {/* Price Section */}
-            <div className="text-center text-gray-800 text-xl font-bold mb-6">
-              <FaTag className="inline-block mr-2 text-teal-600" />
-              <span className="text-2xl">RS {book.price}</span>
-            </div>
+{/* Right side: Price, Quantity, Total Price, and Add to Cart Button */}
+<div className="flex-1 flex flex-col justify-start h-full bg-teal-50 p-6 rounded-lg shadow-lg">
+  {/* Price Section */}
+  <div className="text-left text-gray-800 text-xl font-bold mb-6">
+    <FaTag className="inline-block mr-2 text-teal-600" />
+    <span className="text-2xl">RS {book.price}</span>
+  </div>
 
-            {/* Quantity Section */}
-            <div className="text-center mb-6">
-              <label htmlFor="quantity" className="text-lg font-medium text-gray-800 mr-4">
-                Quantity:
-              </label>
-              <input
-                id="quantity"
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                min="1"
-                className="w-20 text-center py-3 px-6 border border-teal-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200"
-              />
-            </div>
+  {/* Quantity Section */}
+  <div className="flex items-center mb-6">
+    <label htmlFor="quantity" className="text-lg font-medium text-gray-800 mr-4">
+      Quantity:
+    </label>
+    <div className="flex items-center border border-teal-300 rounded-md">
+      <button
+        onClick={decrementQuantity}
+        className="w-10 h-10 text-teal-600 font-semibold text-lg focus:outline-none hover:bg-teal-100"
+      >
+        -
+      </button>
+      <input
+        id="quantity"
+        type="number"
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+        min="1"
+        className="w-20 text-center py-3 px-6 border-0 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200"
+      />
+      <button
+        onClick={incrementQuantity}
+        className="w-10 h-10 text-teal-600 font-semibold text-lg focus:outline-none hover:bg-teal-100"
+      >
+        +
+      </button>
+    </div>
+  </div>
 
-            {/* Total Price Section */}
-            <div className="text-center text-lg font-semibold mb-6">
-              <p>Total Price: <span className="text-teal-500">RS {totalPrice.toFixed(2)}</span></p>
-            </div>
+  {/* Total Price Section */}
+  <div className="text-left text-lg font-semibold mb-6">
+    <p>Total Price: <span className="text-teal-500">RS {totalPrice.toFixed(2)}</span></p>
+  </div>
 
-            {/* Add to Cart Button */}
-            <div className="mt-8 text-center">
-              <button
-                className="bg-teal-500 hover:bg-teal-600 text-white py-3 px-8 rounded-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
-              >
-                Buy
-              </button>
-            </div>
-          </div>
+  {/* Add to Cart Button */}
+  <div className="mt-8">
+    <button
+      className="bg-teal-500 hover:bg-teal-600 text-white py-4 px-12 w-full rounded-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
+    >
+      Buy
+    </button>
+  </div>
+</div>
+
+
         </div>
       </div>
     </div>
