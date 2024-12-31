@@ -39,4 +39,19 @@ export const getAllPayments = async (req, res, next) => {
 
 
   
-  
+  // Controller for fetching orders and payments
+export const getOrdersForEmail = async (req, res) => {
+  const { email } = req.params;
+  const orders = await Order.find({ customerEmail: email });
+  res.json({ orders });
+};
+
+
+
+
+
+export const getPaymentsForEmail = async (req, res) => {
+  const { email } = req.params;
+  const payments = await Payment.find({ customerEmail: email });
+  res.json({ payments });
+};

@@ -16,38 +16,40 @@ export default function Signin() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const res = await fetch("http://localhost:3000/api/signup/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      setLoading(false);
-  
-      if (!res.ok) {
-        setError(data.message || 'Signin failed. Please try again.');
-        return;
-      }
-  
-      setError(null);
-      
-      // Save the email and user data to localStorage
-      localStorage.setItem('email', formData.email);
-      localStorage.setItem('userData', JSON.stringify(data.user));  // Save user data
-  
-      navigate("/"); // Navigate to the home page or dashboard
-    } catch (error) {
-      console.error("Error:", error.message);
-      setLoading(false);
-      setError("An unexpected error occurred. Please try again.");
+  // Signin Component
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    setLoading(true);
+    const res = await fetch("http://localhost:3000/api/signup/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json();
+    setLoading(false);
+
+    if (!res.ok) {
+      setError(data.message || 'Signin failed. Please try again.');
+      return;
     }
-  };
+
+    setError(null);
+    
+    // Save the email and user data to localStorage
+    localStorage.setItem('email', formData.email);
+    localStorage.setItem('userData', JSON.stringify(data.user));  // Save user data
+
+    navigate("/"); // Navigate to the home page or dashboard
+  } catch (error) {
+    console.error("Error:", error.message);
+    setLoading(false);
+    setError("An unexpected error occurred. Please try again.");
+  }
+};
+
   
 
   return (
