@@ -18,6 +18,7 @@ export default function Admin_Login() {
     section: '',
   });
   const [companyError, setCompanyError] = useState('');
+  const [loginType, setLoginType] = useState(''); // Track selected login type
   const navigate = useNavigate();
 
   const handleAdminLogin = (e) => {
@@ -63,170 +64,180 @@ export default function Admin_Login() {
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-4">
       {/* Page Introduction */}
-      <div className="w-full max-w-7xl mx-auto text-center mb-8">
-  {/* Header with Icon */}
-  <div className="flex justify-center items-center mb-4">
-    <i className="fas fa-sign-in-alt text-6xl text-indigo-500 mr-4"></i>
-    <h1 className="text-4xl font-semibold text-gray-800">Welcome to the Login Portal</h1>
-  </div>
-  
-  {/* Subheading with Icon and Styled Background */}
-  <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-6 rounded-lg shadow-lg">
-    <div className="flex justify-center items-center mb-4">
-      <i className="fas fa-user-lock text-3xl mr-2"></i>
-      <p className="text-lg text-center">
-        Please login to access the appropriate section. Choose your role (Admin or Staff) to continue.
-      </p>
+      <div className="w-full max-w-7xl mx-auto text-center mb-12">
+  {/* Title with Icon */}
+  <h1 className="text-4xl font-semibold text-gray-800 mb-4 flex justify-center items-center gap-3">
+    <FaKey className="text-indigo-600" size={32} /> Welcome to the Login Portal
+  </h1>
+
+  {/* Instructional Text */}
+  <p className="text-lg text-gray-600 mb-6">
+    Please select your role from the options below, then log in to access the system.
+  </p>
+
+  {/* Additional Information */}
+  <p className="text-sm text-gray-500 mb-8">
+    Choose the appropriate login type based on your access level: Admin or Staff.
+  </p>
+
+  {/* Login Type Selector with Icons */}
+  <div className="mb-6 flex justify-center items-center gap-6">
+    <div className="w-full max-w-xs">
+      <select
+        value={loginType}
+        onChange={(e) => setLoginType(e.target.value)}
+        className="w-full p-3 bg-white border border-gray-300 rounded-md shadow-md focus:ring-2 focus:ring-indigo-500"
+      >
+        <option value="">Select Login Type</option>
+        <option value="Admin" className="flex items-center">
+          <FaUserShield className="mr-2 text-indigo-500" /> Admin Login
+        </option>
+        <option value="Staff" className="flex items-center">
+          <FaBuilding className="mr-2 text-green-500" /> Staff Login
+        </option>
+      </select>
     </div>
   </div>
-  
-  {/* Decorative Underline */}
-  <div className="w-24 h-1 mx-auto mt-4 bg-gradient-to-r from-pink-400 to-indigo-400 rounded-full"></div>
-  
-  {/* Call to Action with Icon */}
-  <div className="flex justify-center items-center mt-6">
-    <i className="fas fa-arrow-circle-right text-4xl text-indigo-500 mr-4"></i>
-    <p className="text-md text-gray-500 italic font-semibold">Let's get started!</p>
+
+  {/* Footer Note */}
+  <div className="mt-4 text-sm text-gray-500">
+    <p>Need help? <Link to="/support" className="text-indigo-600 hover:underline">Contact Support</Link></p>
   </div>
 </div>
 
 
-      {/* Login Container (displayed in a row) */}
-      <div className="flex justify-center space-x-12 w-full max-w-7xl mx-auto">
-        
+      {/* Login Container (displayed based on selection) */}
+      <div className="flex justify-center w-full max-w-7xl mx-auto">
 
-
-
-
-        {/* Admin Login Form */}
-        <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-          <h2 className="text-3xl text-center font-semibold mb-6 text-gray-800 flex items-center justify-center">
-            <FaUserShield className="mr-2" /> Administrator
-          </h2>
-          
-          {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
-          <form onSubmit={handleAdminLogin}>
-            <div className="mb-6">
-              <label htmlFor="adminName" className="block text-sm font-medium mb-2 text-gray-800">
-                Name:
-              </label>
-              <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
-                <FaIdCard className="text-gray-400 mr-3" />
-                <input
-                  type="text"
-                  id="adminName"
-                  value={adminCredentials.name}
-                  onChange={(e) => setAdminCredentials({ ...adminCredentials, name: e.target.value })}
-                  className="w-full bg-transparent border-none focus:outline-none text-gray-900"
-                />
+        {/* Show Admin Login Form */}
+        {loginType === 'Admin' && (
+          <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <h2 className="text-3xl text-center font-semibold mb-6 text-gray-800 flex items-center justify-center">
+              <FaUserShield className="mr-2" /> Administrator Login
+            </h2>
+            
+            {error && <div className="text-red-500 mb-4 text-center">{error}</div>}
+            <form onSubmit={handleAdminLogin}>
+              <div className="mb-6">
+                <label htmlFor="adminName" className="block text-sm font-medium mb-2 text-gray-800">
+                  Name:
+                </label>
+                <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
+                  <FaIdCard className="text-gray-400 mr-3" />
+                  <input
+                    type="text"
+                    id="adminName"
+                    value={adminCredentials.name}
+                    onChange={(e) => setAdminCredentials({ ...adminCredentials, name: e.target.value })}
+                    className="w-full bg-transparent border-none focus:outline-none text-gray-900"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="mb-6">
-              <label htmlFor="institutionID" className="block text-sm font-medium mb-2 text-gray-800">
-                Institution ID:
-              </label>
-              <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
-                <FaBuilding className="text-gray-400 mr-3" />
-                <input
-                  type="text"
-                  id="institutionID"
-                  value={adminCredentials.institutionID}
-                  onChange={(e) => setAdminCredentials({ ...adminCredentials, institutionID: e.target.value })}
-                  className="w-full bg-transparent border-none focus:outline-none text-gray-900"
-                />
+              <div className="mb-6">
+                <label htmlFor="institutionID" className="block text-sm font-medium mb-2 text-gray-800">
+                  Institution ID:
+                </label>
+                <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
+                  <FaBuilding className="text-gray-400 mr-3" />
+                  <input
+                    type="text"
+                    id="institutionID"
+                    value={adminCredentials.institutionID}
+                    onChange={(e) => setAdminCredentials({ ...adminCredentials, institutionID: e.target.value })}
+                    className="w-full bg-transparent border-none focus:outline-none text-gray-900"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="mb-6">
-              <label htmlFor="nic" className="block text-sm font-medium mb-2 text-gray-800">
-                NIC Number:
-              </label>
-              <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
-                <FaKey className="text-gray-400 mr-3" />
-                <input
-                  type="text"
-                  id="nic"
-                  value={adminCredentials.nic}
-                  onChange={(e) => setAdminCredentials({ ...adminCredentials, nic: e.target.value })}
-                  className="w-full bg-transparent border-none focus:outline-none text-gray-900"
-                />
+              <div className="mb-6">
+                <label htmlFor="nic" className="block text-sm font-medium mb-2 text-gray-800">
+                  NIC Number:
+                </label>
+                <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
+                  <FaKey className="text-gray-400 mr-3" />
+                  <input
+                    type="text"
+                    id="nic"
+                    value={adminCredentials.nic}
+                    onChange={(e) => setAdminCredentials({ ...adminCredentials, nic: e.target.value })}
+                    className="w-full bg-transparent border-none focus:outline-none text-gray-900"
+                  />
+                </div>
               </div>
-            </div>
-            <button
-              type="submit"
-              className="w-full p-3 bg-indigo-700 text-white rounded-md hover:bg-indigo-800 focus:outline-none flex items-center justify-center"
-            >
-              <MdLogin className="mr-2" /> Admin Login
-            </button>
-          </form>
-        </div>
+              <button
+                type="submit"
+                className="w-full p-3 bg-indigo-700 text-white rounded-md hover:bg-indigo-800 focus:outline-none flex items-center justify-center"
+              >
+                <MdLogin className="mr-2" /> Admin Login
+              </button>
+            </form>
+          </div>
+        )}
 
-
-
-
-
-        {/* Company Login Form */}
-        <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-          <h2 className="text-3xl text-center font-semibold mb-6 text-gray-800 flex items-center justify-center">
-            <FaBuilding className="mr-2" /> Staff 
-          </h2>
-          {companyError && <div className="text-red-500 mb-4 text-center">{companyError}</div>}
-          <form onSubmit={handleCompanyLogin}>
-            <div className="mb-6">
-              <label htmlFor="companyNumber" className="block text-sm font-medium mb-2 text-gray-800">
-                Company Number:
-              </label>
-              <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
-                <FaIdCard className="text-gray-400 mr-3" />
-                <input
-                  type="text"
-                  id="companyNumber"
-                  value={companyCredentials.companyNumber}
-                  onChange={(e) => setCompanyCredentials({ ...companyCredentials, companyNumber: e.target.value })}
-                  className="w-full bg-transparent border-none focus:outline-none text-gray-900"
-                />
+        {/* Show Staff Login Form */}
+        {loginType === 'Staff' && (
+          <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <h2 className="text-3xl text-center font-semibold mb-6 text-gray-800 flex items-center justify-center">
+              <FaBuilding className="mr-2" /> Staff Login
+            </h2>
+            {companyError && <div className="text-red-500 mb-4 text-center">{companyError}</div>}
+            <form onSubmit={handleCompanyLogin}>
+              <div className="mb-6">
+                <label htmlFor="companyNumber" className="block text-sm font-medium mb-2 text-gray-800">
+                  Company Number:
+                </label>
+                <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
+                  <FaIdCard className="text-gray-400 mr-3" />
+                  <input
+                    type="text"
+                    id="companyNumber"
+                    value={companyCredentials.companyNumber}
+                    onChange={(e) => setCompanyCredentials({ ...companyCredentials, companyNumber: e.target.value })}
+                    className="w-full bg-transparent border-none focus:outline-none text-gray-900"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="mb-6">
-              <label htmlFor="companyName" className="block text-sm font-medium mb-2 text-gray-800">
-                Name:
-              </label>
-              <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
-                <FaBuilding className="text-gray-400 mr-3" />
-                <input
-                  type="text"
-                  id="companyName"
-                  value={companyCredentials.name}
-                  onChange={(e) => setCompanyCredentials({ ...companyCredentials, name: e.target.value })}
-                  className="w-full bg-transparent border-none focus:outline-none text-gray-900"
-                />
+              <div className="mb-6">
+                <label htmlFor="companyName" className="block text-sm font-medium mb-2 text-gray-800">
+                  Name:
+                </label>
+                <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
+                  <FaBuilding className="text-gray-400 mr-3" />
+                  <input
+                    type="text"
+                    id="companyName"
+                    value={companyCredentials.name}
+                    onChange={(e) => setCompanyCredentials({ ...companyCredentials, name: e.target.value })}
+                    className="w-full bg-transparent border-none focus:outline-none text-gray-900"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="mb-6">
-              <label htmlFor="section" className="block text-sm font-medium mb-2 text-gray-800">
-                Section:
-              </label>
-              <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
-                <FaBuilding className="text-gray-400 mr-3" />
-                <select
-                  id="section"
-                  value={companyCredentials.section || ''}
-                  onChange={(e) => setCompanyCredentials({ ...companyCredentials, section: e.target.value })}
-                  className="w-full bg-transparent border-none focus:outline-none text-gray-900"
-                >
-                  <option value="">Select Section</option>
-                  <option value="Stock Manager">Stock Manager</option>
-                  <option value="Delivery Manager">Delivery Manager</option>
-                </select>
+              <div className="mb-6">
+                <label htmlFor="section" className="block text-sm font-medium mb-2 text-gray-800">
+                  Section:
+                </label>
+                <div className="flex items-center bg-white p-3 rounded-md border border-gray-300">
+                  <FaBuilding className="text-gray-400 mr-3" />
+                  <select
+                    id="section"
+                    value={companyCredentials.section || ''}
+                    onChange={(e) => setCompanyCredentials({ ...companyCredentials, section: e.target.value })}
+                    className="w-full bg-transparent border-none focus:outline-none text-gray-900"
+                  >
+                    <option value="">Select Section</option>
+                    <option value="Stock Manager">Stock Manager</option>
+                    <option value="Delivery Manager">Delivery Manager</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <button
-              type="submit"
-              className="w-full p-3 bg-green-700 text-white rounded-md hover:bg-green-800 focus:outline-none flex items-center justify-center"
-            >
-              <MdLogin className="mr-2" /> Company Login
-            </button>
-          </form>
-        </div>
+              <button
+                type="submit"
+                className="w-full p-3 bg-green-700 text-white rounded-md hover:bg-green-800 focus:outline-none flex items-center justify-center"
+              >
+                <MdLogin className="mr-2" /> Company Login
+              </button>
+            </form>
+          </div>
+        )}
       </div>
 
       {/* Customer login link */}
