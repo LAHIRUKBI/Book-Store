@@ -8,6 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
 
   // Fetch products when the Home page is loaded
   useEffect(() => {
@@ -39,6 +40,17 @@ export default function Home() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setCurrentStep(1); // Reset the step when closing the modal
+  };
+
+  const nextStep = () => {
+    if (currentStep < 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const finishGuide = () => {
+    closeModal();
   };
 
   if (loading) {
@@ -98,39 +110,65 @@ export default function Home() {
                 &times;
               </button>
             </div>
-            <p className="mt-4 text-lg text-gray-700">
-              Follow these steps to begin your journey with us:
-            </p>
-            <div className="mt-6 space-y-4">
-              {/* Step 1 */}
-              <div className="flex items-center space-x-3">
-                <span className="text-teal-600">1.</span>
-                <p className="text-gray-700">
-                  Register for an account to get started with our services.
+            
+            {/* Step Content */}
+            {currentStep === 1 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  Welcome to our service guide! In this guide, you will learn
+                  how to get started with our platform and take full advantage
+                  of our waste management services.
                 </p>
               </div>
-              {/* Step 2 */}
-              <div className="flex items-center space-x-3">
-                <span className="text-teal-600">2.</span>
-                <p className="text-gray-700">
-                  Select the services that best fit your needs.
+            )}
+
+            {currentStep === 2 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  To begin buying books from our collection, you need to
+                  register and sign in. Once registered, a "Books" tab will
+                  appear in the navigation bar where you can purchase books.
                 </p>
               </div>
-              {/* Step 3 */}
-              <div className="flex items-center space-x-3">
-                <span className="text-teal-600">3.</span>
-                <p className="text-gray-700">
-                  Enjoy seamless waste management and recycling services.
+            )}
+
+            {currentStep === 3 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  On the homepage, you'll find the curated book collection in
+                  the "Learning Pool" section. Additionally, there are various
+                  categories and resources to explore and enjoy.
                 </p>
               </div>
-            </div>
-            <div className="mt-6 text-center">
-              <button
-                onClick={closeModal}
-                className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg"
-              >
-                Close
-              </button>
+            )}
+
+            {currentStep === 4 && (
+              <div>
+                <p className="mt-4 text-lg text-gray-700">
+                  That's it! You've completed the guide. Now, you're ready to
+                  explore our services. If you need help at any time, feel free
+                  to revisit this guide.
+                </p>
+              </div>
+            )}
+
+            {/* Navigation buttons */}
+            <div className="mt-6 text-center space-x-4">
+              {currentStep < 4 ? (
+                <button
+                  onClick={nextStep}
+                  className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg"
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  onClick={finishGuide}
+                  className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg"
+                >
+                  Finish
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -212,15 +250,12 @@ export default function Home() {
 
       {/* Banner Section */}
       <section className="w-full mt-12">
-  <img
-    src="src/images/Banner.png" // Replace with your banner image path
-    alt="Banner"
-    className="w-full h-48 object-cover" // Adjust h-48 for a more suitable height
-  />
-</section>
-
-
-
+        <img
+          src="src/images/Banner.png" // Replace with your banner image path
+          alt="Banner"
+          className="w-full h-48 object-cover" // Adjust h-48 for a more suitable height
+        />
+      </section>
     </div>
   );
 }
