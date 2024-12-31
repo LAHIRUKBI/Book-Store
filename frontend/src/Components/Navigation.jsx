@@ -29,7 +29,7 @@ export default function Navigation() {
               Books
             </Link>
           )}
-          <Link to="/about" className="text-lg font-medium hover:text-teal-200">
+          <Link to="/about_Us" className="text-lg font-medium hover:text-teal-200">
             About Us
           </Link>
           <Link to="/contact" className="text-lg font-medium hover:text-teal-200">
