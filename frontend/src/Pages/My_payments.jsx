@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaCreditCard, FaRegCalendarAlt, FaUserAlt, FaMoneyBillWave, FaPhoneAlt, FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
 
 export default function My_payments() {
   const [payments, setPayments] = useState([]);
@@ -54,7 +55,7 @@ export default function My_payments() {
   });
 
   if (loading) {
-    return <div className="text-center text-xl font-semibold">Loading payments...</div>;
+    return <div className="text-center text-xl font-semibold text-gray-500">Loading payments...</div>;
   }
 
   if (error) {
@@ -62,13 +63,13 @@ export default function My_payments() {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-semibold text-center mb-4">My Payments</h2>
+    <div className="p-6 max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-semibold text-center mb-6 text-blue-600">My Payments</h2>
       {payments.length === 0 ? (
         <p className="text-center text-lg text-gray-500">No payments found.</p>
       ) : (
         <div>
-          <div className="flex justify-between mb-4">
+          <div className="flex justify-between mb-6">
             <button
               onClick={() => handleSort('paymentDate')}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
@@ -82,20 +83,42 @@ export default function My_payments() {
               Sort by Amount
             </button>
           </div>
-          <ul className="space-y-4">
+          <ul className="space-y-6">
             {sortedPayments.map((payment, index) => (
-              <li key={index} className="bg-white p-4 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
-                <div className="grid grid-cols-2 gap-4">
-                  <div><strong>Book ID:</strong> {payment.bookId}</div>
-                  <div><strong>Payment Date:</strong> {new Date(payment.paymentDate).toLocaleDateString()}</div>
-                  <div><strong>Amount:</strong> ${payment.totalPrice}</div>
-                  <div><strong>Quantity:</strong> {payment.quantity}</div>
-                  <div><strong>Payment Method:</strong> {payment.paymentMethod}</div>
-                  <div><strong>Customer Name:</strong> {payment.customerName}</div>
-                  <div><strong>Customer Address:</strong> {payment.customerAddress}</div>
-                  <div><strong>Customer Phone:</strong> {payment.customerPhone}</div>
-                  <div><strong>Customer Email:</strong> {payment.customerEmail}</div>
-                  <div><strong>Bank Name:</strong> {payment.bankName}</div>
+              <li key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* Book ID - Centered in its own box */}
+                  <div className="col-span-3 text-center py-4 border-2 border-gray-300 rounded-lg bg-gray-100">
+                    <strong className="text-xl text-gray-700">Book ID:</strong> <span className="text-lg">{payment.bookId}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <FaRegCalendarAlt className="text-xl text-gray-500 mr-2" />
+                    <strong>Payment Date:</strong> {new Date(payment.paymentDate).toLocaleDateString()}
+                  </div>
+                  <div className="flex items-center">
+                    <FaMoneyBillWave className="text-xl text-green-500 mr-2" />
+                    <strong>Amount:</strong> ${payment.totalPrice}
+                  </div>
+                  <div className="flex items-center">
+                    <FaUserAlt className="text-xl text-gray-500 mr-2" />
+                    <strong>Customer Name:</strong> {payment.customerName}
+                  </div>
+                  <div className="flex items-center">
+                    <FaMapMarkerAlt className="text-xl text-gray-500 mr-2" />
+                    <strong>Customer Address:</strong> {payment.customerAddress}
+                  </div>
+                  <div className="flex items-center">
+                    <FaPhoneAlt className="text-xl text-gray-500 mr-2" />
+                    <strong>Customer Phone:</strong> {payment.customerPhone}
+                  </div>
+                  <div className="flex items-center">
+                    <FaUserAlt className="text-xl text-gray-500 mr-2" />
+                    <strong>Customer Email:</strong> {payment.customerEmail}
+                  </div>
+                  <div className="flex items-center">
+                    <FaBuilding className="text-xl text-gray-500 mr-2" />
+                    <strong>Bank Name:</strong> {payment.bankName}
+                  </div>
                 </div>
               </li>
             ))}
