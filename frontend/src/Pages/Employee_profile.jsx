@@ -10,7 +10,7 @@ export default function EmployeeProfile() {
   useEffect(() => {
     // Fetch employee details from the server based on the username
     axios
-      .get(`/api/employees/${username}`)
+      .get(`/api/signup/${username}`)
       .then((response) => {
         setEmployee(response.data);
       })
