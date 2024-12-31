@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Navigation() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);  // New state for mobile menu toggle
   const email = localStorage.getItem("email");
   const navigate = useNavigate();
 
@@ -20,7 +21,16 @@ export default function Navigation() {
           Book Haven
         </a>
 
-        <div className="flex space-x-8">
+        {/* Mobile menu toggle */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden text-2xl"
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+
+        {/* Desktop links */}
+        <div className={`flex space-x-8 ${menuOpen ? 'block' : 'hidden'} lg:flex`}>
           <Link to="/" className="text-lg font-medium hover:text-teal-200">
             Home
           </Link>
@@ -37,6 +47,7 @@ export default function Navigation() {
           </Link>
         </div>
 
+        {/* User profile / login buttons */}
         <div className="relative">
           {email ? (
             <button
