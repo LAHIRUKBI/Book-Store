@@ -39,17 +39,11 @@ export default function Admin_Login() {
         const { section } = companyCredentials;
 
         switch (section) {
-          case 'Employee':
-            navigate('/employeehome');
-            break;
           case 'Staff Manager':
             navigate('/staffmanagerhome');
             break;
           case 'Stock Manager':
             navigate('/Book_manager_home');
-            break;
-          case 'Vehicle Manager':
-            navigate('/vehiclemanagerhome');
             break;
           case 'Delivery Manager':
             navigate('/deliverymanagerhome');
@@ -192,10 +186,7 @@ export default function Admin_Login() {
                   className="w-full bg-transparent border-none focus:outline-none text-gray-900"
                 >
                   <option value="">Select Section</option>
-                  <option value="Employee">Employee</option>
-                  <option value="Staff Manager">Staff Manager</option>
                   <option value="Stock Manager">Stock Manager</option>
-                  <option value="Vehicle Manager">Vehicle Manager</option>
                   <option value="Delivery Manager">Delivery Manager</option>
                 </select>
               </div>
