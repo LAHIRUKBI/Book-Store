@@ -132,7 +132,7 @@ export default function Books() {
             From fiction to non-fiction, explore our extensive library to find your next great read.
           </p>
           <Link
-            to="/explore"
+            to="https://www.goodreads.com/"
             className="bg-teal-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-teal-600 transition duration-300"
           >
             Start Exploring

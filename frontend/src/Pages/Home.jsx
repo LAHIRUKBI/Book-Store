@@ -175,78 +175,84 @@ export default function Home() {
       )}
 
       {/* Section with Curated Book Collection */}
-      <section className="py-16 bg-white text-gray-800">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-teal-600 mb-12 text-center">
-            Learning Pool
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Learning 1 */}
-            <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-              <img
-                src="src/images/The Importance of Learning.jpeg" // Replace with your image path
-                alt="The Importance of Learning"
-                className="w-full h-60 object-cover rounded-xl shadow-2xl"
-              />
-              <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
-                The Importance of Learning
-              </h3>
-              <p className="text-lg text-gray-700 mb-4 text-center">
-                Discover the profound impact of continuous learning on personal
-                growth, career advancement, and overall well-being.
-              </p>
-              <Link
-                to="/importance_of_Learning"
-                className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-              >
-                Learn More
-              </Link>
-            </div>
-
-            {/* Learning 2 */}
-            <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-              <img
-                src="src/images/book5.jpg" // Replace with an image that fits the theme of knowledge and growth
-                alt="Learning makes a person rich"
-                className="w-full h-60 object-cover rounded-xl shadow-2xl"
-              />
-              <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
-                Learning Makes a Person Rich
-              </h3>
-              <p className="text-lg text-gray-700 mb-4 text-center">
-                Knowledge is wealth that never depreciates. Every lesson learned and every skill gained adds value to your life and opens doors to endless opportunities.
-              </p>
-              <Link
-                to="/learning_Makes_a_Person_Rich"
-                className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-              >
-                Learn More
-              </Link>
-            </div>
-
-            {/* Learning 3 */}
-            <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl transition duration-300">
-              <img
-                src="src/images/book3.jpg" // Replace with your image path
-                alt="Book 3"
-                className="w-full h-60 object-cover rounded-xl shadow-2xl"
-              />
-              <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
-                Benefits of Learning to Read
-              </h3>
-              <p className="text-lg text-gray-700 mb-4 text-center">
-                Reading opens doors to a world of knowledge, imagination, and endless possibilities. Here are some of the key benefits of learning to read:
-              </p>
-              <Link
-                to="/benefits_of_learning_to_read"
-                className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300"
-              >
-                Learn More
-              </Link>
-            </div>
-          </div>
+      <section className="py-16 bg-gradient-to-r from-teal-50 to-white text-gray-800">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold text-teal-600 mb-12 text-center tracking-wide uppercase">
+      Learning Pool
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      {/* Learning 1 */}
+      <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl hover:scale-105 transition duration-300 transform">
+        <div className="w-full h-60 overflow-hidden rounded-xl mb-6">
+          <img
+            src="src/images/The Importance of Learning.jpeg" // Replace with your image path
+            alt="The Importance of Learning"
+            className="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+          />
         </div>
-      </section>
+        <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
+          The Importance of Learning
+        </h3>
+        <p className="text-lg text-gray-700 mb-4 text-center px-2">
+          Discover the profound impact of continuous learning on personal growth, career advancement, and overall well-being.
+        </p>
+        <Link
+          to="/importance_of_Learning"
+          className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300"
+        >
+          Learn More
+        </Link>
+      </div>
+
+      {/* Learning 2 */}
+      <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl hover:scale-105 transition duration-300 transform">
+        <div className="w-full h-60 overflow-hidden rounded-xl mb-6">
+          <img
+            src="src/images/book5.jpg" // Replace with an image that fits the theme of knowledge and growth
+            alt="Learning makes a person rich"
+            className="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+          />
+        </div>
+        <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
+          Learning Makes a Person Rich
+        </h3>
+        <p className="text-lg text-gray-700 mb-4 text-center px-2">
+          Knowledge is wealth that never depreciates. Every lesson learned and every skill gained adds value to your life and opens doors to endless opportunities.
+        </p>
+        <Link
+          to="/learning_Makes_a_Person_Rich"
+          className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300"
+        >
+          Learn More
+        </Link>
+      </div>
+
+      {/* Learning 3 */}
+      <div className="flex flex-col items-center bg-white shadow-xl rounded-lg p-6 border border-gray-200 hover:shadow-2xl hover:scale-105 transition duration-300 transform">
+        <div className="w-full h-60 overflow-hidden rounded-xl mb-6">
+          <img
+            src="src/images/book3.jpg" // Replace with your image path
+            alt="Book 3"
+            className="w-full h-full object-cover transform hover:scale-110 transition duration-500"
+          />
+        </div>
+        <h3 className="text-2xl font-semibold text-teal-600 mt-6 mb-4">
+          Benefits of Learning to Read
+        </h3>
+        <p className="text-lg text-gray-700 mb-4 text-center px-2">
+          Reading opens doors to a world of knowledge, imagination, and endless possibilities. Here are some of the key benefits of learning to read:
+        </p>
+        <Link
+          to="/benefits_of_learning_to_read"
+          className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg shadow-lg transform hover:scale-105 transition duration-300"
+        >
+          Learn More
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Banner Section */}
       <section className="w-full mt-12">
@@ -258,36 +264,51 @@ export default function Home() {
       </section>
 
 {/* Testimonials Section */}
-<section className="py-16 bg-gray-50 text-gray-800">
+<section className="py-16 bg-yellow-50 text-gray-800">
   <div className="container mx-auto px-4 text-center">
     <h2 className="text-4xl font-bold text-teal-600 mb-12">
-      What Our Customers Say
+      What Our Readers Are Saying
     </h2>
     <div className="flex flex-wrap justify-center gap-8">
+      {/* Testimonial 1 */}
       <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <div className="flex justify-center mb-4">
+          <i className="fas fa-book-open text-3xl text-teal-600"></i>
+        </div>
         <p className="text-lg text-gray-700 mb-4">
-          "The service is amazing! I can easily manage waste and make new products. I highly recommend it!"
+          "An incredible selection of books! I always find something new to read. The staff is super helpful and friendly!"
         </p>
-        <p className="font-semibold text-teal-600">John Doe</p>
-        <p className="text-sm text-gray-500">Customer</p>
+        <p className="font-semibold text-teal-600">Sarah Miller</p>
+        <p className="text-sm text-gray-500">Regular Customer</p>
       </div>
+      
+      {/* Testimonial 2 */}
       <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <div className="flex justify-center mb-4">
+          <i className="fas fa-book-reader text-3xl text-teal-600"></i>
+        </div>
         <p className="text-lg text-gray-700 mb-4">
-          "Fantastic experience! The platform is user-friendly, and I love how simple it is to get started."
+          "The bookstore has a charming atmosphere. I can easily find my favorite genres, and the cozy seating area makes it a perfect spot to read!"
         </p>
-        <p className="font-semibold text-teal-600">Jane Smith</p>
-        <p className="text-sm text-gray-500">Customer</p>
+        <p className="font-semibold text-teal-600">David Roberts</p>
+        <p className="text-sm text-gray-500">Book Lover</p>
       </div>
+      
+      {/* Testimonial 3 */}
       <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
+        <div className="flex justify-center mb-4">
+          <i className="fas fa-bookmark text-3xl text-teal-600"></i>
+        </div>
         <p className="text-lg text-gray-700 mb-4">
-          "A game-changer for managing waste. I feel great knowing I'm helping the environment!"
+          "A wonderful experience every time I visit. The recommendations are always spot on, and I love the community events!"
         </p>
-        <p className="font-semibold text-teal-600">Michael Lee</p>
-        <p className="text-sm text-gray-500">Customer</p>
+        <p className="font-semibold text-teal-600">Emma Johnson</p>
+        <p className="text-sm text-gray-500">Frequent Visitor</p>
       </div>
     </div>
   </div>
 </section>
+
 
 
 {/* Call to Action Section */}
