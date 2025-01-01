@@ -8,7 +8,6 @@ export const createPayment = async (req, res, next) => {
       bookId,
       totalPrice,
       quantity,
-      paymentMethod,
       customerName: formData.name,
       customerAddress: formData.address,
       customerPhone: formData.phone,

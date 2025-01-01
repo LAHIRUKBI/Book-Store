@@ -30,7 +30,7 @@ export default function Footer() {
                 <Link to="/ad-preferences" className="hover:text-teal-400 transition duration-200">Ad Preferences</Link>
               </li>
               <li>
-                <Link to="/help" className="hover:text-teal-400 transition duration-200">Help</Link>
+                <Link to="/contact" className="hover:text-teal-400 transition duration-200">Help</Link>
               </li>
             </ul>
           </div>
