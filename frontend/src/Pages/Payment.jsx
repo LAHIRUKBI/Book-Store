@@ -141,118 +141,125 @@ export default function Payment() {
           <h2 className="text-4xl font-extrabold text-teal-600 mb-4">{bookTitle}</h2>
           <p className="text-xl font-semibold mb-4">Total Price: RS {totalPrice.toFixed(2)}</p>
 
-          {/* Form to collect user data */}
-          <div className="mb-6">
-            <div className="flex justify-between mb-4">
-              <div className="w-1/2 mr-2">
-                <label className="font-semibold">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleFormChange}
-                  placeholder="Name"
-                  className="w-full p-3 border rounded-md"
-                />
-                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+          {/* Form container with flex layout */}
+          <div className="flex justify-between mb-6">
+            {/* Form to collect user data */}
+            <div className="w-1/2 pr-4">
+              <div className="mb-6">
+                <div className="flex justify-between mb-4">
+                  <div className="w-1/2 mr-2">
+                    <label className="font-semibold">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleFormChange}
+                      placeholder="Name"
+                      className="w-full p-3 border rounded-md"
+                    />
+                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                  </div>
+                  <div className="w-1/2 ml-2">
+                    <label className="font-semibold">Address</label>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleFormChange}
+                      placeholder="Address"
+                      className="w-full p-3 border rounded-md"
+                    />
+                    {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
+                  </div>
+                </div>
+                <div>
+                  <label className="font-semibold">Phone</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleFormChange}
+                    placeholder="Phone"
+                    className="w-full p-3 border rounded-md"
+                  />
+                  {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+                </div>
+                <div className="mt-4">
+                  <label className="font-semibold">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    placeholder="Email"
+                    className="w-full p-3 border rounded-md"
+                  />
+                  {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                </div>
               </div>
-              <div className="w-1/2 ml-2">
-                <label className="font-semibold">Address</label>
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleFormChange}
-                  placeholder="Address"
-                  className="w-full p-3 border rounded-md"
-                />
-                {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
-              </div>
             </div>
-            <div>
-              <label className="font-semibold">Phone</label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleFormChange}
-                placeholder="Phone"
-                className="w-full p-3 border rounded-md"
-              />
-              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-            </div>
-            <div className="mt-4">
-              <label className="font-semibold">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleFormChange}
-                placeholder="Email"
-                className="w-full p-3 border rounded-md"
-              />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-            </div>
-          </div>
 
-          {/* Bank payment form */}
-          <div className="mb-6">
-            <div className="mb-4">
-              <label className="font-semibold">Select Bank</label>
-              <select
-                name="bankName"
-                value={bankData.bankName}
-                onChange={handleBankChange}
-                className="w-full p-3 border rounded-md"
-              >
-                <option value="">Select Bank</option>
-                <option value="BOC">Bank of Ceylon (BOC)</option>
-                <option value="HNB">Hatton National Bank (HNB)</option>
-                <option value="Sampath">Sampath Bank</option>
-                <option value="NSB">National Savings Bank (NSB)</option>
-                <option value="Commercial">Commercial Bank</option>
-                <option value="People">People's Bank</option>
-                <option value="Seylan">Seylan Bank</option>
-                <option value="Hatton">Hatton National Bank (HNB)</option>
-              </select>
-              {errors.bankName && <p className="text-red-500 text-sm">{errors.bankName}</p>}
-            </div>
-            <div className="flex mb-4">
-              <div className="w-1/2 mr-2">
-                <label className="font-semibold">Card Number</label>
-                <input
-                  type="text"
-                  name="cardNumber"
-                  value={bankData.cardNumber}
-                  onChange={handleBankChange}
-                  placeholder="Card Number"
-                  className="w-full p-3 border rounded-md"
-                />
-                {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
+            {/* Bank payment form */}
+            <div className="w-1/2 pl-4">
+              <div className="mb-6">
+                <div className="mb-4">
+                  <label className="font-semibold">Select Bank</label>
+                  <select
+                    name="bankName"
+                    value={bankData.bankName}
+                    onChange={handleBankChange}
+                    className="w-full p-3 border rounded-md"
+                  >
+                    <option value="">Select Bank</option>
+                    <option value="BOC">Bank of Ceylon (BOC)</option>
+                    <option value="HNB">Hatton National Bank (HNB)</option>
+                    <option value="Sampath">Sampath Bank</option>
+                    <option value="NSB">National Savings Bank (NSB)</option>
+                    <option value="Commercial">Commercial Bank</option>
+                    <option value="People">People's Bank</option>
+                    <option value="Seylan">Seylan Bank</option>
+                    <option value="Hatton">Hatton National Bank (HNB)</option>
+                  </select>
+                  {errors.bankName && <p className="text-red-500 text-sm">{errors.bankName}</p>}
+                </div>
+                <div className="flex mb-4">
+                  <div className="w-1/2 mr-2">
+                    <label className="font-semibold">Card Number</label>
+                    <input
+                      type="text"
+                      name="cardNumber"
+                      value={bankData.cardNumber}
+                      onChange={handleBankChange}
+                      placeholder="Card Number"
+                      className="w-full p-3 border rounded-md"
+                    />
+                    {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
+                  </div>
+                  <div className="w-1/2 ml-2">
+                    <label className="font-semibold">Expiry Date</label>
+                    <input
+                      type="month"
+                      name="expiryDate"
+                      value={bankData.expiryDate}
+                      onChange={handleExpiryChange}
+                      className="w-full p-3 border rounded-md"
+                    />
+                    {errors.expiryDate && <p className="text-red-500 text-sm">{errors.expiryDate}</p>}
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="font-semibold">CVV</label>
+                  <input
+                    type="text"
+                    name="cvv"
+                    value={bankData.cvv}
+                    onChange={handleBankChange}
+                    placeholder="CVV"
+                    className="w-full p-3 border rounded-md"
+                  />
+                  {errors.cvv && <p className="text-red-500 text-sm">{errors.cvv}</p>}
+                </div>
               </div>
-              <div className="w-1/2 ml-2">
-                <label className="font-semibold">Expiry Date</label>
-                <input
-                  type="month"
-                  name="expiryDate"
-                  value={bankData.expiryDate}
-                  onChange={handleExpiryChange}
-                  className="w-full p-3 border rounded-md"
-                />
-                {errors.expiryDate && <p className="text-red-500 text-sm">{errors.expiryDate}</p>}
-              </div>
-            </div>
-            <div className="mb-4">
-              <label className="font-semibold">CVV</label>
-              <input
-                type="text"
-                name="cvv"
-                value={bankData.cvv}
-                onChange={handleBankChange}
-                placeholder="CVV"
-                className="w-full p-3 border rounded-md"
-              />
-              {errors.cvv && <p className="text-red-500 text-sm">{errors.cvv}</p>}
             </div>
           </div>
 
