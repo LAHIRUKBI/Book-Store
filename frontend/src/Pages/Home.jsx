@@ -66,16 +66,17 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-teal-500 to-cyan-500 py-24">
         {/* Video Background */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <video
-            className="w-full h-full object-cover opacity-80"
-            src="src/videos/Home Video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-          ></video>
-        </div>
+        <div className="absolute inset-0 overflow-hidden">
+    <video
+      className="w-full h-full object-cover"
+      src="src/videos/Home Video.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
+      aria-label="Background Video"
+    ></video>
+  </div>
 
         {/* Overlay to darken video for better text visibility */}
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
