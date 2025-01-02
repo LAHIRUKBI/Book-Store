@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaShippingFast } from "react-icons/fa";
 
@@ -24,6 +24,20 @@ export default function Payment() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
   const [isSuccessPopupVisible, setIsSuccessPopupVisible] = useState(false); // New state for success popup
+
+  useEffect(() => {
+    const userData = localStorage.getItem("userData");
+    if (userData) {
+      const employeeData = JSON.parse(userData);
+      setFormData((prevState) => ({
+        ...prevState,
+        phone: employeeData.phone,
+        email: employeeData.email,
+      }));
+    } else {
+      console.error("No user data found in localStorage.");
+    }
+  }, []);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -95,39 +109,38 @@ export default function Payment() {
   };
 
   const handleConfirmPayment = async () => {
-  try {
-    const response = await fetch("http://localhost:3000/api/payment", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        bookId,
-        totalPrice,
-        quantity,
-        formData,
-        bankData,
-      }),
-    });
+    try {
+      const response = await fetch("http://localhost:3000/api/payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookId,
+          totalPrice,
+          quantity,
+          formData,
+          bankData,
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok && data.success) {
-      setPaymentSuccess(true);
-      setIsPaymentConfirmed(true);
-      setIsPopupVisible(false); // Hide the confirmation popup
-      setIsSuccessPopupVisible(true); // Show the success popup
+      if (response.ok && data.success) {
+        setPaymentSuccess(true);
+        setIsPaymentConfirmed(true);
+        setIsPopupVisible(false); // Hide the confirmation popup
+        setIsSuccessPopupVisible(true); // Show the success popup
 
-      setTimeout(() => {
-        navigate("/mypayments"); // Navigate to /mypayments after success
-      }, 2000); // Wait 2 seconds before navigating
-    } else {
-      throw new Error(data.message || "Payment failed. Please try again.");
+        setTimeout(() => {
+          navigate("/mypayments"); // Navigate to /mypayments after success
+        }, 2000); // Wait 2 seconds before navigating
+      } else {
+        throw new Error(data.message || "Payment failed. Please try again.");
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+      console.error("Payment error:", error);
     }
-  } catch (error) {
-    alert(`Error: ${error.message}`);
-    console.error("Payment error:", error);
-  }
-};
-
+  };
 
   const isFormValid = Object.values(formData).every((value) => value) && Object.values(bankData).every((value) => value);
   const isButtonDisabled = !isFormValid;
@@ -181,6 +194,7 @@ export default function Payment() {
                     onChange={handleFormChange}
                     placeholder="Phone"
                     className="w-full p-3 border rounded-md"
+                    readOnly
                   />
                   {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
                 </div>
@@ -193,6 +207,7 @@ export default function Payment() {
                     onChange={handleFormChange}
                     placeholder="Email"
                     className="w-full p-3 border rounded-md"
+                    readOnly
                   />
                   {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                 </div>
@@ -214,38 +229,33 @@ export default function Payment() {
                     <option value="BOC">Bank of Ceylon (BOC)</option>
                     <option value="HNB">Hatton National Bank (HNB)</option>
                     <option value="Sampath">Sampath Bank</option>
-                    <option value="NSB">National Savings Bank (NSB)</option>
                     <option value="Commercial">Commercial Bank</option>
-                    <option value="People">People's Bank</option>
-                    <option value="Seylan">Seylan Bank</option>
-                    <option value="Hatton">Hatton National Bank (HNB)</option>
+                    <option value="NDB">NDB Bank</option>
                   </select>
                   {errors.bankName && <p className="text-red-500 text-sm">{errors.bankName}</p>}
                 </div>
-                <div className="flex mb-4">
-                  <div className="w-1/2 mr-2">
-                    <label className="font-semibold">Card Number</label>
-                    <input
-                      type="text"
-                      name="cardNumber"
-                      value={bankData.cardNumber}
-                      onChange={handleBankChange}
-                      placeholder="Card Number"
-                      className="w-full p-3 border rounded-md"
-                    />
-                    {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
-                  </div>
-                  <div className="w-1/2 ml-2">
-                    <label className="font-semibold">Expiry Date</label>
-                    <input
-                      type="month"
-                      name="expiryDate"
-                      value={bankData.expiryDate}
-                      onChange={handleExpiryChange}
-                      className="w-full p-3 border rounded-md"
-                    />
-                    {errors.expiryDate && <p className="text-red-500 text-sm">{errors.expiryDate}</p>}
-                  </div>
+                <div className="mb-4">
+                  <label className="font-semibold">Card Number</label>
+                  <input
+                    type="text"
+                    name="cardNumber"
+                    value={bankData.cardNumber}
+                    onChange={handleBankChange}
+                    placeholder="Card Number"
+                    className="w-full p-3 border rounded-md"
+                  />
+                  {errors.cardNumber && <p className="text-red-500 text-sm">{errors.cardNumber}</p>}
+                </div>
+                <div className="mb-4">
+                  <label className="font-semibold">Expiry Date</label>
+                  <input
+                    type="month"
+                    name="expiryDate"
+                    value={bankData.expiryDate}
+                    onChange={handleExpiryChange}
+                    className="w-full p-3 border rounded-md"
+                  />
+                  {errors.expiryDate && <p className="text-red-500 text-sm">{errors.expiryDate}</p>}
                 </div>
                 <div className="mb-4">
                   <label className="font-semibold">CVV</label>
@@ -263,64 +273,65 @@ export default function Payment() {
             </div>
           </div>
 
-          {/* Button to proceed with payment */}
-          <div className="flex justify-between items-center">
-            <div className="flex items-center text-teal-600">
-              <FaShippingFast className="mr-2 text-xl" />
-              <span>Free Delivery</span>
-            </div>
+          <div className="flex justify-between mt-6">
             <button
               onClick={handlePaymentSubmit}
-              className={`w-full py-2 px-4 mt-4 text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none ${isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md shadow-md"
               disabled={isButtonDisabled}
             >
-              Pay Now
+              <FaShippingFast className="mr-2" />
+              Proceed to Pay
             </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Success Popup */}
-      {isSuccessPopupVisible && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h3 className="text-xl font-semibold text-teal-600 mb-4">Payment Success!</h3>
-            <p className="text-lg text-gray-600 mb-4">Your payment has been successfully processed.</p>
             <button
-              className="text-teal-600 py-2 px-4 rounded-md hover:bg-teal-100"
-              onClick={() => navigate("/mypayments")}
+              onClick={() => navigate("/")}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-3 rounded-md"
             >
-              Go to My Payments
+              Cancel
             </button>
           </div>
         </div>
-      )}
 
-      {/* Confirmation Popup */}
-      {isPopupVisible && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <h3 className="text-lg font-semibold text-teal-600 mb-4">Confirm Payment</h3>
-            <p className="text-lg text-gray-600 mb-4">
-              Are you sure you want to proceed with the payment of RS {totalPrice.toFixed(2)}?
-            </p>
-            <div className="flex justify-center gap-4">
-              <button
-                className="py-2 px-4 bg-teal-600 text-white rounded-md hover:bg-teal-700"
-                onClick={handleConfirmPayment}
-              >
-                Confirm
-              </button>
-              <button
-                className="py-2 px-4 border border-teal-600 text-teal-600 rounded-md hover:bg-teal-100"
-                onClick={() => setIsPopupVisible(false)}
-              >
-                Cancel
-              </button>
+        {/* Confirmation Popup */}
+        {isPopupVisible && (
+          <div className="fixed inset-0 bg-opacity-50 bg-black flex items-center justify-center z-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
+              <p className="text-xl font-semibold">Are you sure you want to proceed with the payment?</p>
+              <div className="flex justify-between mt-6">
+                <button
+                  onClick={handleConfirmPayment}
+                  className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md"
+                >
+                  Yes, Confirm Payment
+                </button>
+                <button
+                  onClick={() => setIsPopupVisible(false)}
+                  className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md"
+                >
+                  No, Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* Success Popup */}
+        {isSuccessPopupVisible && (
+          <div className="fixed inset-0 bg-opacity-50 bg-black flex items-center justify-center z-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
+              <h3 className="text-xl font-semibold text-green-500">Payment Successful!</h3>
+              <p>Your payment has been processed successfully.</p>
+              <div className="flex justify-center mt-6">
+                <button
+                  onClick={() => navigate("/mypayments")}
+                  className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md"
+                >
+                  View Payment Details
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
