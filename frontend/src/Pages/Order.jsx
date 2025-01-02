@@ -36,7 +36,6 @@ export default function Order() {
               <th className="border px-4 py-2">Customer Name</th>
               <th className="border px-4 py-2">Address</th>
               <th className="border px-4 py-2">Phone</th>
-              <th className="border px-4 py-2">Payment Method</th>
               <th className="border px-4 py-2">Total Price</th>
               <th className="border px-4 py-2">Quantity</th>
               <th className="border px-4 py-2">Bank Name</th>
@@ -49,7 +48,6 @@ export default function Order() {
                 <td className="border px-4 py-2">{payment.customerName}</td>
                 <td className="border px-4 py-2">{payment.customerAddress}</td>
                 <td className="border px-4 py-2">{payment.customerPhone}</td>
-                <td className="border px-4 py-2">{payment.paymentMethod}</td>
                 <td className="border px-4 py-2">{payment.totalPrice}</td>
                 <td className="border px-4 py-2">{payment.quantity}</td>
                 <td className="border px-4 py-2">{payment.bankName}</td>
