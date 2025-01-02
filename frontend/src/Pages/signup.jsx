@@ -124,7 +124,7 @@ export default function Signup() {
                 <FaBook /> {/* Book Icon */}
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-gray-800">Book Store</h2>
+            <h2 className="text-2xl font-bold text-gray-800">Book Haven</h2>
             <p className="text-gray-600">Already have an account?</p>
             <Link to="/signin" className="text-blue-600 mt-2 inline-block hover:underline">Sign In</Link>
           </div>

@@ -16,41 +16,37 @@ export default function Signin() {
     });
   };
 
-  // Signin Component
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    setLoading(true);
-    const res = await fetch("http://localhost:3000/api/signup/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    setLoading(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await fetch("http://localhost:3000/api/signup/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      setLoading(false);
 
-    if (!res.ok) {
-      setError(data.message || 'Signin failed. Please try again.');
-      return;
+      if (!res.ok) {
+        setError(data.message || 'Signin failed. Please try again.');
+        return;
+      }
+
+      setError(null);
+
+      localStorage.setItem('email', formData.email);
+      localStorage.setItem('userData', JSON.stringify(data.user));
+
+      navigate("/"); 
+    } catch (error) {
+      console.error("Error:", error.message);
+      setLoading(false);
+      setError("An unexpected error occurred. Please try again.");
     }
-
-    setError(null);
-    
-    // Save the email and user data to localStorage
-    localStorage.setItem('email', formData.email);
-    localStorage.setItem('userData', JSON.stringify(data.user));  // Save user data
-
-    navigate("/"); // Navigate to the home page or dashboard
-  } catch (error) {
-    console.error("Error:", error.message);
-    setLoading(false);
-    setError("An unexpected error occurred. Please try again.");
-  }
-};
-
-  
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-lightgray">
@@ -58,9 +54,6 @@ const handleSubmit = async (e) => {
         <div className="relative z-10 flex w-full max-w-4xl bg-white bg-opacity-90 shadow-lg rounded-lg p-6 md:p-9 backdrop-filter backdrop-blur-lg transition-all duration-800 hover:shadow-2xl hover:bg-white hover:bg-opacity-100">
           <div className="w-full sm:w-3/5 md:w-2/3 p-4">
             <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-4">Sign In</h2>
-            <p className="text-gray-600 text-base text-center mb-4">
-              Welcome back! Please sign in to access your account and continue recycling with us.
-            </p>
 
             <form onSubmit={handleSubmit}>
               {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
@@ -109,12 +102,11 @@ const handleSubmit = async (e) => {
             </form>
           </div>
 
-          <div className="hidden sm:block sm:w-2/5 md:w-2/3 p-4 flex justify-center items-center">
-            <img
-              src="src/images/signin.jpeg"
-              alt="Sign In"
-              className="w-full h-full rounded-lg shadow-lg object-cover"
-            />
+          {/* Right Section */}
+          <div className="w-full sm:w-2/5 md:w-1/3 hidden md:block p-6">
+            <h3 className="text-gray-800 text-xl font-semibold mb-4">Welcome Back!</h3>
+            <p className="text-gray-600 mb-4">Sign in to continue exploring our platform and access your account information. We are glad to have you back.</p>
+            <p className="text-gray-500 text-sm">New here? <a href="/signup" className="text-blue-500 hover:underline">Create an account</a></p>
           </div>
         </div>
       </div>
