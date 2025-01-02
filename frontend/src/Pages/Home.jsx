@@ -316,19 +316,20 @@ export default function Home() {
 {/* Call to Action Section */}
 <section className="py-16 bg-teal-600 text-white text-center">
   <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold mb-6">Join Us in Our Mission</h2>
+    <h2 className="text-4xl font-bold mb-6">Join Our Book Lovers' Community</h2>
     <p className="text-lg mb-6">
-      Together, we can make the world a cleaner place by recycling and reusing
-      waste. Sign up today and be part of the change!
+      Discover your next favorite book, connect with fellow readers, and stay
+      updated on the latest releases. Sign up today and start your literary journey!
     </p>
     <Link
       to="/signup"
       className="bg-white text-teal-600 py-3 px-8 rounded-full text-xl font-semibold shadow-lg transform hover:scale-105 transition duration-300"
     >
-      Sign Up Now
+      Become a Member
     </Link>
   </div>
 </section>
+
 
 
 
