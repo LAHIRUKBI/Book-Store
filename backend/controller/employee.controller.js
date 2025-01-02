@@ -1,16 +1,13 @@
 import Employee from '../model/employee.model.js';
+import User from '../model/signup.model.js';
 
 // Register a new employee
 export const registerEmployee = async (req, res) => {
   try {
     const { companyNumber, name, address, gender, phoneNumber, dateOfBirth, section } = req.body;
-
-    // Validate input
     if (!companyNumber || !name || !address || !gender || !phoneNumber || !dateOfBirth || !section) {
       return res.status(400).json({ success: false, message: 'All fields are required, including section' });
     }
-
-    // Create a new employee
     const employee = new Employee({ companyNumber, name, address, gender, phoneNumber, dateOfBirth, section });
     await employee.save();
 
@@ -21,12 +18,10 @@ export const registerEmployee = async (req, res) => {
 };
 
 
-
-
 // Get all employees
 export const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find(); // Retrieve all employees
+    const employees = await Employee.find();
     res.status(200).json({ success: true, data: employees });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error', error: error.message });
@@ -34,22 +29,14 @@ export const getAllEmployees = async (req, res) => {
 };
 
 
-
-
-
-
 // Delete an employee by ID
 export const deleteEmployee = async (req, res) => {
   try {
     const { id } = req.params;
-
-    // Validate if the ID exists
     const employee = await Employee.findById(id);
     if (!employee) {
       return res.status(404).json({ success: false, message: 'Employee not found' });
     }
-
-    // Delete the employee
     await Employee.findByIdAndDelete(id);
 
     res.status(200).json({ success: true, message: 'Employee removed successfully' });
@@ -57,7 +44,6 @@ export const deleteEmployee = async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 };
-
 
 
 
@@ -73,13 +59,8 @@ export const companyLogin = async (req, res) => {
       });
     }
 
-    // Log the values received from the frontend for debugging
     console.log('Login attempt with:', companyNumber, name, section);
-
-    // Query the employee database for matching credentials
     const employee = await Employee.findOne({ companyNumber, name, section });
-
-    // Log the employee object to check if it exists
     console.log('Found employee:', employee);
 
     if (!employee) {
@@ -88,8 +69,6 @@ export const companyLogin = async (req, res) => {
         message: 'Invalid credentials or incorrect section',
       });
     }
-
-    // Respond with success
     res.status(200).json({
       success: true,
       message: 'Login successful',
@@ -105,3 +84,12 @@ export const companyLogin = async (req, res) => {
   }
 };
 
+// Get all users
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
+  }
+};
