@@ -83,19 +83,20 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative container mx-auto text-center z-10 flex flex-col items-center justify-center h-full">
-          <h1 className="text-6xl font-extrabold mb-4 text-white drop-shadow-lg animate__animated animate__fadeIn animate__delay-1s">
-            Welcome to Our Service Page
-          </h1>
-          <p className="text-xl mb-8 text-gray-200 drop-shadow-md animate__animated animate__fadeIn animate__delay-1.5s">
-            Discover how we can help you manage waste effectively.
-          </p>
-          <button
-            onClick={openModal}
-            className="bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
-          >
-            <FaBookOpen className="inline mr-2" /> Get Started
-          </button>
-        </div>
+  <h1 className="text-6xl font-extrabold mb-4 text-white drop-shadow-lg animate__animated animate__fadeIn animate__delay-1s">
+    Welcome to Our Bookstore
+  </h1>
+  <p className="text-xl mb-8 text-gray-200 drop-shadow-md animate__animated animate__fadeIn animate__delay-1.5s">
+    Explore a world of stories, knowledge, and imagination.
+  </p>
+  <button
+    onClick={openModal}
+    className="bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
+  >
+    <FaBookOpen className="inline mr-2" /> Browse Our Collection
+  </button>
+</div>
+
       </section>
 
       {/* Modal for Get Started */}
