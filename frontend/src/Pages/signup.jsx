@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaBook, FaUser, FaPhoneAlt, FaMapMarkedAlt, FaLock } from 'react-icons/fa';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    phone: '',        // Added phone field
-    address: '',      // Added address field
+    phone: '',
+    address: '',
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -52,93 +53,80 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-lightgray">
-      <div className="flex justify-center items-center flex-grow p-6">
-      <div className="relative z-10 flex w-full max-w-4xl bg-gray-200 bg-opacity-90 shadow-lg rounded-lg p-6 md:p-9 backdrop-filter backdrop-blur-lg transition-all duration-800 hover:shadow-2xl hover:bg-gray-200 hover:bg-opacity-100">
-
-          <div className="w-full sm:w-3/5 md:w-2/3 p-4">
-            <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-4">Signup</h2>
-            <p className="text-gray-600 text-base text-center mb-4">
-              Welcome! Please fill in the form below to create your account and join our community.
-              We are excited to have you on board!
-            </p>
-
-            <form onSubmit={handleSubmit}>
-              {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
-
-              {/* Email Field */}
-              <div className="mb-5">
-                <label className="block text-sm font-medium text-gray-800" htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Email"
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm transition-all"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {/* Password Field */}
-              <div className="mb-5">
-                <label className="block text-sm font-medium text-gray-800" htmlFor="password">Password:</label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm transition-all"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {/* Phone Field */}
-              <div className="mb-5">
-                <label className="block text-sm font-medium text-gray-800" htmlFor="phone">Phone Number:</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  placeholder="Phone Number"
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm transition-all"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {/* Address Field */}
-              <div className="mb-5">
-                <label className="block text-sm font-medium text-gray-800" htmlFor="address">Address:</label>
-                <input
-                  type="text"
-                  id="address"
-                  placeholder="Address"
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm transition-all"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className={`w-full bg-gradient-to-r from-blue-500 to-blue-400 text-white py-3 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 shadow-md transition-all transform hover:scale-105 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                disabled={loading}
-              >
-                {loading ? 'Signing Up...' : 'Sign Up'}
-              </button>
-            </form>
-
-            <div className="text-center mt-4 text-gray-600 text-sm">
-              <Link to="/signin" className="underline hover:text-blue-800">Already have an account? Sign in</Link>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="flex flex-col lg:flex-row w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
+        {/* Left Section */}
+        <div className="w-full lg:w-1/2 p-6 lg:p-12 bg-gray-50">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Hello!</h2>
+          <p className="text-gray-600 text-center mb-6">
+            Please sign up to continue.
+          </p>
+          <form onSubmit={handleSubmit}>
+            {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
+            <div className="mb-4 flex items-center">
+              <FaUser className="text-gray-600 mr-3" />
+              <input
+                type="email"
+                id="email"
+                className="w-full p-3 border rounded mt-1"
+                placeholder="Email"
+                onChange={handleChange}
+                required
+              />
             </div>
-          </div>
-
-          <div className="hidden sm:block sm:w-2/5 md:w-2/3 p-4 flex justify-center items-center">
-            <img
-              src="src/images/book1.jpg"
-              alt="Signup"
-              className="w-full h-full rounded-lg shadow-lg object-cover"
-            />
+            <div className="mb-4 flex items-center">
+              <FaLock className="text-gray-600 mr-3" />
+              <input
+                type="password"
+                id="password"
+                className="w-full p-3 border rounded mt-1"
+                placeholder="Password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <FaPhoneAlt className="text-gray-600 mr-3" />
+              <input
+                type="tel"
+                id="phone"
+                className="w-full p-3 border rounded mt-1"
+                placeholder="Phone"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <FaMapMarkedAlt className="text-gray-600 mr-3" />
+              <input
+                type="text"
+                id="address"
+                className="w-full p-3 border rounded mt-1"
+                placeholder="Address"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className={`w-full p-3 text-white bg-blue-600 rounded hover:bg-blue-700 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={loading}
+            >
+              {loading ? 'Signing Up...' : 'Sign Up'}
+            </button>
+          </form>
+        </div>
+        {/* Right Section */}
+        <div className="hidden lg:flex lg:w-1/2 bg-blue-100 flex-col items-center justify-center">
+          <div className="text-center">
+            <div className="mb-4">
+              <div className="bg-yellow-400 p-6 rounded-full text-white text-3xl">
+                <FaBook /> {/* Book Icon */}
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-800">Book Store</h2>
+            <p className="text-gray-600">Already have an account?</p>
+            <Link to="/signin" className="text-blue-600 mt-2 inline-block hover:underline">Sign In</Link>
           </div>
         </div>
       </div>
