@@ -3,13 +3,13 @@ import axios from 'axios';
 
 export default function Employee_view() {
   const [employees, setEmployees] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Fetch employees from the server
     const fetchEmployees = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/employees');
-        setEmployees(response.data.data); // Set retrieved employees
+        setEmployees(response.data.data);
       } catch (error) {
         console.error('Error fetching employees:', error);
       }
@@ -17,6 +17,20 @@ export default function Employee_view() {
 
     fetchEmployees();
   }, []);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/employees/users');
+        setUsers(response.data.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
 
   // Remove employee handler
   const handleRemove = async (id) => {
@@ -80,6 +94,25 @@ export default function Employee_view() {
           </div>
         ))}
       </div>
+      <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-3xl font-bold text-center mb-8">User List</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {users.map((user) => (
+          <div
+            key={user._id}
+            className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300"
+          >
+            <h2 className="text-xl font-semibold mb-2">{user.email}</h2>
+            <p>
+              <strong>Phone:</strong> {user.phone}
+            </p>
+            <p>
+              <strong>Address:</strong> {user.address}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
     </div>
   );
 }
