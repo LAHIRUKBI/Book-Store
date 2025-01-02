@@ -1,5 +1,5 @@
 import express from 'express';
-import { companyLogin, deleteEmployee, getAllEmployees, getAllUsers, registerEmployee } from '../controller/employee.controller.js';
+import { companyLogin, deleteEmployee, deleteUser, getAllEmployees, getAllUsers, registerEmployee } from '../controller/employee.controller.js';
 
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.post('/login', companyLogin);
 
 // Route to get all users
 router.get('/users', getAllUsers);
+router.delete('/users/:id', deleteUser);
 
 export default router;
