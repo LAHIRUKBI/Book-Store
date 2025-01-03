@@ -93,7 +93,7 @@ export default function Home() {
     onClick={openModal}
     className="bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-xl transform hover:scale-105 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
   >
-    <FaBookOpen className="inline mr-2" /> Browse Our Collection
+    <FaBookOpen className="inline mr-2" /> Browse Our Store
   </button>
 </div>
 
