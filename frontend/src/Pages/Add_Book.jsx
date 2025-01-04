@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaBook, FaDollarSign, FaPen, FaListUl } from 'react-icons/fa';
 
 export default function Add_product() {
   const [formData, setFormData] = useState({
@@ -68,27 +67,25 @@ export default function Add_product() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6 space-y-10">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-6 drop-shadow-md flex items-center">
-        <FaBook className="text-blue-600 mr-2" />
+    <div className="flex flex-col items-center min-h-screen bg-gray-50 p-10">
+      <h1 className="text-4xl font-semibold text-gray-900 mb-8 text-center">
         Add Your Book to the Catalog
       </h1>
-      <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl">
+      <p className="text-lg text-gray-600 text-center mb-10 max-w-2xl">
         Welcome to the book catalog! Use this form to add your book to our collection. 
-        Simply select a category, fill in the details about your book, and showcase your literary creation to a broader audience.
+        Fill in the details about your book, select its category, and showcase your literary creation.
       </p>
       
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl space-y-6 border-2 border-black"
+        className="w-full max-w-xl bg-white p-8 rounded-lg shadow-lg space-y-6"
       >
-        <label className="block">
-          <span className="text-blue-600 font-semibold flex items-center">
-            <FaListUl className="mr-2" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Main Book Category
-          </span>
+          </label>
           <select
-            className="form-select mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="block w-full px-4 py-2 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             value={formData.mainCategory}
             onChange={handleMainCategoryChange}
             required
@@ -98,16 +95,15 @@ export default function Add_product() {
               <option key={index} value={category}>{category}</option>
             ))}
           </select>
-        </label>
+        </div>
 
         {formData.mainCategory && (
-          <label className="block">
-            <span className="text-blue-600 font-semibold flex items-center">
-              <FaListUl className="mr-2" />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Type of Book
-            </span>
+            </label>
             <select
-              className="form-select mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="block w-full px-4 py-2 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               value={formData.type}
               onChange={(e) => setFormData({ ...formData, type: e.target.value })}
               required
@@ -117,49 +113,47 @@ export default function Add_product() {
                 <option key={index} value={type}>{type}</option>
               ))}
             </select>
-          </label>
+          </div>
         )}
 
-        <label className="block">
-          <span className="text-blue-600 font-semibold flex items-center">
-            <FaDollarSign className="mr-2" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Price (in $)
-          </span>
+          </label>
           <input
             type="number"
-            className="form-input mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="block w-full px-4 py-2 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             value={formData.price}
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             required
           />
-        </label>
+        </div>
 
-        <label className="block">
-          <span className="text-blue-600 font-semibold flex items-center">
-            <FaPen className="mr-2" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
             Introduction
-          </span>
+          </label>
           <textarea
-            className="form-textarea mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            rows="3"
+            className="block w-full px-4 py-2 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            rows="4"
             placeholder="Write a brief introduction for your book."
             value={formData.introduction}
             onChange={(e) => setFormData({ ...formData, introduction: e.target.value })}
             required
           ></textarea>
-        </label>
+        </div>
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
+          className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 rounded-lg font-medium text-lg shadow-md hover:shadow-lg transition-all"
         >
           Add Book to Catalog
         </button>
       </form>
 
-      <div className="text-center text-gray-700 mt-10">
-        <p className="text-lg">Join our collection of amazing books!</p>
-        <p>Contact us for any inquiries or support.</p>
+      <div className="text-center text-gray-600 mt-12">
+        <p className="text-md">Join our collection of amazing books!</p>
+        <p className="text-sm">Contact us for any inquiries or support.</p>
       </div>
     </div>
   );
