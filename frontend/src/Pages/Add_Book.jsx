@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaBook, FaDollarSign, FaPen, FaListUl } from 'react-icons/fa';
 
 export default function Add_product() {
   const [formData, setFormData] = useState({
@@ -37,26 +36,22 @@ export default function Add_product() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send the form data to the backend to add the new product
       await axios.post('http://localhost:3000/api/products', formData);
-      
+
       alert('Product added successfully!');
-      
-      // Clear the form data after successful submission
+
       setFormData({
         mainCategory: '',
         type: '',
         price: '',
         introduction: '',
       });
-  
-      // Navigate back to the products view
+
       navigate('/productview');
     } catch (error) {
       console.error('Error adding product:', error);
     }
   };
-  
 
   const handleMainCategoryChange = (e) => {
     const mainCategory = e.target.value;
@@ -68,98 +63,99 @@ export default function Add_product() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6 space-y-10">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-6 drop-shadow-md flex items-center">
-        <FaBook className="text-blue-600 mr-2" />
-        Add Your Book to the Catalog
-      </h1>
-      <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl">
-        Welcome to the book catalog! Use this form to add your book to our collection. 
-        Simply select a category, fill in the details about your book, and showcase your literary creation to a broader audience.
-      </p>
-      
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl space-y-6 border-2 border-black"
-      >
-        <label className="block">
-          <span className="text-blue-600 font-semibold flex items-center">
-            <FaListUl className="mr-2" />
-            Main Book Category
-          </span>
-          <select
-            className="form-select mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            value={formData.mainCategory}
-            onChange={handleMainCategoryChange}
-            required
-          >
-            <option value="" disabled>Select main book category</option>
-            {Object.keys(bookCategories).map((category, index) => (
-              <option key={index} value={category}>{category}</option>
-            ))}
-          </select>
-        </label>
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 p-10">
+      <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Add Your Book to the Catalog
+        </h1>
+        <p className="text-center text-gray-600 mb-8">
+          Fill out the form below to showcase your book in our catalog.
+        </p>
 
-        {formData.mainCategory && (
-          <label className="block">
-            <span className="text-blue-600 font-semibold flex items-center">
-              <FaListUl className="mr-2" />
-              Type of Book
-            </span>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Main Book Category
+            </label>
             <select
-              className="form-select mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={formData.type}
-              onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
+              value={formData.mainCategory}
+              onChange={handleMainCategoryChange}
               required
             >
-              <option value="" disabled>Select book type</option>
-              {bookCategories[formData.mainCategory].map((type, index) => (
-                <option key={index} value={type}>{type}</option>
+              <option value="" disabled>
+                Select main book category
+              </option>
+              {Object.keys(bookCategories).map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
               ))}
             </select>
-          </label>
-        )}
+          </div>
 
-        <label className="block">
-          <span className="text-blue-600 font-semibold flex items-center">
-            <FaDollarSign className="mr-2" />
-            Price (in $)
-          </span>
-          <input
-            type="number"
-            className="form-input mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            value={formData.price}
-            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-            required
-          />
-        </label>
+          {formData.mainCategory && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Type of Book
+              </label>
+              <select
+                className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
+                value={formData.type}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                required
+              >
+                <option value="" disabled>
+                  Select book type
+                </option>
+                {bookCategories[formData.mainCategory].map((type, index) => (
+                  <option key={index} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
-        <label className="block">
-          <span className="text-blue-600 font-semibold flex items-center">
-            <FaPen className="mr-2" />
-            Introduction
-          </span>
-          <textarea
-            className="form-textarea mt-2 block w-full rounded-lg border-2 border-gray-300 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            rows="3"
-            placeholder="Write a brief introduction for your book."
-            value={formData.introduction}
-            onChange={(e) => setFormData({ ...formData, introduction: e.target.value })}
-            required
-          ></textarea>
-        </label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Price (in $)
+            </label>
+            <input
+              type="number"
+              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
+              value={formData.price}
+              onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
-        >
-          Add Book to Catalog
-        </button>
-      </form>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Introduction
+            </label>
+            <textarea
+              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
+              rows="4"
+              placeholder="Write a brief introduction for your book."
+              value={formData.introduction}
+              onChange={(e) => setFormData({ ...formData, introduction: e.target.value })}
+              required
+            ></textarea>
+          </div>
 
-      <div className="text-center text-gray-700 mt-10">
-        <p className="text-lg">Join our collection of amazing books!</p>
-        <p>Contact us for any inquiries or support.</p>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg shadow hover:bg-blue-700 transition-all"
+          >
+            Add Book to Catalog
+          </button>
+        </form>
+      </div>
+
+      <div className="text-center text-gray-600 mt-6">
+        <p className="text-md">Join our diverse collection of books!</p>
+        <p className="text-sm">Need help? Contact us for support.</p>
       </div>
     </div>
   );
