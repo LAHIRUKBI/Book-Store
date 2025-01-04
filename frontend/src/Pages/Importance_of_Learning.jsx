@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaBookOpen, FaSearch } from "react-icons/fa"; // Importing icons
+import { FaBookOpen, FaSearch } from "react-icons/fa";
 import {
   FaBrain,
   FaBriefcase,
@@ -10,17 +10,16 @@ import {
 import { FaBook, FaLaptop, FaUsers, FaClipboardList } from "react-icons/fa";
 
 export default function Importance_of_Learning() {
-  const [showSections, setShowSections] = useState(false); // State to control visibility
-
+  const [showSections, setShowSections] = useState(false);
   const handleExploreMoreClick = () => {
-    setShowSections(!showSections); // Toggle the sections visibility
+    setShowSections(!showSections);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-16 px-8">
       {/* Description Section */}
       <div className="max-w-3xl mx-auto text-center mb-16 px-6">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">
+      <h2 className="text-4xl font-extrabold text-center text-teal-800 mb-8">
           The Power of Continuous Learning
         </h2>
         <p className="text-lg text-gray-600 mb-6 leading-relaxed">
