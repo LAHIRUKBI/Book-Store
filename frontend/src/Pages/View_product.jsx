@@ -63,6 +63,16 @@ export default function View_product() {
                 key={product._id}
                 className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl"
               >
+                {/* Product Image */}
+                {product.image && (
+  <img
+    src={`http://localhost:3000/${product.image}`} // Use the correct path
+    alt={product.type}
+    className="w-full h-auto mb-4 rounded-lg object-contain" // Updated classes
+  />
+)}
+
+
                 {/* Main Category Box */}
                 <div className="mb-4 text-center">
                   <div className="inline-block bg-teal-100 text-teal-600 py-2 px-4 rounded-full text-lg font-semibold shadow-md">

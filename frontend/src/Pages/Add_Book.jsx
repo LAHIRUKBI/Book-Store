@@ -8,43 +8,44 @@ export default function Add_product() {
     type: '',
     price: '',
     introduction: '',
+    image: null,
   });
 
   const navigate = useNavigate();
 
   const bookCategories = {
-    "Fiction Genres": [
-      "Fantasy", "Mystery", "Thriller", "Historical Fiction", "Romance",
-    ],
-    "Non-Fiction Genres": [
-      "Biography", "Self-Help", "Travel", "Science", "Philosophy",
-    ],
-    "Literary Classics": [
-      "Shakespearean Plays", "19th Century Literature", "Modern Classics", "American Literature", "European Literature",
-    ],
-    "Young Adult and Children's Books": [
-      "Middle Grade Fiction", "Young Adult Fantasy", "Children's Picture Books", "Teen Romance", "Adventure Books for Kids",
-    ],
-    "Specialty and Niche Books": [
-      "Cookbooks", "Graphic Novels", "Poetry", "Art and Design", "Photography",
-    ],
-    "Health and Wellness Books": [
-      "Mental Health", "Fitness", "Nutrition", "Mindfulness", "Alternative Medicine",
-    ],
+    "Fiction Genres": ["Fantasy", "Mystery", "Thriller", "Historical Fiction", "Romance"],
+    "Non-Fiction Genres": ["Biography", "Self-Help", "Travel", "Science", "Philosophy"],
+    "Literary Classics": ["Shakespearean Plays", "19th Century Literature", "Modern Classics", "American Literature", "European Literature"],
+    "Young Adult and Children's Books": ["Middle Grade Fiction", "Young Adult Fantasy", "Children's Picture Books", "Teen Romance", "Adventure Books for Kids"],
+    "Specialty and Niche Books": ["Cookbooks", "Graphic Novels", "Poetry", "Art and Design", "Photography"],
+    "Health and Wellness Books": ["Mental Health", "Fitness", "Nutrition", "Mindfulness", "Alternative Medicine"],
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const data = new FormData();
+    data.append('mainCategory', formData.mainCategory);
+    data.append('type', formData.type);
+    data.append('price', formData.price);
+    data.append('introduction', formData.introduction);
+    if (formData.image) {
+      data.append('image', formData.image);
+    }
+
     try {
-      await axios.post('http://localhost:3000/api/products', formData);
+      await axios.post('http://localhost:3000/api/products', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
       alert('Product added successfully!');
-
       setFormData({
         mainCategory: '',
         type: '',
         price: '',
         introduction: '',
+        image: null,
       });
 
       navigate('/productview');
@@ -54,12 +55,15 @@ export default function Add_product() {
   };
 
   const handleMainCategoryChange = (e) => {
-    const mainCategory = e.target.value;
     setFormData({
       ...formData,
-      mainCategory,
+      mainCategory: e.target.value,
       type: '',
     });
+  };
+
+  const handleImageChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
   };
 
   return (
@@ -73,54 +77,43 @@ export default function Add_product() {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Main Category Selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Main Book Category
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Main Book Category</label>
             <select
               className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
               value={formData.mainCategory}
               onChange={handleMainCategoryChange}
               required
             >
-              <option value="" disabled>
-                Select main book category
-              </option>
+              <option value="" disabled>Select main book category</option>
               {Object.keys(bookCategories).map((category, index) => (
-                <option key={index} value={category}>
-                  {category}
-                </option>
+                <option key={index} value={category}>{category}</option>
               ))}
             </select>
           </div>
 
+          {/* Subcategory (Type) */}
           {formData.mainCategory && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Type of Book
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Type of Book</label>
               <select
                 className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                 required
               >
-                <option value="" disabled>
-                  Select book type
-                </option>
+                <option value="" disabled>Select book type</option>
                 {bookCategories[formData.mainCategory].map((type, index) => (
-                  <option key={index} value={type}>
-                    {type}
-                  </option>
+                  <option key={index} value={type}>{type}</option>
                 ))}
               </select>
             </div>
           )}
 
+          {/* Price */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Price (in $)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Price (in $)</label>
             <input
               type="number"
               className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
@@ -130,10 +123,9 @@ export default function Add_product() {
             />
           </div>
 
+          {/* Introduction */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Introduction
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Introduction</label>
             <textarea
               className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-400 focus:outline-none"
               rows="4"
@@ -144,6 +136,18 @@ export default function Add_product() {
             ></textarea>
           </div>
 
+          {/* Image Upload */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Book Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="block w-full px-4 py-2 text-sm border border-gray-300 rounded-lg"
+            />
+          </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg shadow hover:bg-blue-700 transition-all"
@@ -151,11 +155,6 @@ export default function Add_product() {
             Add Book to Catalog
           </button>
         </form>
-      </div>
-
-      <div className="text-center text-gray-600 mt-6">
-        <p className="text-md">Join our diverse collection of books!</p>
-        <p className="text-sm">Need help? Contact us for support.</p>
       </div>
     </div>
   );
