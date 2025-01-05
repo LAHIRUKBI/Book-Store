@@ -63,54 +63,64 @@ export default function View_product() {
                 key={product._id}
                 className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-2xl"
               >
-                {/* Product Image */}
-                {product.image && (
-  <img
-    src={`http://localhost:3000/${product.image}`} // Use the correct path
-    alt={product.type}
-    className="w-full h-auto mb-4 rounded-lg object-contain" // Updated classes
-  />
-)}
+                <div className="flex justify-between">
+                  {/* Left Side: Main Category, Type, and Image */}
+                  <div className="flex flex-col w-1/2">
+                    {/* Main Category Box */}
+                    <div className="mb-4 text-left">
+                      <div className="inline-block bg-teal-100 text-teal-600 py-2 px-4 rounded-full text-lg font-semibold shadow-md">
+                        <FaBook className="mr-2 inline-block" />
+                        {product.mainCategory}
+                      </div>
+                    </div>
 
+                    {/* Product Type */}
+                    <div className="mb-4 text-left">
+                      <h4 className="text-xl text-gray-700 font-semibold">{product.type}</h4>
+                    </div>
 
-                {/* Main Category Box */}
-                <div className="mb-4 text-center">
-                  <div className="inline-block bg-teal-100 text-teal-600 py-2 px-4 rounded-full text-lg font-semibold shadow-md">
-                    <FaBook className="mr-2 inline-block" />
-                    {product.mainCategory}
+                    {/* Product Image */}
+                    {product.image && (
+                      <img
+                        src={`http://localhost:3000/${product.image}`} // Use the correct path
+                        alt={product.type}
+                        className="w-full h-auto mb-4 rounded-lg object-contain"
+                      />
+                    )}
                   </div>
-                </div>
 
-                {/* Product Type */}
-                <div className="mb-4 text-center">
-                  <h4 className="text-xl text-gray-700 font-semibold">{product.type}</h4>
-                </div>
+                  {/* Right Side: Introduction, Price, and Buttons */}
+                  <div className="w-1/2 pl-8">
+                    {/* Introduction */}
+                    <p className="text-sm text-gray-600 mb-4 w-full">
+                      <strong>Introduction:</strong> {product.introduction}
+                    </p>
 
-                {/* Introduction */}
-                <p className="text-sm text-gray-600 mb-4">
-                  <strong>Introduction:</strong> {product.introduction}
-                </p>
+                    {/* Price */}
+                    <div className="text-center text-gray-800 text-lg font-bold mb-4">
+                      <FaTag className="inline-block mr-2 text-teal-600" />
+                      <span className="text-2xl">${product.price}</span>
+                    </div>
 
-                {/* Price */}
-                <div className="text-center text-gray-800 text-lg font-bold mb-4">
-                  <FaTag className="inline-block mr-2 text-teal-600" />
-                  <span className="text-2xl">${product.price}</span>
-                </div>
+                    {/* Buttons: Update & Delete */}
+                    <div className="flex justify-between space-x-4 mt-4">
+                      {/* Update Button */}
+                      <Link
+                        to={`/updateproduct/${product._id}`}
+                        className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
+                      >
+                        Update
+                      </Link>
 
-                {/* Buttons: Update & Delete */}
-                <div className="flex justify-between mt-4">
-                  <Link
-                    to={`/updateproduct/${product._id}`}
-                    className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
-                  >
-                    Update
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
-                  >
-                    Delete
-                  </button>
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-colors duration-300"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))
