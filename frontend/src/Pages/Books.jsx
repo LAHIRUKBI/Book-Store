@@ -99,7 +99,7 @@ export default function Books() {
                       {/* Product Image */}
                       {product.image && (
                         <img
-                          src={`http://localhost:3000/${product.image}`} // Use the correct path
+                          src={`http://localhost:3000/${product.image}`}
                           alt={product.type}
                           className="w-full h-auto mb-4 rounded-lg object-contain"
                         />
