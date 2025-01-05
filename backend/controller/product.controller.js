@@ -1,22 +1,52 @@
 import Product from '../model/product.model.js';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
 
+// Ensure the 'uploads' directory exists
+const uploadsDir = path.join(process.cwd(), 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
-//add product
-export const addProduct = async (req, res) => {
-  try {
-    const { mainCategory, type, price, introduction } = req.body;
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Folder to store uploaded images
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  },
+});
+const upload = multer({ storage });
 
-    if (!mainCategory || !type || !price || !introduction) {
-      return res.status(400).json({ message: "All fields are required" });
+// Add product
+export const addProduct = [
+  upload.single('image'), // Handle image upload
+  async (req, res) => {
+    try {
+      const { mainCategory, type, price, introduction } = req.body;
+
+      if (!mainCategory || !type || !price || !introduction) {
+        return res.status(400).json({ message: 'All fields are required' });
+      }
+
+      const newProduct = new Product({
+        mainCategory,
+        type,
+        price,
+        introduction,
+        image: req.file ? req.file.path : null, // Save image path
+      });
+
+      await newProduct.save();
+      res.status(201).json({ message: 'Product added successfully', product: newProduct });
+    } catch (error) {
+      console.error('Error adding product:', error);
+      res.status(500).json({ message: 'Error adding product', error });
     }
-
-    const newProduct = new Product({ mainCategory, type, price, introduction });
-    await newProduct.save();
-    res.status(201).json({ message: "Product added successfully", product: newProduct });
-  } catch (error) {
-    res.status(500).json({ message: "Error adding product", error });
-  }
-};
+  },
+];
 
 
 
