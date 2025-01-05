@@ -67,6 +67,17 @@ export default function BookDetails() {
 
             <p className="text-xl font-semibold mb-4">Introduction:</p>
             <p className="text-gray-700 leading-relaxed">{book.introduction}</p>
+
+            {/* Display the Book Image */}
+            {book.image && (
+              <div className="mt-6">
+                <img
+                  src={`http://localhost:3000/${book.image}`} // Use the correct image path
+                  alt={book.type}
+                  className="w-full h-auto mb-4 rounded-lg object-contain"
+                />
+              </div>
+            )}
           </div>
 
           {/* Right side: Price, Quantity, Total Price, and Add to Cart Button */}
