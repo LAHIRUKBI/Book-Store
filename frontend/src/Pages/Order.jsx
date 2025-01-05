@@ -40,6 +40,7 @@ export default function Order() {
               <th className="border px-4 py-2">Quantity</th>
               <th className="border px-4 py-2">Bank Name</th>
               <th className="border px-4 py-2">Payment Date</th>
+              <th className="border px-4 py-2">Book ID</th> {/* Added column for Book ID */}
             </tr>
           </thead>
           <tbody>
@@ -52,6 +53,7 @@ export default function Order() {
                 <td className="border px-4 py-2">{payment.quantity}</td>
                 <td className="border px-4 py-2">{payment.bankName}</td>
                 <td className="border px-4 py-2">{new Date(payment.paymentDate).toLocaleString()}</td>
+                <td className="border px-4 py-2">{payment.bookId}</td> {/* Displaying Book ID */}
               </tr>
             ))}
           </tbody>
