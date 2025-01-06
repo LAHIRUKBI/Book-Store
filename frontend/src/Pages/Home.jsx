@@ -273,13 +273,14 @@ export default function Home() {
 
 
       {/* Banner Section */}
-      <section className="w-full mt-12">
-        <img
-          src="src/images/Banner.png" // Replace with your banner image path
-          alt="Banner"
-          className="w-full h-48 object-cover" // Adjust h-48 for a more suitable height
-        />
-      </section>
+<section className="w-full mt-12">
+  <img
+    src="src/images/Yellow.png" // Ensure this path points to your actual image location
+    alt="Banner"
+    className="w-full h-71 object-cover" // Adjusted height to h-72 for a taller banner
+  />
+</section>
+
 
       {/* Testimonials Section */}
       <section className="py-16 bg-yellow-50 text-gray-800">
