@@ -26,6 +26,7 @@ import Order from './Pages/Order'
 import About_Us from './Pages/About_Us'
 import Contact from './Pages/Contact'
 import My_payments from './Pages/My_payments'
+import Order_confirm from './Pages/Order_confirm'
 
 export default function App() {
   return (
@@ -58,6 +59,7 @@ export default function App() {
       <Route path="/about_Us" element={<About_Us />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/mypayments" element={<My_payments />} />
+      <Route path="/orderconfirm" element={<Order_confirm />} />
 
 
 
