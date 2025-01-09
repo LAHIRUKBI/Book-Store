@@ -66,7 +66,7 @@ export default function Stockmanager_home() {
             {/* View Confirm Orders */}
             <div
               className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300"
-              onClick={() => navigate('/orderconform')}
+              onClick={() => navigate('/orderconfirm')}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700 opacity-80"></div>
               <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
