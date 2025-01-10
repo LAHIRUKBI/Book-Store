@@ -11,7 +11,7 @@ export const createPayment = async (req, res, next) => {
       customerName: formData.name,
       customerAddress: formData.address,
       customerPhone: formData.phone,
-      customerEmail: formData.email,  // Add email field
+      customerEmail: formData.email, 
       bankName: bankData.bankName,
     });
 

@@ -23,7 +23,6 @@ export default function Payment() {
   const [errors, setErrors] = useState({});
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isPaymentConfirmed, setIsPaymentConfirmed] = useState(false);
-  const [isSuccessPopupVisible, setIsSuccessPopupVisible] = useState(false); // New state for success popup
 
   useEffect(() => {
     const userData = localStorage.getItem("userData");
@@ -74,37 +73,7 @@ export default function Payment() {
     });
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    const regexPhone = /^[0-9]{10}$/;
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const regexCard = /^[0-9]{16}$/;
-    const regexCVV = /^[0-9]{3}$/;
-
-    if (!formData.name) newErrors.name = "Name is required.";
-    if (!formData.address) newErrors.address = "Address is required.";
-    if (!formData.phone || !regexPhone.test(formData.phone)) {
-      newErrors.phone = "Valid phone number is required.";
-    }
-    if (!formData.email || !regexEmail.test(formData.email)) {
-      newErrors.email = "Valid email is required.";
-    }
-    if (!bankData.bankName) newErrors.bankName = "Bank is required.";
-    if (!bankData.cardNumber || !regexCard.test(bankData.cardNumber))
-      newErrors.cardNumber = "Valid card number is required.";
-    if (!bankData.expiryDate) newErrors.expiryDate = "Expiry date is required.";
-    if (!bankData.cvv || !regexCVV.test(bankData.cvv)) {
-      newErrors.cvv = "Valid CVV is required.";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handlePaymentSubmit = async () => {
-    if (!validateForm()) {
-      return;
-    }
     setIsPopupVisible(true); // Show the confirmation popup
   };
 
@@ -128,8 +97,6 @@ export default function Payment() {
         setPaymentSuccess(true);
         setIsPaymentConfirmed(true);
         setIsPopupVisible(false); // Hide the confirmation popup
-        setIsSuccessPopupVisible(true); // Show the success popup
-
         setTimeout(() => {
           navigate("/mypayments"); // Navigate to /mypayments after success
         }, 2000); // Wait 2 seconds before navigating
@@ -277,61 +244,43 @@ export default function Payment() {
             <button
               onClick={handlePaymentSubmit}
               className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md shadow-md"
-              disabled={isButtonDisabled}
+              disabled={!isFormValid}
             >
               <FaShippingFast className="mr-2" />
               Proceed to Pay
             </button>
             <button
               onClick={() => navigate("/")}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-3 rounded-md"
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-3 rounded-md shadow-md"
             >
               Cancel
             </button>
           </div>
         </div>
-
-        {/* Confirmation Popup */}
-        {isPopupVisible && (
-          <div className="fixed inset-0 bg-opacity-50 bg-black flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
-              <p className="text-xl font-semibold">Are you sure you want to proceed with the payment?</p>
-              <div className="flex justify-between mt-6">
-                <button
-                  onClick={handleConfirmPayment}
-                  className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md"
-                >
-                  Yes, Confirm Payment
-                </button>
-                <button
-                  onClick={() => setIsPopupVisible(false)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md"
-                >
-                  No, Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Success Popup */}
-        {isSuccessPopupVisible && (
-          <div className="fixed inset-0 bg-opacity-50 bg-black flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
-              <h3 className="text-xl font-semibold text-green-500">Payment Successful!</h3>
-              <p>Your payment has been processed successfully.</p>
-              <div className="flex justify-center mt-6">
-                <button
-                  onClick={() => navigate("/mypayments")}
-                  className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md"
-                >
-                  View Payment Details
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
+
+      {isPopupVisible && (
+        <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 bg-gray-800">
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm">
+            <h2 className="text-2xl font-bold text-teal-600 mb-4">Confirm Payment</h2>
+            <p className="text-xl">Are you sure you want to complete the payment?</p>
+            <div className="flex justify-between mt-6">
+              <button
+                onClick={handleConfirmPayment}
+                className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => setIsPopupVisible(false)}
+                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
