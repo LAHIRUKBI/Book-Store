@@ -74,7 +74,7 @@ export default function Payment() {
   };
 
   const handlePaymentSubmit = async () => {
-    setIsPopupVisible(true); // Show the confirmation popup
+    setIsPopupVisible(true);
   };
 
   const handleConfirmPayment = async () => {
@@ -84,22 +84,23 @@ export default function Payment() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           bookId,
+          bookTitle,  // Add bookTitle here
           totalPrice,
           quantity,
           formData,
           bankData,
         }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok && data.success) {
         setPaymentSuccess(true);
         setIsPaymentConfirmed(true);
-        setIsPopupVisible(false); // Hide the confirmation popup
+        setIsPopupVisible(false);
         setTimeout(() => {
-          navigate("/mypayments"); // Navigate to /mypayments after success
-        }, 2000); // Wait 2 seconds before navigating
+          navigate("/mypayments"); 
+        }, 2000);
       } else {
         throw new Error(data.message || "Payment failed. Please try again.");
       }
@@ -108,6 +109,7 @@ export default function Payment() {
       console.error("Payment error:", error);
     }
   };
+  
 
   const isFormValid = Object.values(formData).every((value) => value) && Object.values(bankData).every((value) => value);
   const isButtonDisabled = !isFormValid;
