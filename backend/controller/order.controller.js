@@ -4,6 +4,7 @@ import Order from '../model/order.model.js';
 export const createOrder = async (req, res) => {
     try {
       const {
+        bookTitle,
         customerName,
         customerAddress,
         customerPhone,
@@ -16,6 +17,7 @@ export const createOrder = async (req, res) => {
   
       // Create a new order using the provided details
       const newOrder = new Order({
+        bookTitle,
         customerName,
         customerAddress,
         customerPhone,

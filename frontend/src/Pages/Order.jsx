@@ -39,6 +39,7 @@ export default function Order() {
         bankName: selectedPayment.bankName,
         paymentDate: selectedPayment.paymentDate,
         bookId: selectedPayment.bookId,
+        bookTitle: selectedPayment.bookTitle,
       });
   
       if (response.data.success) {
@@ -82,6 +83,7 @@ export default function Order() {
               <th className="border px-6 py-3">Bank Name</th>
               <th className="border px-6 py-3">Payment Date</th>
               <th className="border px-6 py-3">Book ID</th>
+              <th className="border px-6 py-3">Book Title</th>
               <th className="border px-6 py-3">Action</th>
             </tr>
           </thead>
@@ -99,6 +101,7 @@ export default function Order() {
                 <td className="border px-6 py-4">{payment.bankName}</td>
                 <td className="border px-6 py-4">{new Date(payment.paymentDate).toLocaleString()}</td>
                 <td className="border px-6 py-4">{payment.bookId}</td>
+                <td className="border px-6 py-4">{payment.bookTitle}</td>
                 <td className="border px-6 py-4">
                 <button
   onClick={() => handleSendToBookManager(payment.customerName)}
