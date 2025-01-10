@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const paymentSchema = new mongoose.Schema({
   bookId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+  bookTitle: { type: String, required: true },
   totalPrice: { type: Number, required: true },
   quantity: { type: Number, required: true },
   customerName: { type: String, required: true },

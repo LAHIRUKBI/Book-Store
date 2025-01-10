@@ -2,16 +2,17 @@ import Payment from '../model/payment.model.js';
 
 export const createPayment = async (req, res, next) => {
   try {
-    const { bookId, totalPrice, quantity, paymentMethod, formData, bankData } = req.body;
+    const { bookId, bookTitle, totalPrice, quantity, formData, bankData } = req.body;  // Add bookTitle
 
     const newPayment = new Payment({
       bookId,
+      bookTitle,  // Save the bookTitle in the database
       totalPrice,
       quantity,
       customerName: formData.name,
       customerAddress: formData.address,
       customerPhone: formData.phone,
-      customerEmail: formData.email, 
+      customerEmail: formData.email,
       bankName: bankData.bankName,
     });
 
@@ -22,6 +23,7 @@ export const createPayment = async (req, res, next) => {
     next(err);
   }
 };
+
 
 
 
