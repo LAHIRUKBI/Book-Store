@@ -26,6 +26,7 @@ export default function Order_confirm() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr>
+                <th className="border-b-2 p-4">Book Title</th>
                 <th className="border-b-2 p-4">Customer Name</th>
                 <th className="border-b-2 p-4">Address</th>
                 <th className="border-b-2 p-4">Phone</th>
@@ -38,6 +39,7 @@ export default function Order_confirm() {
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id} className="hover:bg-gray-100">
+                  <td className="border-b p-4">{order.bookTitle}</td>
                   <td className="border-b p-4">{order.customerName}</td>
                   <td className="border-b p-4">{order.customerAddress}</td>
                   <td className="border-b p-4">{order.customerPhone}</td>
