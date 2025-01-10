@@ -81,7 +81,6 @@ export default function Navigation() {
                 className="flex items-center space-x-2 border border-teal-600 text-teal-100 px-4 py-2 rounded-lg font-semibold hover:bg-teal-600 hover:text-white transition duration-300"
               >
                 <FaUserCircle />
-                <span>Admin</span>
               </Link>
             </div>
           )}
