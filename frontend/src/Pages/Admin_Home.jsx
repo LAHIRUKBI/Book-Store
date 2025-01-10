@@ -1,48 +1,77 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaUsers, FaUserPlus, FaClipboardList } from 'react-icons/fa';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FaUsers, FaUserPlus, FaClipboardList } from "react-icons/fa";
 
 export default function Admin_Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-r from-blue-50 to-gray-100">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white py-6 shadow-lg">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-extrabold text-center tracking-wider">
-            Admin Dashboard
-          </h1>
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <aside className="w-64 bg-gradient-to-br from-blue-700 to-indigo-600 text-white shadow-xl">
+        {/* Profile Section */}
+        <div className="p-6 border-b border-indigo-400">
+          <div className="flex items-center space-x-4">
+            <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center text-indigo-600 font-bold text-xl">
+              A
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold">Admin</h2>
+              <p className="text-gray-300 text-sm">Admin Dashboard</p>
+            </div>
+          </div>
         </div>
-      </header>
+
+        {/* Navigation Menu */}
+        <nav className="mt-6">
+          <ul className="space-y-4">
+            <li
+              className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
+              onClick={() => navigate("/employeeregister")}
+            >
+              <FaUserPlus className="text-white text-lg mr-3" />
+              <span className="font-medium">Register Employee</span>
+            </li>
+            <li
+              className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
+              onClick={() => navigate("/employeeview")}
+            >
+              <FaUsers className="text-white text-lg mr-3" />
+              <span className="font-medium">View Employees</span>
+            </li>
+            <li
+              className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
+              onClick={() => navigate("/order")}
+            >
+              <FaClipboardList className="text-white text-lg mr-3" />
+              <span className="font-medium">View Orders</span>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-10">
-        {/* Welcome Section */}
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-semibold text-blue-700">
-            Welcome to the Admin Dashboard
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Manage your employees and keep everything organized at a glance.
-          </p>
-        </div>
+      <main className="flex-1 p-8">
+        <header className="flex justify-between items-center bg-white shadow-md rounded-lg p-6">
+          <h1 className="text-3xl font-bold text-gray-800">Welcome, Admin</h1>
+          <p className="text-gray-500">Manage your tasks efficiently.</p>
+        </header>
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Cards Section */}
+        <section className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Register Employee Card */}
           <div
-            className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
-            onClick={() => navigate('/employeeregister')}
+            className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
+            onClick={() => navigate("/employeeregister")}
           >
-            <div className="flex items-center">
-              <FaUserPlus className="text-blue-500 text-4xl mr-4" />
+            <div className="flex items-center space-x-4">
+              <FaUserPlus className="text-blue-500 text-4xl" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl font-bold text-gray-800">
                   Register Employee
                 </h3>
-                <p className="text-gray-600 mt-1">
-                  Add new employees to the system easily.
+                <p className="text-gray-600 mt-2">
+                  Add new employees to the system quickly and efficiently.
                 </p>
               </div>
             </div>
@@ -50,17 +79,17 @@ export default function Admin_Home() {
 
           {/* View Employees Card */}
           <div
-            className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
-            onClick={() => navigate('/employeeview')}
+            className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
+            onClick={() => navigate("/employeeview")}
           >
-            <div className="flex items-center">
-              <FaUsers className="text-green-500 text-4xl mr-4" />
+            <div className="flex items-center space-x-4">
+              <FaUsers className="text-green-500 text-4xl" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl font-bold text-gray-800">
                   View Employees
                 </h3>
-                <p className="text-gray-600 mt-1">
-                  Check and manage all registered employees.
+                <p className="text-gray-600 mt-2">
+                  Browse and manage all registered employees.
                 </p>
               </div>
             </div>
@@ -68,22 +97,20 @@ export default function Admin_Home() {
 
           {/* View Orders Card */}
           <div
-            className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
-            onClick={() => navigate('/order')}
+            className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
+            onClick={() => navigate("/order")}
           >
-            <div className="flex items-center">
-              <FaClipboardList className="text-purple-500 text-4xl mr-4" />
+            <div className="flex items-center space-x-4">
+              <FaClipboardList className="text-purple-500 text-4xl" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">
-                  View Orders
-                </h3>
-                <p className="text-gray-600 mt-1">
-                  Check and manage all customer orders.
+                <h3 className="text-xl font-bold text-gray-800">View Orders</h3>
+                <p className="text-gray-600 mt-2">
+                  Monitor and manage customer orders effectively.
                 </p>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   );
