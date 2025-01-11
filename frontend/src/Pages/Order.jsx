@@ -32,6 +32,7 @@ export default function Order() {
     try {
       const response = await axios.post('http://localhost:3000/api/orders/create', {
         customerName: selectedPayment.customerName,
+        customerEmail: selectedPayment.customerEmail,
         customerAddress: selectedPayment.customerAddress,
         customerPhone: selectedPayment.customerPhone,
         totalPrice: selectedPayment.totalPrice,
