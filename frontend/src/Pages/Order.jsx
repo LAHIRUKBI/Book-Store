@@ -85,55 +85,35 @@ export default function Order() {
   return (
     <div className="container mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-center text-gray-700 mb-8">ORDERS</h1>
-      <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-        <table className="table-auto w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-100 text-gray-700 text-left">
-              <th className="border px-6 py-3">Customer Name</th>
-              <th className="border px-6 py-3">Address</th>
-              <th className="border px-6 py-3">Phone</th>
-              <th className="border px-6 py-3">Total Price</th>
-              <th className="border px-6 py-3">Quantity</th>
-              <th className="border px-6 py-3">Bank Name</th>
-              <th className="border px-6 py-3">Payment Date</th>
-              <th className="border px-6 py-3">Book ID</th>
-              <th className="border px-6 py-3">Book Title</th>
-              <th className="border px-6 py-3">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {payments.map((payment, index) => (
-              <tr
-                key={payment._id}
-                className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-gray-100 transition duration-200`}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {payments.map((payment) => (
+          <div key={payment._id} className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">{payment.bookTitle}</h2>
+            <p className="text-gray-600"><strong>Book ID:</strong> {payment.bookId}</p>
+            <p className="text-gray-600"><strong>Customer Name:</strong> {payment.customerName}</p>
+            <p className="text-gray-600"><strong>Email:</strong> {payment.customerEmail}</p>
+            <p className="text-gray-600"><strong>Address:</strong> {payment.customerAddress}</p>
+            <p className="text-gray-600"><strong>Phone:</strong> {payment.customerPhone}</p>
+            <p className="text-gray-600"><strong>Total Price:</strong> ${payment.totalPrice}</p>
+            <p className="text-gray-600"><strong>Quantity:</strong> {payment.quantity}</p>
+            <p className="text-gray-600"><strong>Bank Name:</strong> {payment.bankName}</p>
+            <p className="text-gray-600"><strong>Payment Date:</strong> {new Date(payment.paymentDate).toLocaleString()}</p>
+            <div className="mt-4 flex space-x-2">
+              <button
+                onClick={() => handleSendToBookManager(payment.customerName)}
+                className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
               >
-                <td className="border px-6 py-4">{payment.customerName}</td>
-                <td className="border px-6 py-4">{payment.customerAddress}</td>
-                <td className="border px-6 py-4">{payment.customerPhone}</td>
-                <td className="border px-6 py-4">{payment.totalPrice}</td>
-                <td className="border px-6 py-4">{payment.quantity}</td>
-                <td className="border px-6 py-4">{payment.bankName}</td>
-                <td className="border px-6 py-4">{new Date(payment.paymentDate).toLocaleString()}</td>
-                <td className="border px-6 py-4">{payment.bookId}</td>
-                <td className="border px-6 py-4">{payment.bookTitle}</td>
-                <td className="border px-6 py-4 flex gap-2">
-                  <button
-                    onClick={() => handleSendToBookManager(payment.customerName)}
-                    className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
-                  >
-                    Send to Book Manager
-                  </button>
-                  <button
-                    onClick={() => handleDeletePayment(payment._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                Send to Book Manager
+              </button>
+              <button
+                onClick={() => handleDeletePayment(payment._id)}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
       <div className="mt-10 text-center">
         <p className="text-gray-600">
