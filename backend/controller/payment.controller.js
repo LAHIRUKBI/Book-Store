@@ -2,11 +2,11 @@ import Payment from '../model/payment.model.js';
 
 export const createPayment = async (req, res, next) => {
   try {
-    const { bookId, bookTitle, totalPrice, quantity, formData, bankData } = req.body;  // Add bookTitle
+    const { bookId, bookTitle, totalPrice, quantity, formData, bankData } = req.body;
 
     const newPayment = new Payment({
       bookId,
-      bookTitle,  // Save the bookTitle in the database
+      bookTitle,
       totalPrice,
       quantity,
       customerName: formData.name,
@@ -26,8 +26,6 @@ export const createPayment = async (req, res, next) => {
 
 
 
-
-
 export const getAllPayments = async (req, res, next) => {
     try {
       const payments = await Payment.find();
@@ -37,10 +35,8 @@ export const getAllPayments = async (req, res, next) => {
     }
   };
 
-
-
-  
-  // Controller for fetching orders and payments
+ 
+  //Controller for fetching orders and payments
 export const getOrdersForEmail = async (req, res) => {
   const { email } = req.params;
   const orders = await Order.find({ customerEmail: email });
@@ -49,12 +45,10 @@ export const getOrdersForEmail = async (req, res) => {
 
 
 
-
-
 export const getPaymentsByEmail = async (req, res) => {
   try {
     const { email } = req.params;
-    console.log(`Fetching payments for email: ${email}`);  // Log the email for debugging
+    console.log(`Fetching payments for email: ${email}`);
 
     const payments = await Payment.find({ customerEmail: email });
 
@@ -64,9 +58,23 @@ export const getPaymentsByEmail = async (req, res) => {
 
     res.status(200).json(payments);
   } catch (error) {
-    console.error('Error fetching payments:', error);  // More detailed error logging
+    console.error('Error fetching payments:', error);
     res.status(500).json({ message: 'Error fetching payments.', error: error.message });
   }
 };
 
 
+export const deletePayment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedPayment = await Payment.findByIdAndDelete(id);
+
+    if (!deletedPayment) {
+      return res.status(404).json({ success: false, message: 'Payment not found.' });
+    }
+
+    res.status(200).json({ success: true, message: 'Payment deleted successfully.' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error deleting payment.', error: error.message });
+  }
+};

@@ -85,12 +85,6 @@ export default function Admin_Login() {
     the system. Ensure you're using the correct role to avoid any issues.
   </p>
 
-  {/* Additional Information with slightly lighter text */}
-  <p className="text-sm text-gray-500 mb-8 max-w-2xl mx-auto">
-    Choose the appropriate login type based on your access level: Admin or
-    Staff.
-  </p>
-
   {/* Login Type Selector with refined design */}
   <div className="mb-6 flex justify-center items-center gap-6">
     <div className="w-full max-w-xs">
@@ -108,19 +102,6 @@ export default function Admin_Login() {
         </option>
       </select>
     </div>
-  </div>
-
-  {/* Footer Note with a more professional touch */}
-  <div className="mt-8 text-sm text-gray-500">
-    <p>
-      Need help?{" "}
-      <Link
-        to="/contact"
-        className="text-indigo-600 hover:underline font-medium transition duration-300 ease-in-out"
-      >
-        Contact Support
-      </Link>
-    </p>
   </div>
 </div>
 

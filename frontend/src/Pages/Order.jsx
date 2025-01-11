@@ -23,12 +23,12 @@ export default function Order() {
 
   const handleSendToBookManager = async (customerName) => {
     const selectedPayment = payments.find((payment) => payment.customerName === customerName);
-  
+
     if (!selectedPayment) {
       alert('Payment details not found!');
       return;
     }
-  
+
     try {
       const response = await axios.post('http://localhost:3000/api/orders/create', {
         customerName: selectedPayment.customerName,
@@ -41,7 +41,7 @@ export default function Order() {
         bookId: selectedPayment.bookId,
         bookTitle: selectedPayment.bookTitle,
       });
-  
+
       if (response.data.success) {
         alert(`Customer Name ${customerName} sent to Book Manager successfully!`);
       } else {
@@ -52,7 +52,21 @@ export default function Order() {
       alert('Failed to send details to Book Manager. Please try again.');
     }
   };
-  
+
+  const handleDeletePayment = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/api/payment/${id}`);
+      if (response.status === 200) {
+        setPayments((prev) => prev.filter((payment) => payment._id !== id));
+        alert('Payment deleted successfully!');
+      } else {
+        alert('Failed to delete the payment.');
+      }
+    } catch (error) {
+      console.error('Error deleting payment:', error.message);
+      alert('Failed to delete the payment. Please try again.');
+    }
+  };
 
   if (loading)
     return (
@@ -84,7 +98,7 @@ export default function Order() {
               <th className="border px-6 py-3">Payment Date</th>
               <th className="border px-6 py-3">Book ID</th>
               <th className="border px-6 py-3">Book Title</th>
-              <th className="border px-6 py-3">Action</th>
+              <th className="border px-6 py-3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -102,14 +116,19 @@ export default function Order() {
                 <td className="border px-6 py-4">{new Date(payment.paymentDate).toLocaleString()}</td>
                 <td className="border px-6 py-4">{payment.bookId}</td>
                 <td className="border px-6 py-4">{payment.bookTitle}</td>
-                <td className="border px-6 py-4">
-                <button
-  onClick={() => handleSendToBookManager(payment.customerName)}
-  className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
->
-  Send to Book Manager
-</button>
-
+                <td className="border px-6 py-4 flex gap-2">
+                  <button
+                    onClick={() => handleSendToBookManager(payment.customerName)}
+                    className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                  >
+                    Send to Book Manager
+                  </button>
+                  <button
+                    onClick={() => handleDeletePayment(payment._id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
