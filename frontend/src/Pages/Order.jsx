@@ -5,12 +5,17 @@ export default function Order() {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sentPayments, setSentPayments] = useState({});
 
   useEffect(() => {
     const fetchPayments = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/payment');
         setPayments(response.data.data);
+
+        // Retrieve sent statuses from localStorage
+        const storedSentPayments = JSON.parse(localStorage.getItem('sentPayments')) || {};
+        setSentPayments(storedSentPayments);
       } catch (err) {
         setError('Error fetching payment details');
       } finally {
@@ -21,8 +26,8 @@ export default function Order() {
     fetchPayments();
   }, []);
 
-  const handleSendToBookManager = async (customerName) => {
-    const selectedPayment = payments.find((payment) => payment.customerName === customerName);
+  const handleSendToBookManager = async (paymentId) => {
+    const selectedPayment = payments.find((payment) => payment._id === paymentId);
 
     if (!selectedPayment) {
       alert('Payment details not found!');
@@ -44,7 +49,12 @@ export default function Order() {
       });
 
       if (response.data.success) {
-        alert(`Customer Name ${customerName} sent to Book Manager successfully!`);
+        // Update sent status in state and localStorage
+        const updatedSentPayments = { ...sentPayments, [paymentId]: true };
+        setSentPayments(updatedSentPayments);
+        localStorage.setItem('sentPayments', JSON.stringify(updatedSentPayments));
+
+        alert(`Customer Name ${selectedPayment.customerName} sent to Book Manager successfully!`);
       } else {
         throw new Error(response.data.message || 'Unknown error occurred');
       }
@@ -101,10 +111,13 @@ export default function Order() {
             <p className="text-gray-600"><strong>Payment Date:</strong> {new Date(payment.paymentDate).toLocaleString()}</p>
             <div className="mt-4 flex space-x-2">
               <button
-                onClick={() => handleSendToBookManager(payment.customerName)}
-                className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                onClick={() => handleSendToBookManager(payment._id)}
+                disabled={sentPayments[payment._id]}
+                className={`px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105 ${
+                  sentPayments[payment._id] ? 'bg-gray-400 cursor-not-allowed' : 'bg-teal-500 hover:bg-teal-600 text-white'
+                }`}
               >
-                Send to Book Manager
+                {sentPayments[payment._id] ? 'Sent' : 'Send to Book Manager'}
               </button>
               <button
                 onClick={() => handleDeletePayment(payment._id)}
