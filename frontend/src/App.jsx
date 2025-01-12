@@ -27,6 +27,7 @@ import About_Us from './Pages/About_Us'
 import Contact from './Pages/Contact'
 import My_payments from './Pages/My_payments'
 import Order_confirm from './Pages/Order_confirm'
+import Employee_Update_profile from './Pages/Employee_Update_profile'
 
 export default function App() {
   return (
@@ -60,6 +61,7 @@ export default function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/mypayments" element={<My_payments />} />
       <Route path="/orderconfirm" element={<Order_confirm />} />
+      <Route path="/employeeupdateprofile" element={<Employee_Update_profile />} />
 
 
 
