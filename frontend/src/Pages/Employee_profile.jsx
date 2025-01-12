@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUserCircle, FaBriefcase, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaUserCircle, FaBriefcase, FaEnvelope, FaPhone,FaMapMarkerAlt  } from "react-icons/fa";
 
 export default function EmployeeProfile() {
   const [employee, setEmployee] = useState(null);
@@ -63,10 +63,21 @@ export default function EmployeeProfile() {
             <FaPhone className="text-gray-500" />
             <strong>Phone:</strong> {employee.phone}
           </p>
+          <p className="flex items-center gap-2 text-gray-700 mb-4">
+            <FaMapMarkerAlt  className="text-gray-500" />
+            <strong>Address:</strong> {employee.address}
+          </p>
           
         </div>
 
         {/* Action Buttons */}
+        <button
+  onClick={() => navigate("/employeeupdateprofile")}
+  className="mt-4 px-8 py-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-200 w-full text-lg"
+>
+  Update Profile
+</button>
+
         <button
           onClick={handleMyPayments}
           className="mt-4 px-8 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-200 w-full text-lg"
