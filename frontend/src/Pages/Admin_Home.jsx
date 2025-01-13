@@ -70,6 +70,13 @@ export default function Admin_Home() {
             </li>
             <li
               className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
+              onClick={() => navigate("/userview")}
+            >
+              <FaUsers className="text-white text-lg mr-3" />
+              <span className="font-medium">View Users</span>
+            </li>
+            <li
+              className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
               onClick={() => navigate("/order")}
             >
               <FaClipboardList className="text-white text-lg mr-3" />
