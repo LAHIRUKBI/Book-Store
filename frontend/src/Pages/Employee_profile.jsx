@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUserCircle, FaBriefcase, FaEnvelope, FaPhone,FaMapMarkerAlt  } from "react-icons/fa";
+import {
+  FaUserCircle,
+  FaBriefcase,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaRegClock,
+} from "react-icons/fa";
 
 export default function EmployeeProfile() {
   const [employee, setEmployee] = useState(null);
@@ -42,54 +50,61 @@ export default function EmployeeProfile() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-200 via-white to-gray-100 py-12 px-6">
-      <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md text-center relative">
-        {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-16 h-16 bg-blue-500 rounded-full -translate-y-1/2 -translate-x-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-16 h-16 bg-red-500 rounded-full translate-y-1/2 translate-x-1/2"></div>
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 via-white to-gray-100 py-12 px-6">
+      <div className="max-w-2xl mx-auto">
+        <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-500 to-green-400 p-8 text-white">
+            <div className="flex items-center gap-6">
+              <FaUserCircle className="text-8xl" />
+              <div>
+                <h1 className="text-3xl font-bold">Welcome, {employee.email}!</h1>
+                <p className="text-sm mt-1">We're glad to have you here.</p>
+              </div>
+            </div>
+          </div>
 
-        {/* Profile Section */}
-        <FaUserCircle className="text-6xl text-gray-500 mb-6 mx-auto" />
-        <h1 className="text-2xl font-semibold text-gray-800 mb-2">Welcome, {employee.name}!</h1>
-        <p className="text-sm text-gray-600 mb-6">We're glad to have you here.</p>
+          <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Profile Information */}
+            <div className="bg-gray-50 rounded-lg shadow p-6 text-gray-800">
+              <h2 className="text-lg font-bold mb-4">Profile Details</h2>
+              <p className="flex items-center gap-2 mb-4">
+                <FaEnvelope className="text-gray-500" />
+                <strong>Email:</strong> {employee.email}
+              </p>
+              <p className="flex items-center gap-2 mb-4">
+                <FaPhone className="text-gray-500" />
+                <strong>Phone:</strong> {employee.phone}
+              </p>
+              <p className="flex items-center gap-2 mb-4">
+                <FaMapMarkerAlt className="text-gray-500" />
+                <strong>Address:</strong> {employee.address}
+              </p>
+            </div>
+          </div>
 
-        {/* Details Section */}
-        <div className="text-left mb-6">
-          <p className="flex items-center gap-2 text-gray-700 mb-4">
-            <FaEnvelope className="text-gray-500" />
-            <strong>Email:</strong> {employee.email}
-          </p>
-          <p className="flex items-center gap-2 text-gray-700 mb-4">
-            <FaPhone className="text-gray-500" />
-            <strong>Phone:</strong> {employee.phone}
-          </p>
-          <p className="flex items-center gap-2 text-gray-700 mb-4">
-            <FaMapMarkerAlt  className="text-gray-500" />
-            <strong>Address:</strong> {employee.address}
-          </p>
-          
+          <div className="p-8 flex flex-col md:flex-row gap-4 justify-center">
+  <button
+    onClick={() => navigate("/employeeupdateprofile")}
+    className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-200 w-40"
+  >
+    Update Profile
+  </button>
+  <button
+    onClick={handleMyPayments}
+    className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-200 w-40"
+  >
+    My Payments
+  </button>
+  <button
+    onClick={handleLogout}
+    className="px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition duration-200 w-40"
+  >
+    Logout
+  </button>
+</div>
+
+
         </div>
-
-        {/* Action Buttons */}
-        <button
-  onClick={() => navigate("/employeeupdateprofile")}
-  className="mt-4 px-8 py-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-200 w-full text-lg"
->
-  Update Profile
-</button>
-
-        <button
-          onClick={handleMyPayments}
-          className="mt-4 px-8 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-200 w-full text-lg"
-        >
-          My Payments
-        </button>
-        <button
-          onClick={handleLogout}
-          className="mt-6 px-8 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition duration-200 w-full text-lg"
-        >
-          LOGOUT
-        </button>
       </div>
 
       {/* Logout Modal */}
