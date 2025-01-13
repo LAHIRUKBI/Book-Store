@@ -22,7 +22,9 @@ export default function Admin_Home() {
     // Fetch the employee count from the backend
     const fetchEmployeeCount = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/employees/count");
+        const response = await fetch(
+          "http://localhost:3000/api/employees/count"
+        );
         const data = await response.json();
         setEmployeeCount(data.count);
       } catch (error) {
@@ -54,6 +56,13 @@ export default function Admin_Home() {
         {/* Navigation Menu */}
         <nav className="mt-6">
           <ul className="space-y-4">
+            <li
+              className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
+              onClick={() => navigate("/adminhome")}
+            >
+              <FaUserPlus className="text-white text-lg mr-3" />
+              <span className="font-medium">Admin Home</span>
+            </li>
             <li
               className="flex items-center p-4 hover:bg-indigo-500 rounded-md cursor-pointer transition-all"
               onClick={() => navigate("/employeeregister")}
@@ -88,9 +97,31 @@ export default function Admin_Home() {
 
       {/* Main Content */}
       <main className="flex-1 p-8">
-        <header className="flex justify-between items-center bg-white shadow-md rounded-lg p-6">
-          <h1 className="text-3xl font-bold text-gray-800">Welcome, Admin</h1>
-          <p className="text-gray-500">Manage your tasks efficiently.</p>
+        <header className="flex justify-between items-center bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-lg shadow-lg">
+          <div className="flex items-center space-x-4">
+            {/* Icon and Title */}
+            <div className="text-white text-3xl font-bold flex items-center space-x-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 2L3 7v9c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7l-9-5z"></path>
+              </svg>
+              <h1>Welcome, Admin</h1>
+            </div>
+          </div>
+
+          <div className="text-white">
+            <p className="text-lg font-medium">
+              Manage your tasks efficiently.
+            </p>
+          </div>
         </header>
 
         {/* Cards Section */}
