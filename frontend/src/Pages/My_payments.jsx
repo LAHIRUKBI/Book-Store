@@ -7,6 +7,7 @@ import {
   FaPhoneAlt,
   FaMapMarkerAlt,
   FaBuilding,
+  FaBook,
 } from "react-icons/fa";
 import jsPDF from "jspdf";
 
@@ -117,7 +118,7 @@ export default function My_payments() {
                 <h3 className="text-lg font-semibold text-gray-700 mb-4">Book ID: {payment.bookId}</h3>
                 <div className="grid gap-4">
                 <div className="flex items-center">
-                    <FaUserAlt className="text-gray-500 mr-2" />
+                    <FaBook className="text-gray-500 mr-2" />
                     <strong>Book Title:</strong> {payment.bookTitle}
                   </div>
                 <div className="flex items-center">
