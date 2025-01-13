@@ -33,7 +33,7 @@ export default function Employee_Update_profile() {
       if (response.status === 200) {
         alert("Profile updated successfully!");
         localStorage.setItem("userData", JSON.stringify(response.data));
-        navigate("/employee_profile");
+        navigate("/employee_profile/:username");
       }
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -100,7 +100,7 @@ export default function Employee_Update_profile() {
         {/* Action Buttons */}
         <div className="mt-8 flex justify-between items-center">
           <button
-            onClick={() => navigate("/employee_profile")}
+            onClick={() => navigate("/employee_profile/:username")}
             className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition duration-200"
           >
             Cancel
