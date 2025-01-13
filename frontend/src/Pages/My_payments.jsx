@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FaCreditCard, FaRegCalendarAlt, FaUserAlt, FaMoneyBillWave, FaPhoneAlt, FaMapMarkerAlt, FaBuilding } from "react-icons/fa";
+import {
+  FaCreditCard,
+  FaRegCalendarAlt,
+  FaUserAlt,
+  FaMoneyBillWave,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaBuilding,
+} from "react-icons/fa";
 import jsPDF from "jspdf";
 
 export default function My_payments() {
@@ -12,8 +20,7 @@ export default function My_payments() {
   useEffect(() => {
     const email = localStorage.getItem("email");
     if (email) {
-      // Fetch payments for the logged-in user
-      fetch(`http://localhost:3000/api/payment/payments/${email}`) // Updated endpoint
+      fetch(`http://localhost:3000/api/payment/payments/${email}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error("Failed to fetch payments");
@@ -22,15 +29,13 @@ export default function My_payments() {
         })
         .then((data) => {
           if (data.message) {
-            console.error("Error fetching payments:", data.message);
-            setError(data.message); // Show error message from backend
+            setError(data.message);
           } else {
             setPayments(data);
           }
           setLoading(false);
         })
         .catch((err) => {
-          console.error("Error fetching payments:", err);
           setError("An unexpected error occurred. Please try again.");
           setLoading(false);
         });
@@ -50,23 +55,22 @@ export default function My_payments() {
     const doc = new jsPDF();
     doc.setFontSize(16);
     doc.text("Payment Receipt", 105, 10, { align: "center" });
-
     doc.setFontSize(12);
     const content = `
-    Book ID: ${payment.bookId}
-    Payment Date: ${new Date(payment.paymentDate).toLocaleDateString()}
-    Amount: $${payment.totalPrice}
-    Customer Name: ${payment.customerName}
-    Customer Address: ${payment.customerAddress}
-    Customer Phone: ${payment.customerPhone}
-    Customer Email: ${payment.customerEmail}
-    Bank Name: ${payment.bankName}
+      Book ID: ${payment.bookId}
+      Book Title: ${payment.bookTitle}
+      Payment Date: ${new Date(payment.paymentDate).toLocaleDateString()}
+      Amount: $${payment.totalPrice}
+      Customer Name: ${payment.customerName}
+      Customer Address: ${payment.customerAddress}
+      Customer Phone: ${payment.customerPhone}
+      Customer Email: ${payment.customerEmail}
+      Bank Name: ${payment.bankName}
     `;
     doc.text(content, 10, 30);
     doc.save(`Receipt_${payment.bookId}.pdf`);
   };
 
-  // Sort payments by the selected field and order
   const sortedPayments = [...payments].sort((a, b) => {
     const fieldA = a[sortField];
     const fieldB = b[sortField];
@@ -84,8 +88,8 @@ export default function My_payments() {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-gray-50 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-semibold text-center mb-6 text-blue-600">My Payments</h2>
+    <div className="p-8 max-w-6xl mx-auto bg-gray-50 rounded-lg shadow-lg">
+      <h2 className="text-4xl font-bold text-center mb-8 text-blue-600">My Payments</h2>
       {payments.length === 0 ? (
         <p className="text-center text-lg text-gray-500">No payments found.</p>
       ) : (
@@ -93,56 +97,61 @@ export default function My_payments() {
           <div className="flex justify-between mb-6">
             <button
               onClick={() => handleSort("paymentDate")}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none transition duration-200"
             >
               Sort by Date
             </button>
             <button
               onClick={() => handleSort("totalPrice")}
-              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none"
+              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none transition duration-200"
             >
               Sort by Amount
             </button>
           </div>
-          <ul className="space-y-6">
+          <ul className="grid gap-6 md:grid-cols-2">
             {sortedPayments.map((payment, index) => (
-              <li key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div className="col-span-3 text-center py-4 border-2 border-gray-300 rounded-lg bg-gray-100">
-                    <strong className="text-xl text-gray-700">Book ID:</strong> <span className="text-lg">{payment.bookId}</span>
+              <li
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300"
+              >
+                <h3 className="text-lg font-semibold text-gray-700 mb-4">Book ID: {payment.bookId}</h3>
+                <div className="grid gap-4">
+                <div className="flex items-center">
+                    <FaUserAlt className="text-gray-500 mr-2" />
+                    <strong>Book Title:</strong> {payment.bookTitle}
                   </div>
-                  <div className="flex items-center">
-                    <FaRegCalendarAlt className="text-xl text-gray-500 mr-2" />
-                    <strong>Payment Date:</strong> {new Date(payment.paymentDate).toLocaleDateString()}
-                  </div>
-                  <div className="flex items-center">
-                    <FaMoneyBillWave className="text-xl text-green-500 mr-2" />
-                    <strong>Amount:</strong> ${payment.totalPrice}
-                  </div>
-                  <div className="flex items-center">
-                    <FaUserAlt className="text-xl text-gray-500 mr-2" />
+                <div className="flex items-center">
+                    <FaUserAlt className="text-gray-500 mr-2" />
                     <strong>Customer Name:</strong> {payment.customerName}
                   </div>
                   <div className="flex items-center">
-                    <FaMapMarkerAlt className="text-xl text-gray-500 mr-2" />
-                    <strong>Customer Address:</strong> {payment.customerAddress}
-                  </div>
-                  <div className="flex items-center">
-                    <FaPhoneAlt className="text-xl text-gray-500 mr-2" />
-                    <strong>Customer Phone:</strong> {payment.customerPhone}
-                  </div>
-                  <div className="flex items-center">
-                    <FaUserAlt className="text-xl text-gray-500 mr-2" />
+                    <FaUserAlt className="text-gray-500 mr-2" />
                     <strong>Customer Email:</strong> {payment.customerEmail}
                   </div>
                   <div className="flex items-center">
-                    <FaBuilding className="text-xl text-gray-500 mr-2" />
+                    <FaPhoneAlt className="text-gray-500 mr-2" />
+                    <strong>Customer Phone:</strong> {payment.customerPhone}
+                  </div>
+                  <div className="flex items-center">
+                    <FaMapMarkerAlt className="text-gray-500 mr-2" />
+                    <strong>Customer Address:</strong> {payment.customerAddress}
+                  </div>
+                  <div className="flex items-center">
+                    <FaRegCalendarAlt className="text-gray-500 mr-2" />
+                    <strong>Payment Date:</strong> {new Date(payment.paymentDate).toLocaleDateString()}
+                  </div>
+                  <div className="flex items-center">
+                    <FaBuilding className="text-gray-500 mr-2" />
                     <strong>Bank Name:</strong> {payment.bankName}
+                  </div>
+                  <div className="flex items-center">
+                    <FaMoneyBillWave className="text-green-500 mr-2" />
+                    <strong>Amount:</strong> ${payment.totalPrice}
                   </div>
                 </div>
                 <button
                   onClick={() => generatePDF(payment)}
-                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none w-full"
+                  className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none w-full transition duration-200"
                 >
                   Download Receipt
                 </button>
