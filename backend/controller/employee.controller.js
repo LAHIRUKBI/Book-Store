@@ -109,3 +109,14 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 };
+
+
+// Controller to get the count of employees
+export const getEmployeeCount = async (req, res) => {
+  try {
+    const count = await Employee.countDocuments();
+    res.json({ count });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching employee count" });
+  }
+};

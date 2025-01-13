@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUsers, FaUserPlus, FaClipboardList } from "react-icons/fa";
 
 export default function Admin_Home() {
   const navigate = useNavigate();
+  const [userCount, setUserCount] = useState(0);
+  const [employeeCount, setEmployeeCount] = useState(0);
+
+  useEffect(() => {
+    // Fetch the user count from the backend
+    const fetchUserCount = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/signup/count");
+        const data = await response.json();
+        setUserCount(data.count);
+      } catch (error) {
+        console.error("Error fetching user count:", error);
+      }
+    };
+
+    // Fetch the employee count from the backend
+    const fetchEmployeeCount = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/employees/count");
+        const data = await response.json();
+        setEmployeeCount(data.count);
+      } catch (error) {
+        console.error("Error fetching employee count:", error);
+      }
+    };
+
+    fetchUserCount();
+    fetchEmployeeCount();
+  }, []);
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -59,37 +88,37 @@ export default function Admin_Home() {
 
         {/* Cards Section */}
         <section className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Register Employee Card */}
-          <div
-            className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
-            onClick={() => navigate("/employeeregister")}
-          >
-            <div className="flex items-center space-x-4">
-              <FaUserPlus className="text-blue-500 text-4xl" />
+          {/* User Card */}
+          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer">
+            <div className="flex items-center space-x-6">
+              <FaUserPlus className="text-blue-500 text-5xl" />
               <div>
                 <h3 className="text-xl font-bold text-gray-800">
-                  Register Employee
+                  Registered Users
                 </h3>
-                <p className="text-gray-600 mt-2">
-                  Add new employees to the system quickly and efficiently.
+                <p className="mt-4">
+                  <strong className="text-4xl text-blue-600 font-extrabold">
+                    {userCount}
+                  </strong>
+                  <span className="text-gray-600 text-lg ml-2">Users</span>
                 </p>
               </div>
             </div>
           </div>
 
-          {/* View Employees Card */}
-          <div
-            className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
-            onClick={() => navigate("/employeeview")}
-          >
+          {/* Registered Employees Card */}
+          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
             <div className="flex items-center space-x-4">
               <FaUsers className="text-green-500 text-4xl" />
               <div>
                 <h3 className="text-xl font-bold text-gray-800">
-                  View Employees
+                  Registered Employees
                 </h3>
                 <p className="text-gray-600 mt-2">
-                  Browse and manage all registered employees.
+                  <strong className="text-4xl text-green-600 font-extrabold">
+                    {employeeCount}
+                  </strong>
+                  <span className="text-lg ml-2">Employees</span>
                 </p>
               </div>
             </div>

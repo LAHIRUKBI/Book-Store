@@ -96,3 +96,15 @@ export const updateUserProfile = async (req, res) => {
     res.status(500).json({ message: "Error updating user profile.", error });
   }
 };
+
+
+
+
+export const getUserCount = async (req, res) => {
+  try {
+    const count = await User.countDocuments(); // Count all users in the collection
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user count', error });
+  }
+};
