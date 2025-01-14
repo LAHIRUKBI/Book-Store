@@ -123,7 +123,7 @@ export default function Home() {
                 <p className="mt-4 text-lg text-gray-700">
                   Welcome to our service guide! In this guide, you will learn
                   how to get started with our platform and take full advantage
-                  of our waste management services.
+                  of our Book store services.
                 </p>
               </div>
             )}
