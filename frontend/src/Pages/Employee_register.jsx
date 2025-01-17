@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FaUser, FaUserPlus, FaUsers, FaPhoneAlt, FaHome, FaCalendarAlt, FaIdBadge, FaClipboardList } from "react-icons/fa"; // Import Font Awesome icons
+import {
+  FaUser,
+  FaUserPlus,
+  FaUsers,
+  FaPhoneAlt,
+  FaHome,
+  FaCalendarAlt,
+  FaIdBadge,
+  FaClipboardList,
+} from "react-icons/fa"; // Import Font Awesome icons
 import { useNavigate } from "react-router-dom";
 
 export default function Employee_register() {
@@ -22,7 +31,10 @@ export default function Employee_register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/employees/register", formData);
+      const response = await axios.post(
+        "http://localhost:3000/api/employees/register",
+        formData
+      );
       alert(response.data.message);
       navigate("/adminhome");
     } catch (error) {
@@ -37,8 +49,12 @@ export default function Employee_register() {
         {/* Profile Section */}
         <div className="p-6 border-b border-indigo-400">
           <div className="flex items-center space-x-4">
-            <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center text-indigo-600 font-bold text-xl">
-              A
+            <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+              <img
+                src="src/images/profilelogo.png"
+                alt="Profile Icon"
+                className="rounded-full w-full h-full object-cover"
+              />
             </div>
             <div>
               <h2 className="text-xl font-semibold">Admin</h2>

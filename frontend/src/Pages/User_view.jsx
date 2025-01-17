@@ -42,8 +42,12 @@ export default function User_view() {
         {/* Profile Section */}
         <div className="p-6 border-b border-indigo-400">
           <div className="flex items-center space-x-4">
-            <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center text-indigo-600 font-bold text-xl">
-              A
+          <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+              <img
+                src="src/images/profilelogo.png"
+                alt="Profile Icon"
+                className="rounded-full w-full h-full object-cover"
+              />
             </div>
             <div>
               <h2 className="text-xl font-semibold">Admin</h2>
