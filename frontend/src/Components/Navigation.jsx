@@ -63,7 +63,7 @@ export default function Navigation() {
                 className="flex items-center space-x-2 text-lg font-semibold px-4 py-2 rounded-md bg-teal-600 shadow-md hover:bg-teal-700 transition duration-300"
               >
                 <FaUserCircle />
-                <span>Welcome, <strong>{email}</strong></span>
+                <span>{email}</span>
               </button>
              
             </div>
