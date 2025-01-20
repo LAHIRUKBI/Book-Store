@@ -19,7 +19,7 @@ export default function Order_confirm() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
       <h1 className="text-4xl font-extrabold text-gray-800 mb-8">Order Confirmation</h1>
       {orders.length > 0 ? (
         <div className="w-full max-w-7xl overflow-x-auto p-6 bg-white shadow-md rounded-lg">
