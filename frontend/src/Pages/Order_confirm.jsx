@@ -18,6 +18,22 @@ export default function Order_confirm() {
     fetchOrders();
   }, []);
 
+  // Handle delete order
+  const handleDeleteOrder = async (orderId) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/api/orders/${orderId}`);
+      if (response.status === 200) {
+        setOrders((prevOrders) => prevOrders.filter((order) => order._id !== orderId));
+        alert('Order deleted successfully!');
+      } else {
+        alert('Failed to delete the order.');
+      }
+    } catch (error) {
+      console.error('Error deleting order:', error);
+      alert('Failed to delete the order. Please try again.');
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
       <h1 className="text-4xl font-extrabold text-gray-800 mb-8">Order Confirmation</h1>
@@ -35,6 +51,7 @@ export default function Order_confirm() {
                 <th className="border-b border-gray-200 p-4">Quantity</th>
                 <th className="border-b border-gray-200 p-4">Bank Name</th>
                 <th className="border-b border-gray-200 p-4">Payment Date</th>
+                <th className="border-b border-gray-200 p-4">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -50,6 +67,14 @@ export default function Order_confirm() {
                   <td className="border-b border-gray-200 p-4">{order.bankName}</td>
                   <td className="border-b border-gray-200 p-4">
                     {new Date(order.paymentDate).toLocaleDateString()}
+                  </td>
+                  <td className="border-b border-gray-200 p-4">
+                    <button
+                      onClick={() => handleDeleteOrder(order._id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
