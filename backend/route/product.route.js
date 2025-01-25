@@ -1,13 +1,13 @@
-import express from 'express';        // Import Express framework
+import express from 'express';
 import { addProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../controller/product.controller.js';
 
-const router = express.Router();       // Create a new router instance
+const router = express.Router(); 
 
-router.post('/', addProduct);          // Route to add a new product
-router.get('/', getProducts);          // Route to get all products
-router.put('/:id', updateProduct);     // Route to update a product by ID
-router.delete('/:id', deleteProduct);  // Route to delete a product by ID
-router.get('/:id', getProductById);    // Route to get a product by ID
+router.post('/', addProduct);
+router.get('/', getProducts);
+router.put('/:id', updateProduct);
+router.delete('/:id', deleteProduct);
+router.get('/:id', getProductById);
 
 
-export default router;                 // Export router to use in other parts of the app
+export default router;
