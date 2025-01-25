@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaEye, FaCheckCircle, FaBox, FaChartLine } from 'react-icons/fa';
+import { FaCheckCircle, FaBox, FaPlus, FaEye } from 'react-icons/fa';
 import axios from 'axios';
 
 export default function Stockmanager_home() {
@@ -12,7 +12,7 @@ export default function Stockmanager_home() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/products');
-        const products = response.data;
+        const products = response.data.products; // Adjusted based on API response structure
         setTotalProducts(products.length);
         setOutOfStock(products.filter(product => product.stock === 0).length);
       } catch (error) {
@@ -79,30 +79,14 @@ export default function Stockmanager_home() {
           </section>
 
           {/* Action Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {/* Add Product */}
-            <div
-              className="group relative bg-black rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300"
-              onClick={() => navigate('/addbook')}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 opacity-80"></div>
-              <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
-                <FaPlus className="text-5xl mb-4" />
-                <h2 className="text-2xl font-semibold mb-2">Add Product</h2>
-                <p className="text-sm text-gray-200 text-center">Add new products to the inventory. Easily manage the flow of products and keep your stock up-to-date.</p>
-              </div>
-            </div>
-
-            {/* View Products */}
-            <div
-              className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300"
-              onClick={() => navigate('/productview')}
-            >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {/* Product Count Card */}
+            <div className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition transform duration-300">
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-yellow-700 opacity-80"></div>
               <div className="relative z-10 flex flex-col items-center justify-center text-white py-10">
-                <FaEye className="text-5xl mb-4" />
-                <h2 className="text-2xl font-semibold mb-2">View Products</h2>
-                <p className="text-sm text-gray-200 text-center">View all the products in your inventory. Track product quantities, details, and more.</p>
+                <FaBox className="text-5xl mb-4" />
+                <h2 className="text-2xl font-semibold mb-2">Total Products</h2>
+                <p className="text-3xl font-bold">{totalProducts}</p>
               </div>
             </div>
 
