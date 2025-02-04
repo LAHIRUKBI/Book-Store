@@ -8,6 +8,7 @@ import {
   FaMapMarkerAlt,
   FaBuilding,
   FaBook,
+  FaTrashAlt, // Added trash icon
 } from "react-icons/fa";
 import jsPDF from "jspdf";
 
@@ -72,6 +73,24 @@ export default function My_payments() {
     doc.save(`Receipt_${payment.bookId}.pdf`);
   };
 
+  const deletePayment = (id) => {
+    fetch(`http://localhost:3000/api/payment/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          // Remove deleted payment from the state
+          setPayments((prevPayments) => prevPayments.filter((payment) => payment._id !== id));
+        } else {
+          setError("Failed to delete the payment.");
+        }
+      })
+      .catch((err) => {
+        setError("An unexpected error occurred. Please try again.");
+      });
+  };
+
   const sortedPayments = [...payments].sort((a, b) => {
     const fieldA = a[sortField];
     const fieldB = b[sortField];
@@ -117,11 +136,11 @@ export default function My_payments() {
               >
                 <h3 className="text-lg font-semibold text-gray-700 mb-4">Book ID: {payment.bookId}</h3>
                 <div className="grid gap-4">
-                <div className="flex items-center">
+                  <div className="flex items-center">
                     <FaBook className="text-gray-500 mr-2" />
                     <strong>Book Title:</strong> {payment.bookTitle}
                   </div>
-                <div className="flex items-center">
+                  <div className="flex items-center">
                     <FaUserAlt className="text-gray-500 mr-2" />
                     <strong>Customer Name:</strong> {payment.customerName}
                   </div>
@@ -155,6 +174,14 @@ export default function My_payments() {
                   className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none w-full transition duration-200"
                 >
                   Download Receipt
+                </button>
+                {/* Delete Button */}
+                <button
+                  onClick={() => deletePayment(payment._id)}
+                  className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none w-full transition duration-200"
+                >
+                  <FaTrashAlt className="mr-2 inline" />
+                  Delete Receipt
                 </button>
               </li>
             ))}
