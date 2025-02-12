@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBookOpen } from "react-icons/fa";
 import axios from "axios";
+import { FaQuoteLeft } from "react-icons/fa";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -60,6 +61,32 @@ export default function Home() {
   if (error) {
     return <div>{error}</div>;
   }
+
+
+
+  const testimonials = [
+    {
+      quote:
+        "An incredible selection of books! I always find something new to read. The staff is super helpful and friendly!",
+      name: "Sarah Miller",
+      role: "Regular Customer",
+    },
+    {
+      quote:
+        "The bookstore has a charming atmosphere. I can easily find my favorite genres, and the cozy seating area makes it a perfect spot to read!",
+      name: "David Roberts",
+      role: "Book Lover",
+    },
+    {
+      quote:
+        "A wonderful experience every time I visit. The recommendations are always spot on, and I love the community events!",
+      name: "Emma Johnson",
+      role: "Frequent Visitor",
+    },
+  ];
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800">
@@ -248,75 +275,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 bg-yellow-50 text-gray-800">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-teal-600 mb-12">
-            What Our Readers Are Saying
-          </h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            {/* Testimonial 1 */}
-            <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
-              <div className="flex justify-center mb-4">
-                <i className="fas fa-book-open text-3xl text-teal-600"></i>
-              </div>
-              <p className="text-lg text-gray-700 mb-4">
-                "An incredible selection of books! I always find something new
-                to read. The staff is super helpful and friendly!"
-              </p>
-              <p className="font-semibold text-teal-600">Sarah Miller</p>
-              <p className="text-sm text-gray-500">Regular Customer</p>
-            </div>
-
-            {/* Testimonial 2 */}
-            <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
-              <div className="flex justify-center mb-4">
-                <i className="fas fa-book-reader text-3xl text-teal-600"></i>
-              </div>
-              <p className="text-lg text-gray-700 mb-4">
-                "The bookstore has a charming atmosphere. I can easily find my
-                favorite genres, and the cozy seating area makes it a perfect
-                spot to read!"
-              </p>
-              <p className="font-semibold text-teal-600">David Roberts</p>
-              <p className="text-sm text-gray-500">Book Lover</p>
-            </div>
-
-            {/* Testimonial 3 */}
-            <div className="w-full md:w-1/3 bg-white p-8 rounded-lg shadow-xl">
-              <div className="flex justify-center mb-4">
-                <i className="fas fa-bookmark text-3xl text-teal-600"></i>
-              </div>
-              <p className="text-lg text-gray-700 mb-4">
-                "A wonderful experience every time I visit. The recommendations
-                are always spot on, and I love the community events!"
-              </p>
-              <p className="font-semibold text-teal-600">Emma Johnson</p>
-              <p className="text-sm text-gray-500">Frequent Visitor</p>
-            </div>
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-gray-200 text-gray-900">
+  <div className="container mx-auto px-6 text-center">
+    <h2 className="text-4xl font-extrabold text-teal-700 mb-12">
+      What Our Readers Are Saying
+    </h2>
+    <div className="flex flex-wrap justify-center gap-8">
+      {testimonials.map((testimonial, index) => (
+        <div
+          key={index}
+          className="w-full md:w-1/3 bg-white p-8 rounded-xl shadow-xl border border-gray-200 
+            hover:shadow-2xl hover:-translate-y-2 transition-transform duration-300 backdrop-blur-md"
+        >
+          <div className="flex justify-center mb-4 text-teal-600">
+            <FaQuoteLeft className="text-4xl opacity-80" />
           </div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="py-16 bg-teal-600 text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-6">
-            Join Our Book Lovers' Community
-          </h2>
-          <p className="text-lg mb-6">
-            Discover your next favorite book, connect with fellow readers, and
-            stay updated on the latest releases. Sign up today and start your
-            literary journey!
+          <p className="text-lg italic text-gray-800 leading-relaxed mb-4">
+            "{testimonial.quote}"
           </p>
-          <Link
-            to="/signup"
-            className="bg-white text-teal-600 py-3 px-8 rounded-full text-xl font-semibold shadow-lg transform hover:scale-105 transition duration-300"
-          >
-            Become a Member
-          </Link>
+          <p className="font-semibold text-teal-700">{testimonial.name}</p>
+          <p className="text-sm text-gray-500">{testimonial.role}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
     </div>
   );
 }
