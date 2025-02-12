@@ -65,43 +65,42 @@ export default function Home() {
     <div className="min-h-screen bg-gray-100 text-gray-800">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-teal-500 to-cyan-500 py-24 h-screen">
-  {/* Video Background */}
-  <div className="absolute inset-0 overflow-hidden">
-    <video
-      className="absolute inset-0 w-full h-full object-cover brightness-75"
-      src="src/videos/Home Video.mp4"
-      autoPlay
-      muted
-      loop
-      playsInline
-      aria-label="Background Video"
-    ></video>
-  </div>
+        {/* Video Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            className="absolute inset-0 w-full h-full object-cover brightness-75"
+            src="src/videos/Home Video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label="Background Video"
+          ></video>
+        </div>
 
-  {/* Overlay to Enhance Contrast */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black/80"></div>
+        {/* Overlay to Enhance Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black/80"></div>
 
-  {/* Animated Hero Content */}
-  <div className="relative z-10 container mx-auto flex flex-col items-center justify-center h-full text-center space-y-6">
-    <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg animate__animated animate__fadeInDown">
-      Welcome to Our Bookstore
-    </h1>
-    <p className="text-lg md:text-2xl text-gray-200 drop-shadow-md animate__animated animate__fadeInUp">
-      Discover a world of stories, knowledge, and imagination.
-    </p>
-    <button
-      onClick={openModal}
-      className="flex items-center bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-110 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
-    >
-      <FaBookOpen className="inline mr-2 text-2xl" /> Browse Our Store
-    </button>
-  </div>
+        {/* Animated Hero Content */}
+        <div className="relative z-10 container mx-auto flex flex-col items-center justify-center h-full text-center space-y-6">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg animate__animated animate__fadeInDown">
+            Welcome to Our Bookstore
+          </h1>
+          <p className="text-lg md:text-2xl text-gray-200 drop-shadow-md animate__animated animate__fadeInUp">
+            Discover a world of stories, knowledge, and imagination.
+          </p>
+          <button
+            onClick={openModal}
+            className="flex items-center bg-teal-600 hover:bg-teal-700 text-white py-4 px-8 rounded-full text-lg shadow-lg transform hover:scale-110 transition duration-300 animate__animated animate__fadeIn animate__delay-2s"
+          >
+            <FaBookOpen className="inline mr-2 text-2xl" /> Browse Our Store
+          </button>
+        </div>
 
-  {/* Decorative Elements */}
-  <div className="absolute top-10 right-10 w-32 h-32 bg-cyan-400 rounded-full opacity-30 blur-2xl animate-pulse"></div>
-  <div className="absolute bottom-20 left-10 w-40 h-40 bg-teal-300 rounded-full opacity-30 blur-2xl animate-pulse"></div>
-</section>
-
+        {/* Decorative Elements */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-cyan-400 rounded-full opacity-30 blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-teal-300 rounded-full opacity-30 blur-2xl animate-pulse"></div>
+      </section>
 
       {/* Modal for Get Started */}
       {isModalOpen && (
@@ -180,111 +179,74 @@ export default function Home() {
         </div>
       )}
 
-      {/* Section with Curated Book Collection */}
-      <section className="relative py-20 bg-gradient-to-r from-teal-50 to-white text-gray-800">
-  {/* Decorative Elements */}
-  <div className="absolute top-0 left-0 w-40 h-40 bg-teal-400 rounded-full opacity-20 blur-xl"></div>
-  <div className="absolute bottom-0 right-0 w-40 h-40 bg-cyan-400 rounded-full opacity-20 blur-xl"></div>
+      <section className="relative py-24 bg-gray-50 text-gray-900">
+        {/* Background Decorations */}
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-100 to-white opacity-50"></div>
+        <div className="absolute -top-10 -left-10 w-40 h-40 bg-teal-300 rounded-full opacity-30 blur-3xl"></div>
+        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-cyan-300 rounded-full opacity-30 blur-3xl"></div>
 
-  <div className="container mx-auto px-6 relative z-10">
-    <h2 className="text-5xl font-extrabold text-teal-600 mb-12 text-center tracking-wide uppercase animate__animated animate__fadeInDown">
-      Learning Pool
-    </h2>
-    <p className="text-lg text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-      Unlock the power of learning and personal growth with our curated
-      resources. Explore topics that inspire, educate, and enrich your journey.
-    </p>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-      {/* Learning Card 2 */}
-<div className="flex flex-col items-center bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-lg rounded-2xl p-8 border border-gray-300 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-  <div className="relative w-full h-64 overflow-hidden rounded-2xl mb-6 shadow-md">
-    <img
-      src="src/images/The Importance of Learning.jpeg"
-      alt="The Importance of Learning"
-      className="w-full h-full object-cover rounded-2xl transform hover:scale-110 transition-all duration-500"
-    />
-    <div className="absolute bottom-4 left-4 bg-white/80 px-4 py-2 rounded-lg shadow-md">
-      <span className="text-sm font-medium text-gray-800">Featured Topic</span>
-    </div>
-  </div>
-  <h3 className="text-3xl font-bold text-teal-700 mb-4 text-center leading-tight">
-    The Importance of Learning
-  </h3>
-  <p className="text-gray-700 mb-6 text-center px-6 leading-relaxed">
-    Discover the profound impact of continuous learning on personal growth,
-    career advancement, and overall well-being.
-  </p>
-  <Link
-    to="/importance_of_Learning"
-    className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-8 rounded-full text-lg shadow-md transition-all duration-300 transform hover:-translate-y-1"
-  >
-    Learn More
-  </Link>
-</div>
+        <div className="relative z-10 container mx-auto px-6 text-center">
+          <h2 className="text-5xl font-bold text-teal-700 mb-8 tracking-wide uppercase drop-shadow-lg">
+            Learning Pool
+          </h2>
+          <p className="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+            Unlock the power of knowledge with our hand-picked selection of
+            educational resources.
+          </p>
 
-
-      {/* Learning Card 2 */}
-      <div className="flex flex-col items-center bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-lg rounded-2xl p-8 border border-gray-300 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-  <div className="relative w-full h-64 overflow-hidden rounded-2xl mb-6 shadow-md">
-          <img
-            src="src/images/book5.jpg"
-            alt="Learning Makes a Person Rich"
-            className="w-full h-full object-cover rounded-2xl transform hover:scale-110 transition-all duration-500"
-    />
+          {/* Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "The Importance of Learning",
+                image: "src/images/The Importance of Learning.jpeg",
+                description:
+                  "Discover the profound impact of continuous learning on personal growth, career advancement, and overall well-being.",
+                link: "/importance_of_Learning",
+              },
+              {
+                title: "Learning Makes a Person Rich",
+                image: "src/images/book5.jpg",
+                description:
+                  "Knowledge is wealth that never depreciates. Every lesson learned and every skill gained adds value to your life and opens doors to endless opportunities.",
+                link: "/learning_Makes_a_Person_Rich",
+              },
+              {
+                title: "Benefits of Learning to Read",
+                image: "src/images/book3.jpg",
+                description:
+                  "Reading opens doors to a world of knowledge, imagination, and endless possibilities. Discover the key benefits of learning to read.",
+                link: "/benefits_of_learning_to_read",
+              },
+            ].map((book, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-3xl shadow-lg bg-white p-6 border border-gray-200 transform transition-transform duration-500 hover:scale-105 hover:shadow-xl"
+              >
+                <div className="relative w-full h-56 overflow-hidden rounded-xl">
+                  <img
+                    src={book.image}
+                    alt={book.title}
+                    className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold text-gray-900 group-hover:text-teal-600 transition duration-300">
+                  {book.title}
+                </h3>
+                <p className="text-gray-600 mt-3 leading-relaxed">
+                  {book.description}
+                </p>
+                <Link
+                  to={book.link}
+                  className="mt-6 inline-block bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-full text-lg shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  Learn More
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
-        <h3 className="text-3xl font-bold text-teal-700 mb-4 text-center leading-tight">
-          Learning Makes a Person Rich
-        </h3>
-        <p className="text-gray-700 mb-6 text-center px-6 leading-relaxed">
-          Knowledge is wealth that never depreciates. Every lesson learned and
-          every skill gained adds value to your life and opens doors to endless
-          opportunities.
-        </p>
-        <Link
-          to="/learning_Makes_a_Person_Rich"
-          className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-8 rounded-full text-lg shadow-md transition-all duration-300 transform hover:-translate-y-1"
-          >
-          Learn More
-        </Link>
-      </div>
-
-      {/* Learning Card 3 */}
-      <div className="flex flex-col items-center bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-lg rounded-2xl p-8 border border-gray-300 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-  <div className="relative w-full h-64 overflow-hidden rounded-2xl mb-6 shadow-md">
-          <img
-            src="src/images/book3.jpg"
-            alt="Benefits of Learning to Read"
-            className="w-full h-full object-cover transform hover:scale-110 transition duration-500"
-          />
-        </div>
-        <h3 className="text-3xl font-bold text-teal-700 mb-4 text-center leading-tight">
-          Benefits of Learning to Read
-        </h3>
-        <p className="text-gray-700 mb-6 text-center px-6 leading-relaxed">
-          Reading opens doors to a world of knowledge, imagination, and endless
-          possibilities. Discover the key benefits of learning to read.
-        </p>
-        <Link
-          to="/benefits_of_learning_to_read"
-          className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-8 rounded-full text-lg shadow-md transition-all duration-300 transform hover:-translate-y-1"
-  >
-          Learn More
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-      {/* Banner Section */}
-<section className="w-full mt-12">
-  <img
-    src="src/images/Yellow.png" // Ensure this path points to your actual image location
-    alt="Banner"
-    className="w-full h-71 object-cover" // Adjusted height to h-72 for a taller banner
-  />
-</section>
-
+      </section>
 
       {/* Testimonials Section */}
       <section className="py-16 bg-yellow-50 text-gray-800">
